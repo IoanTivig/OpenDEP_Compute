@@ -1,6 +1,7 @@
-import matplotlib.pyplot as plt
+### START IMPORTS ###
 import math
-import numpy as np
+### END IMPORTS ###
+
 
 def complex_perm(freq, relperm, cond):
     return (relperm * 8.854 * 10**(-12)) - 1j * cond / (freq * 2 * math.pi)

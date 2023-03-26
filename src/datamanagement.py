@@ -1,226 +1,419 @@
+# ------------------------------------------------------
+# ----------------- datamanagement.py ------------------
+# ------------------------------------------------------
+
+### START IMPORTS ###
+## Local imports ##
+import src.sphcm  as sphcm
+import src.sscm as sscm
+import src.conversion as conversion
+import src.functions as functions
+
+from src.sphcm import *
+from src.sscm import *
+from src.conversion import *
+from src.functions import *
+
+## Openpyxl imports ##
 import openpyxl
-import csv
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
 from openpyxl.utils import get_column_letter
 from openpyxl.chart import ScatterChart, Reference, Series, LineChart
 
-from PyQt5.QtWidgets import *
-from PyQt5.uic import loadUi
-from PyQt5 import QtGui
-from PyQt5 import QtCore
-
-import lmfit
-from lmfit import *
+## Matplotlib imports ##
 import matplotlib.pyplot as plt
-import math
+from matplotlib.backends.backend_qt5agg import (NavigationToolbar2QT as NavigationToolbar)
+from matplotlib.backends.backend_qt5agg import FigureCanvas
+from matplotlib.figure import Figure
+from matplotlib.ticker import StrMethodFormatter
+
+## Numpy imports ##
 import numpy as np
 from numpy import sum,isrealobj,sqrt
 from numpy.random import standard_normal
-import json
+
+## Lmfit imports and shapely ##
+import lmfit
+from lmfit import *
 from shapely.geometry import LineString
-import re
+
+## Other imports ##
+import time
+import random
+import math
+import sys
+import json
 import os
-
-from sphcm import *
-from sscm import *
-
+import csv
+import re
 import pprint
+### END IMPORTS ###
+
 
 ### Other functions ###
 ## Auto-Process Functions ##
-def autoProcessOutliersManagement(datapointsUI):
-    datapointsUI.OPEN()
-    datapointsUI.detectOutliersWow()
-    datapointsUI.disableOutliers()
-    datapointsUI.closeWindow()
-
 def autoProcessConvert3DEP(autoProcessUI):
-    files_list = os.listdir(autoProcessUI.fromFolderEntry.text())
+    from_folder = autoProcessUI.fromFolderEntry.text()
+    to_folder = autoProcessUI.toFolderEntry.text()
+
+    files_list = os.listdir(from_folder)
     files_list_len = len(files_list)
-    autoProcessUI.autoProcessProgressbar.setRange(0, (files_list_len - 1))
-    autoProcessUI.autoProcessProgressbar.setValue(0)
+
 
     for file in files_list:
-        i = os.path.join(autoProcessUI.fromFolderEntry.text(), file)
+        i = os.path.join(from_folder, file)
         if os.path.isfile(i) and file.split('.')[1] == 'csv':
             if autoProcessUI.autoConvert3DEP.isChecked():
-                load3DEP(i, autoProcessUI.toFolderEntry.text())
-
-        autoProcessUI.autoProcessProgressbar.setValue(files_list.index(file))
-    autoProcessUI.autoProcessProgressbar.setValue(files_list_len - 1)
+                load3DEP(i, to_folder)
 
 
-def autoProcessLoadandFit(autoProcessUI, datapointsUI, window, data, fit):
-    if autoProcessUI.autoConvert3DEP.isChecked():
-        files_list = os.listdir(autoProcessUI.toFolderEntry.text())
-    else:
-        files_list = os.listdir(autoProcessUI.fromFolderEntry.text())
+def autoProcessLoadandFit(autoProcessUI, datapointsUI, ParamsUI, MainUI):
+    try:
+        ### UPDATE STATUS 1 ###
+        autoProcessUI.statusLabel.setText('Computing...')
+        autoProcessUI.autoProcessStartButton.setEnabled(False)
+        autoProcessUI.closeAutoProcess.setEnabled(False)
 
-    files_list_len = len(files_list)
-    autoProcessUI.autoProcessProgressbar.setRange(0, (files_list_len - 1))
-    autoProcessUI.autoProcessProgressbar.setValue(0)
+        ### Run Auto Convert 3DEP ###
+        autoProcessConvert3DEP(autoProcessUI)
 
-    for file in files_list:
+        ### Main Function ###
+
+        from_folder = autoProcessUI.fromFolderEntry.text()
+        to_folder = autoProcessUI.toFolderEntry.text()
+
         if autoProcessUI.autoConvert3DEP.isChecked():
-            i = os.path.join(autoProcessUI.toFolderEntry.text(), file)
+            files_list = os.listdir(to_folder)
         else:
-            i = os.path.join(autoProcessUI.fromFolderEntry.text(), file)
+            files_list = os.listdir(from_folder)
 
-        if os.path.isfile(i) and file.split('.')[1] == 'xlsx':
-            data.loadExcelData(i)
-            window.loadData()
-            if autoProcessUI.autoDetectOutliers.isChecked():
-                autoProcessOutliersManagement(datapointsUI)
-
-            if window.modelMainTab.currentIndex() == 0:
-                window.fitHopa()
-                data.saveExcelData(os.path.join(autoProcessUI.toFolderEntry.text(), file), 'hopa', window, data, fit)
-            elif window.modelMainTab.currentIndex() == 1:
-                window.fitSish()
-                data.saveExcelData(os.path.join(autoProcessUI.toFolderEntry.text(), file), 'sish', window, data, fit)
-
-        autoProcessUI.autoProcessProgressbar.setValue(files_list.index(file))
-    autoProcessUI.autoProcessProgressbar.setValue(files_list_len - 1)
-
-def autoProcessSaveData(autoProcessUI, window,data, fit):
-    if autoProcessUI.autoCreateCentralized.isChecked():
-        centralizator = Data()
-        files_max_no = 0
-        files_list = os.listdir(autoProcessUI.toFolderEntry.text())
         files_list_len = len(files_list)
-        autoProcessUI.autoProcessProgressbar.setRange(0, (files_list_len - 1))
-        autoProcessUI.autoProcessProgressbar.setValue(0)
 
+        what_to_fit = MainUI.what_to_fit
+        method = MainUI.method
+        trei_dep = MainUI.fitting_gen_fieldgrad_comboBox.currentText()
 
+        local_params = MyParameters()
+        if MainUI.modelMainTab.currentIndex() == 0:
+            model = 'hopa'
+            local_params.startupParameters(os.path.join(os.path.dirname(os.getcwd()), 'saves/default_hopa_parameters'))
+        elif MainUI.modelMainTab.currentIndex() == 1:
+            model = 'sish'
+            local_params.startupParameters(os.path.join(os.path.dirname(os.getcwd()), 'saves/default_sish_parameters'))
+
+        local_params.refreshFromGUIFittingParameters(ParamsUI, MainUI, model)
+
+        data_objs_list = [Data() for i in range(len(files_list))]
+        fittings_objs_list = [MyFittings() for i in range(len(files_list))]
+
+        #### CENTRALIZES DATA 1 ####
+        results_list = []
+        fitted_values_dictionary = {'Fitted Frequency': [[],'',''],
+                                'Fitted CMFactor': [[],'',''],
+                                'Fitted DEPForce': [[],'','']}
+
+        exp_values_dictionary = {'Experimental Frequency': [[], '', ''],
+                                    'Experimental CMFactor': [[], '', ''],
+                                    'Experimental DEPForce': [[], '', '']}
+
+        validation_dictionary = {'Value status': [[], '', '']}
+
+        CO_dictionary = {'1st CO frequency': [[],'','','', 'Hz', '1st CO frequency'],
+                        '2nd CO frequency': [[],'','','', 'Hz', '2nd CO frequency']}
+
+        etc_dict = {'Model': [[],model, 'None', '','','Model'],
+                'Rsqare': [[], 'None', 'None', '','','Rsqare']}
+
+        if model == 'hopa':
+            local_dict = {'fitting_gen_buffer_cond': [[],'','','', 'S/m', 'Buffer Conductivity'],
+                     'fitting_gen_buffer_perm': [[],'','','', 'ε', 'Buffer Permitivity'],
+                     'fitting_hopa_particle_cond': [[],'','','', 'S/m', 'Particle Conductivity'],
+                     'fitting_hopa_particle_perm': [[],'','','', 'ε', 'Particle Permitivity'],
+                     'fitting_hopa_particle_radius': [[],'','','', 'μm', 'Particle Radius']}
+
+        elif model == 'sish':
+            local_dict = {'fitting_gen_buffer_cond': [[],'','','', 'S/m', 'Buffer Conductivity'],
+                     'fitting_gen_buffer_perm': [[],'','','', 'ε', 'Buffer Permitivity'],
+                     'fitting_sish_particle_radius': [[],'','','', 'μm', 'Particle Radius'],
+                     'fitting_sish_membrane_thickness': [[],'','','', 'nm', 'Membrane Thickness'],
+                     'fitting_sish_membrane_perm': [[],'','','', 'ε', 'Membrane Permitivity'],
+                     'fitting_sish_membrane_cond': [[],'','','', 'S/m', 'Membrane Conductivity'],
+                     'fitting_sish_cytoplasm_perm': [[],'','','', 'ε', 'Cytoplasm Permitivity'],
+                     'fitting_sish_cytoplasm_cond': [[],'','','', 'S/m', 'Cytoplasm Conductivity']}
+
+        ### FITS ALL DATA AND SAVES EACH IN EXCEL ###
         for file in files_list:
-            i = os.path.join(autoProcessUI.toFolderEntry.text(), file)
+            index = files_list.index(file)
+            if autoProcessUI.autoConvert3DEP.isChecked():
+                i = os.path.join(to_folder, file)
+            else:
+                i = os.path.join(from_folder, file)
+
+
             if os.path.isfile(i) and file.split('.')[1] == 'xlsx':
-                files_max_no += 1
+                data_objs_list[index].loadExcelData(i)
 
-            autoProcessUI.autoProcessProgressbar.setValue(files_list.index(file))
-        autoProcessUI.autoProcessProgressbar.setValue(files_list_len - 1)
+                # OUTLAYERS MANAGEMENT
+                if autoProcessUI.autoDetectOutliers.isChecked():
+                    data_objs_list[index].dataValidation_list = fittings_objs_list[index].returnOutliers(frequency_list = data_objs_list[index].frequency_list,
+                                                             CMfactor_list = data_objs_list[index].CMfactor_list,
+                                                             DEPforce_list = data_objs_list[index].DEPforce_list,
+                                                             threshold = float(autoProcessUI.outliersThresholdEntry.text())
+                                                             )
 
-        # Values and parameters loading #
-        objs = [Data() for i in range(files_max_no)]
-        files_no = 0
+                    #print(autoProcessUI.outliersThresholdEntry.text())
 
-        Model, Rsqare, first_CO_frequency, second_CO_frequency, Buffer_Conductivity, Buffer_Permitivity = [], [], [], [], [], []
-        Particle_Conductivity, Particle_Permitivity, Particle_Radius = [], [], []
-        Particle_Radius, Membrane_Thickness, Membrane_Conductivity, Membrane_Permitivity, Membrane_Conductance, Membrane_Capacitance, Cytoplasm_Conductivity, Cytoplasm_Permitivity = [], [], [], [], [], [], [], []
+                    instanced_list2 =[]
+                    for i in data_objs_list[index].dataValidation_list:
+                        if i == 'Outlier':
+                            instanced_list2.append('Disabled')
+                        else:
+                            instanced_list2.append('Enabled')
+                    data_objs_list[index].dataStatus_list = instanced_list2
 
-        for file in files_list:
-            i = os.path.join(autoProcessUI.toFolderEntry.text(), file)
-            if os.path.isfile(i) and file.split('.')[1] == 'xlsx':
-                wb = load_workbook(filename=i)
-                ws = wb.active
+                # AUTO FIT DATA
+                result = fittings_objs_list[index].fit(frequency_list = data_objs_list[index].frequency_list,
+                                                       CMfactor_list = data_objs_list[index].CMfactor_list,
+                                                       DEPforce_list = data_objs_list[index].DEPforce_list,
+                                                       parameters = local_params.parameters,
+                                                       model = model,
+                                                       what_to_fit = what_to_fit,
+                                                       trei_DEP = trei_dep,
+                                                       method = method)
 
-                Model.append(ws["L2"].value)
-                Rsqare.append(ws["L3"].value)
-
-                if ws["L4"].value != 'N/A':
-                    if ws["N4"].value == 'MHz':
-                        first_CO_frequency.append(ws["L4"].value*1000000)
-                    elif ws["N4"].value == 'kHz':
-                        first_CO_frequency.append(ws["L4"].value * 1000)
-                    elif ws["N4"].value == 'Hz':
-                        first_CO_frequency.append(ws["L4"].value)
-
-                if ws["L5"].value != 'N/A':
-                    if ws["N5"].value == 'MHz':
-                        second_CO_frequency.append(ws["L5"].value*1000000)
-                    elif ws["N5"].value == 'kHz':
-                        second_CO_frequency.append(ws["L5"].value * 1000)
-                    elif ws["N5"].value == 'Hz':
-                        second_CO_frequency.append(ws["L5"].value)
-
-                Buffer_Conductivity.append(ws["L6"].value)
-                Buffer_Permitivity.append(ws["L7"].value)
-
-                if window.modelMainTab.currentIndex() == 0:
-                    Particle_Conductivity.append(ws["L8"].value)
-                    Particle_Permitivity.append(ws["L9"].value)
-                    Particle_Radius.append(ws["L9"].value)
-
-                if window.modelMainTab.currentIndex() == 1:
-                    Particle_Radius.append(ws["L8"].value)
-                    Membrane_Thickness.append(ws["L9"].value)
-                    Membrane_Conductivity.append(ws["L10"].value)
-                    Membrane_Permitivity.append(ws["L11"].value)
-                    Membrane_Conductance.append(ws["L12"].value)
-                    Membrane_Capacitance.append(ws["L13"].value)
-                    Cytoplasm_Conductivity.append(ws["L14"].value)
-                    Cytoplasm_Permitivity.append(ws["L15"].value)
-
-                objs[files_no].loadExcelData(i)
-                files_no += 1
-
-            autoProcessUI.autoProcessProgressbar.setValue(files_list.index(file))
-        autoProcessUI.autoProcessProgressbar.setValue((files_list_len - 1)/2)
-
-        # Values saving #
-        specialList11, specialList12, specialList13, specialList21, specialList22, specialList23 = [], [], [], [], [], []
-        for i in objs:
-            specialList11.append(i.CMfactor_list)
-            specialList12.append(i.DEPforce_list)
-            specialList13.append(i.frequency_list)
-            specialList21.append(i.fittedCMfactor_list)
-            specialList22.append(i.fittedDEPforce_list)
-            specialList23.append(i.fittedFrequency_list)
+                data_objs_list[index].fittedFrequency_list, data_objs_list[index].fittedCMfactor_list, data_objs_list[index].fittedDEPforce_list = fittings_objs_list[index].returnFittedValues2(result, model, MainUI.what_to_fit, 50, data_objs_list[index].frequency_list, local_params)
 
 
-        centralizator.CMfactor_list = [np.mean(k) for k in zip(*specialList11)]
-        centralizator.CMfactor_errors_list = [np.std(k) for k in zip(*specialList11)]
-        centralizator.DEPforce_list = [np.mean(k) for k in zip(*specialList12)]
-        centralizator.DEPforce_errors_list = [np.std(k) for k in zip(*specialList12)]
-        centralizator.frequency_list = [np.mean(k) for k in zip(*specialList13)]
-        centralizator.fittedCMfactor_list = [np.mean(k) for k in zip(*specialList21)]
-        centralizator.fittedDEPforce_list = [np.mean(k) for k in zip(*specialList22)]
-        centralizator.fittedFrequency_list = [np.mean(k) for k in zip(*specialList23)]
+                #CORRECTING DATA WITH FIELD GRADIENT
+                if MainUI.fitting_gen_fieldgrad_comboBox.currentText() == 'Unspecified':
+                    instanced_list = []
+                    for i in data_objs_list[index].CMfactor_list:
+                        instanced_list.append(
+                            i / float(fittings_objs_list[index].returnFittedParamtersVar2(result, 'fitting_gen_fieldgrad')[0]))
 
-        if window.modelMainTab.currentIndex() == 0:
-            centralizator.saveExcelData(os.path.join(autoProcessUI.toFolderEntry.text(), 'Centralizer.xlsx'), 'hopa', window,
-                                        data, fit)
-        if window.modelMainTab.currentIndex() == 1:
-            centralizator.saveExcelData(os.path.join(autoProcessUI.toFolderEntry.text(), 'Centralizer.xlsx'), 'sish', window,
-                                        data, fit)
+                    instanced_errors_list = []
+                    for j in data_objs_list[index].CMfactor_errors_list:
+                        instanced_errors_list.append(
+                            j / float(fittings_objs_list[index].returnFittedParamtersVar2(result, 'fitting_gen_fieldgrad')[0]))
 
-        # Parameters saving #
-        stdList, meanList = [], []
+                    data_objs_list[index].CMfactor_list = instanced_list
+                    data_objs_list[index].CMfactor_errors_list = instanced_errors_list
+                data_objs_list[index].saveExcelData(os.path.join(autoProcessUI.toFolderEntry.text(), file), model, MainUI, data_objs_list[index], fittings_objs_list[index])
 
-        if window.modelMainTab.currentIndex() == 0:
-            list = [Buffer_Conductivity, Buffer_Permitivity, Particle_Conductivity, Particle_Permitivity,
-                    Particle_Radius]
-        elif window.modelMainTab.currentIndex() == 1:
-            list = [Buffer_Conductivity, Buffer_Permitivity, Particle_Radius, Membrane_Thickness, Membrane_Conductivity,
-                    Membrane_Permitivity, Membrane_Conductance, Membrane_Capacitance, Cytoplasm_Conductivity,
-                    Cytoplasm_Permitivity]
+                #### CENTRALIZES DATA 2 ####
+                #print(fittings_objs_list[index].returnFitRsquare(result))
 
-        for i in range(len(list)):
-            meanList.append(np.mean(list[i]))
-            stdList.append(np.std(list[i]))
+                if autoProcessUI.autoDetectRsquare.isChecked():
+                    local_rsquare = float(fittings_objs_list[index].returnFitRsquare(result))
+                else:
+                    local_rsquare = 1.0
+
+                if local_rsquare > float(autoProcessUI.rsquareThresholdEntry.text()):
+
+                    results_list.append(result)
+                    firstCO, secondCO, intersection = fittings_objs_list[index].cross_over_first(data_objs_list[index].fittedFrequency_list, data_objs_list[index].fittedCMfactor_list)
+                    CO_dictionary['1st CO frequency'][0].append(firstCO)
+                    CO_dictionary['2nd CO frequency'][0].append(secondCO)
+
+                    fitted_values_dictionary['Fitted Frequency'][0].append(data_objs_list[index].fittedFrequency_list)
+                    fitted_values_dictionary['Fitted CMFactor'][0].append(data_objs_list[index].fittedCMfactor_list)
+                    fitted_values_dictionary['Fitted DEPForce'][0].append(data_objs_list[index].fittedDEPforce_list)
+
+                    exp_values_dictionary['Experimental Frequency'][0].append(data_objs_list[index].frequency_list)
+                    exp_values_dictionary['Experimental CMFactor'][0].append(data_objs_list[index].CMfactor_list)
+                    exp_values_dictionary['Experimental DEPForce'][0].append(data_objs_list[index].DEPforce_list)
+                    validation_dictionary['Value status'][0].append(data_objs_list[index].dataStatus_list)
 
 
-        wb = load_workbook(filename=os.path.join(autoProcessUI.toFolderEntry.text(), 'Centralizer.xlsx'))
+        #### CENTRALIZES DATA 3 ####
+            # Parameters #
+        for index in range(len(results_list)):
+            for i in local_dict.keys():
+                local_dict[i][0].append(fittings_objs_list[index].returnFittedParamtersVar2(results_list[index], i)[0])
+
+            # Cross-over #
+        for i in CO_dictionary.keys():
+            CO_dictionary[i][0] = [value for value in CO_dictionary[i][0] if value != 'N/A']
+
+        CO_dictionary.update(local_dict)
+        local_dict = CO_dictionary
+
+            # Fitted data #
+        for i in fitted_values_dictionary.keys():
+            fitted_list = np.stack(fitted_values_dictionary[i][0], axis=-1)
+            average_list = []
+            stdev_list = []
+            for j in fitted_list:
+                average = np.average(j)
+                stdev = np.std(j)
+                average_list.append(average)
+                stdev_list.append(stdev)
+
+            fitted_values_dictionary[i][1] = average_list
+            fitted_values_dictionary[i][2] = stdev_list
+            #print(i, ':  AVG:', fitted_values_dictionary[i][1], ' STD:', fitted_values_dictionary[i][2])
+
+        # Experimental data #
+        indecies_list = []
+        for i in validation_dictionary.keys():
+            val_list = np.stack(validation_dictionary[i][0], axis=-1)
+            x = 0
+            for j in val_list:
+                z = 0
+                for y in j:
+                    if y == "Disabled":
+                        indecies_list.append([z, x])
+                    z = z + 1
+                x = x + 1
+
+        for i in exp_values_dictionary.keys():
+            exp_list = np.stack(exp_values_dictionary[i][0], axis=-1).tolist()
+
+            try:
+                for j in indecies_list:
+                    column = int(j[0])
+                    row = int(j[1])
+                    exp_list[row][column] = 'N/A'
+            except:
+                print(' ')
+
+            for j in range(len(exp_list)):
+                exp_list[j] = [value for value in exp_list[j] if value != 'N/A']
+
+            average_list = []
+            stdev_list = []
+            for j in exp_list:
+                average = np.average(j)
+                stdev = np.std(j)
+                average_list.append(average)
+                stdev_list.append(stdev)
+
+            exp_values_dictionary[i][1] = average_list
+            exp_values_dictionary[i][2] = stdev_list
+            #print(i, ':  AVG:', exp_values_dictionary[i][1], ' STD:', exp_values_dictionary[i][2])
+
+            # Parameters #
+        for i in local_dict.keys():
+            for j in range(0, len(local_dict[i][0])):
+                local_dict[i][0][j] = float(local_dict[i][0][j])
+
+            average = np.average(local_dict[i][0])
+            stdev = np.std(local_dict[i][0])
+            nosamples = len(local_dict[i][0])
+
+            local_dict[i][1] = average
+            local_dict[i][2] = stdev
+            local_dict[i][3] = nosamples
+            #print(i, ':  AVG:', local_dict[i][1], ' STD:', local_dict[i][2])
+
+            # Adding etc dictionary #
+        etc_dict.update(local_dict)
+        local_dict = etc_dict
+        #for i in local_dict.keys():
+            #print(i, ':  AVG:', local_dict[i][1], ' STD:', local_dict[i][2])
+
+            ### AUTO CREATE CENTRALIZED FILE ###
+        if autoProcessUI.autoCreateCentralized.isChecked():
+            centrfile = os.path.join(autoProcessUI.toFolderEntry.text(), 'Centralizer.xlsx')
+            autoProcessMakeCentralizer(local_dict, exp_values_dictionary, fitted_values_dictionary, centrfile)
+
+        ### UPDATE STATUS 2 ###
+        autoProcessUI.statusLabel.setText('Finished!')
+        autoProcessUI.autoProcessStartButton.setEnabled(True)
+        autoProcessUI.closeAutoProcess.setEnabled(True)
+
+    ### MANAGES ERRORS AND RESETS UI ###
+    except:
+        print("[ERROR] [Main] [AutoProcessUI] AutoProcess method could not run")
+        autoProcessUI.statusLabel.setText('Failed!')
+        autoProcessUI.autoProcessStartButton.setEnabled(True)
+        autoProcessUI.closeAutoProcess.setEnabled(True)
+
+
+def autoProcessMakeCentralizer(params_dict, exp_values_dict, fit_values_dict, file):
+        instanced_data = Data()
+        wb = Workbook()
         ws = wb.active
-        ws['L2'] = Model[0]
-        ws['L3'] = ' '
-        ws['L4'] = np.mean(first_CO_frequency)
-        ws['M4'] = np.std(first_CO_frequency)
-        ws['N4'] = 'Hz'
-        ws['L5'] = np.mean(second_CO_frequency)
-        ws['M5'] = np.std(second_CO_frequency)
-        ws['N5'] = 'Hz'
 
-        for i in range(len(meanList)):
-            ws.cell(row=i + 6, column=12, value=meanList[i])
+    ## Excel top-table setup ##
+        ws['A1'] = 'Frequency (Hz)'
+        ws['B1'] = 'Experimental CM factor'
+        ws['C1'] = 'Experimental CM Factor errors'
+        ws['D1'] = 'Experimental DEP force'
+        ws['E1'] = 'Experimental DEP force errors'
+        ws['F1'] = 'Status'
+        ws['G1'] = 'Type'
+        ws['H1'] = 'Fitted Frequency (Hz)'
+        ws['I1'] = 'Fitted CMfactor'
+        ws['J1'] = 'Fitted DEPforce'
+        ws['K1'] = 'Name               '
+        ws['L1'] = 'Value / Type'
+        ws['M1'] = 'Error (+/-)'
+        ws['N1'] = 'No.     '
+        ws['O1'] = 'Unit    '
 
-        for i in range(len(stdList)):
-            ws.cell(row=i + 6, column=13, value=stdList[i])
+        instanced_data.autoStretchColumns(ws)
+        instanced_data.setBackgroundColor(ws, top=1, bottom=1000, left=1, right=100, color="00EBF1DE")
+        instanced_data.setBackgroundColor(ws, top=1, bottom=1, left=1, right=15, color='00C4D79B')
+        instanced_data.setBorder(ws, top=1, bottom=1, left=1, right=15, color='000000', border_style='thick')
 
-        wb.save(filename=os.path.join(autoProcessUI.toFolderEntry.text(), 'Centralizer.xlsx'))
-        print(meanList, stdList)
-        autoProcessUI.autoProcessProgressbar.setValue(files_list_len - 1)
+        x = 2
+        for i in params_dict.keys():
+            ws.cell(row=x, column=11, value=params_dict[i][5])
+            if params_dict[i][5] == 'Model' or params_dict[i][5] == 'Rsqare':
+                ws.cell(row=x, column=12, value=params_dict[i][1])
+                ws.cell(row=x, column=13, value=params_dict[i][2])
+                ws.cell(row=x, column=14, value=params_dict[i][3])
+            else:
+                ws.cell(row=x, column=12, value=float(params_dict[i][1]))
+                ws.cell(row=x, column=13, value=float(params_dict[i][2]))
+                ws.cell(row=x, column=14, value=float(params_dict[i][3]))
+            ws.cell(row=x, column=15, value=params_dict[i][4])
+            x = x + 1
+
+        instanced_data.setBorder(ws, top=2, bottom=x-1, left=11, right=15, color='000000', border_style='double')
+        instanced_data.setTabelBackground(ws, top=2, bottom=x-1, left=11, right=15, color1='00C0C0C0', color2='00FFFFFF')
+
+
+        list = [exp_values_dict['Experimental Frequency'][1], exp_values_dict['Experimental CMFactor'][1], exp_values_dict['Experimental CMFactor'][2],exp_values_dict['Experimental DEPForce'][1], exp_values_dict['Experimental DEPForce'][2]]
+        x = 1
+        for i in list:
+            y = 2
+            for j in i:
+                ws.cell(row=y, column=x, value=j)
+                y = y + 1
+            x = x + 1
+
+        list2 = []
+        for i in list:
+            list2.append(len(i))
+        instanced_data.setBorder(ws, top=2, bottom=max(list2)+1, left=1, right=7, color='000000', border_style='double')
+        instanced_data.setTabelBackground(ws, top=2, bottom=max(list2)+1, left=1, right=7, color1='00C0C0C0', color2='00FFFFFF')
+
+
+        list = fit_values_dict['Fitted Frequency'][1], fit_values_dict['Fitted CMFactor'][1], fit_values_dict['Fitted DEPForce'][1]
+        x = 8
+        for i in list:
+            y = 2
+            for j in i:
+                ws.cell(row=y, column=x, value=j)
+                y = y + 1
+            x = x + 1
+
+        list2 = []
+        for i in list:
+            list2.append(len(i))
+        instanced_data.setBorder(ws, top=2, bottom=max(list2)+1, left=8, right=x - 1, color='000000', border_style='double')
+        instanced_data.setTabelBackground(ws, top=2, bottom=max(list2)+1, left=8, right=x-1, color1='00C0C0C0', color2='00FFFFFF')
+
+    # Adding the charts#
+        instanced_data.chartPlotExcel(ws, what_to_plot="CMfactor", exp_freq=exp_values_dict['Experimental Frequency'][1],fit_freq=fit_values_dict['Fitted Frequency'][1], name='CM factor scatter', yname='CM factor', position="P1")
+        instanced_data.chartPlotExcel(ws, what_to_plot="DEPforce", exp_freq=exp_values_dict['Experimental Frequency'][1],fit_freq=fit_values_dict['Fitted Frequency'][1], name='DEP force scatter', yname='DEP force', position="P20")
+
+    # Saving and closing excel
+        wb.save(filename=file)
+
 
 ## 3DEP management functions ##
 def load3DEPloop(folder):
@@ -677,6 +870,7 @@ class MyParameters():
                             ]
 
         for x in listoflists:
+
             self.changeParameter(x[0], 'value', float(x[1][0].text()))
             try:
                 if x[1][1].currentText() == 'Vary':
@@ -716,9 +910,9 @@ class MyParameters():
 class MyFittings():
 
     def fit(self, frequency_list, CMfactor_list, DEPforce_list, parameters, model, what_to_fit, trei_DEP, method):
-        if trei_DEP == '3DEP' and model == 'hopa' and what_to_fit == 'CMfactor':
+        if trei_DEP == 'Unspecified' and model == 'hopa' and what_to_fit == 'CMfactor':
             self.mod = Model(hopa_CMfactor_3DEP)
-        elif trei_DEP == '3DEP' and model == 'sish' and what_to_fit == 'CMfactor':
+        elif trei_DEP == 'Unspecified' and model == 'sish' and what_to_fit == 'CMfactor':
             self.mod = Model(sish_CMfactor_3DEP)
         elif model == 'hopa' and what_to_fit == 'CMfactor':
             self.mod = Model(hopa_CMfactor)
@@ -752,7 +946,7 @@ class MyFittings():
     def returnOutliers(self, frequency_list, CMfactor_list, DEPforce_list, threshold):
 
         outliersParameters = MyParameters()
-        outliersParameters.loadParameters('default_outliers_parameters')
+        outliersParameters.loadParameters(os.path.join(os.path.dirname(os.getcwd()), 'saves/default_outliers_parameters'))
         validation_list = []
 
         if len(CMfactor_list) > 2:
@@ -760,7 +954,7 @@ class MyFittings():
         elif len(DEPforce_list) > 2:
             what_to_fit = 'DEPforce'
 
-        self.result = self.fit(frequency_list=frequency_list, CMfactor_list=CMfactor_list, DEPforce_list=DEPforce_list, parameters=outliersParameters.parameters, model='sish', what_to_fit=what_to_fit, trei_DEP='3DEP', method='powell')
+        self.result = self.fit(frequency_list=frequency_list, CMfactor_list=CMfactor_list, DEPforce_list=DEPforce_list, parameters=outliersParameters.parameters, model='sish', what_to_fit=what_to_fit, trei_DEP='Unspecified', method='powell')
         residuals = self.result.residual
         #print(residuals)
 
@@ -770,15 +964,16 @@ class MyFittings():
         #print(mean_1)
         #print(std_1)
 
-        for i in residuals:
+        validation_list.append("Normal")
+        for i in range(1,len(residuals)-1):
             #print(i)
-            z_score = (i - mean_1) / std_1
+            z_score = (residuals[i] - mean_1) / std_1
             #print(z_score)
             if np.abs(z_score) > threshold:
                 validation_list.append("Outlier")
             else:
                 validation_list.append("Normal")
-
+        validation_list.append("Normal")
         return validation_list
 
 
@@ -873,52 +1068,79 @@ class MyFittings():
 
 
 # Calculating the cross_over #
-    def cross_over(self,frequencyList, CMfactorList, firstcrossoverentry, secondcrossoverentry, markcrossover, MplCMWidget):
+    def cross_over_first(self, frequencyList, CMfactorList):
         zeroList = [0] * len(frequencyList)
+        backList = [0.01] * len(frequencyList)
+
         first_line = LineString(np.column_stack((frequencyList, CMfactorList)))
         second_line = LineString(np.column_stack((frequencyList, zeroList)))
+        back_line = LineString(np.column_stack((frequencyList, backList)))
+
         intersection = first_line.intersection(second_line)
+        backintersection = first_line.intersection(back_line)
 
-        if intersection.geom_type == 'MultiPoint':
-            if LineString(intersection).xy[0][0] > 1000000:
-                firstcrossoverentry.setText(str(round((LineString(intersection).xy[0][0] / 1000000), 2)) + " MHz")
-            elif LineString(intersection).xy[0][0] > 1000:
-                firstcrossoverentry.setText(str(int(LineString(intersection).xy[0][0] / 1000)) + " kHz")
+        try:
+            print(float(re.split(r"[-;,()\s]\s*", str(intersection))[2]))
+            if intersection.geom_type == 'Point':
+                if float(re.split(r"[-;,()\s]\s*", str(intersection))[2]) < float(re.split(r"[-;,()\s]\s*", str(backintersection))[2]):
+                    firstCO = float(re.split(r"[-;,()\s]\s*", str(intersection))[2])
+                    secondCO = 'N/A'
+                elif float(re.split(r"[-;,()\s]\s*", str(intersection))[2]) > float(re.split(r"[-;,()\s]\s*", str(backintersection))[2]):
+                    firstCO = 'N/A'
+                    secondCO = float(re.split(r"[-;,()\s]\s*", str(intersection))[2])
+
+            elif intersection.geom_type == 'MultiPoint':
+                first_intersection = float(re.split(r"[-;,()\s]\s*", str(intersection))[2])
+                second_intersection = float(re.split(r"[-;,()\s]\s*", str(intersection))[4])
+                if first_intersection < second_intersection:
+                    firstCO = first_intersection
+                    secondCO = second_intersection
+                elif first_intersection > second_intersection:
+                    firstCO = second_intersection
+                    secondCO = first_intersection
+
             else:
-                firstcrossoverentry.setText(str(int(LineString(intersection).xy[0][0])) + " Hz")
+                firstCO = 'N/A'
+                secondCO = 'N/A'
 
-            print(LineString(intersection).xy[0][0])
+        except:
+            firstCO = 'N/A'
+            secondCO = 'N/A'
+            print("[WARNING] [FITTING] [CROSSOVER] Crossing-over couldn't be computed")
 
-            if LineString(intersection).xy[0][1] > 1000000:
-                secondcrossoverentry.setText(str(round((LineString(intersection).xy[0][1] / 1000000), 2)) + " MHz")
-            elif LineString(intersection).xy[0][1] > 1000:
-                secondcrossoverentry.setText(str(int(LineString(intersection).xy[0][1] / 1000)) + " kHz")
+        return firstCO, secondCO, intersection
+
+
+    def cross_over(self,frequencyList, CMfactorList, firstcrossoverentry, secondcrossoverentry, markcrossover, MplCMWidget):
+        firstCO, secondCO, intersection = self.cross_over_first(frequencyList, CMfactorList)
+        try:
+            if firstCO != 'N/A':
+                if firstCO > 1000000:
+                    firstcrossoverentry.setText(str(round((firstCO / 1000000), 2)) + " MHz")
+                elif firstCO > 1000:
+                    firstcrossoverentry.setText(str(int(firstCO / 1000)) + " kHz")
+                else:
+                    firstcrossoverentry.setText(str(int(firstCO)) + " Hz")
             else:
-                secondcrossoverentry.setText(str(int(LineString(intersection).xy[0][1])) + " Hz")
+                firstcrossoverentry.setText('N/A')
 
-            print(LineString(intersection).xy[0][1])
-
-        elif intersection.geom_type == 'Point':
-            print((intersection.xy[0][0]))
-            if intersection.xy[0][0] > 1000000:
-                firstcrossoverentry.setText(str(round((intersection.xy[0][0] / 1000000), 2)) + " MHz")
-            elif intersection.xy[0][0] > 1000:
-                firstcrossoverentry.setText(str(int(intersection.xy[0][0] / 1000)) + " kHz")
+            if secondCO != 'N/A':
+                if secondCO > 1000000:
+                    secondcrossoverentry.setText(str(round((secondCO / 1000000), 2)) + " MHz")
+                elif secondCO > 1000:
+                    secondcrossoverentry.setText(str(int(secondCO / 1000)) + " kHz")
+                else:
+                    secondcrossoverentry.setText(str(int(secondCO)) + " Hz")
             else:
-                firstcrossoverentry.setText(str(int(intersection.xy[0][0])) + " Hz")
+                secondcrossoverentry.setText('N/A')
 
-            secondcrossoverentry.setText('N/A')
-
-        else:
-            firstcrossoverentry.setText('N/A')
-            secondcrossoverentry.setText('N/A')
-
-        if markcrossover.isChecked():
-            if intersection.geom_type == 'MultiPoint':
-                MplCMWidget.canvas.axes.plot(*LineString(intersection).xy, 'x')
-            elif intersection.geom_type == 'Point':
-                MplCMWidget.canvas.axes.plot(*intersection.xy, 'x')
-
+            if markcrossover.isChecked():
+                if intersection.geom_type == 'MultiPoint':
+                    MplCMWidget.canvas.axes.plot([firstCO, secondCO],[0,0], 'x')
+                elif intersection.geom_type == 'Point':
+                    MplCMWidget.canvas.axes.plot(*intersection.xy, 'x')
+        except:
+            print("[WARNING] [FITTING] [CROSSOVER] Crossing-over couldn't be saved")
 
 ## Data manipulation and excel importing / exporting ##
 class Data():
@@ -1026,21 +1248,18 @@ class Data():
         self.setBackgroundColor(ws, top=1, bottom=1, left=1, right=14, color='00C4D79B')
         self.setBorder(ws, top=1, bottom=1, left=1, right=14, color='000000', border_style='thick')
 
-        if MainUI.fitting_CMfactor_firstCOfreq.text() != 'N/A':
-            firstCOfreq = MainUI.fitting_CMfactor_firstCOfreq.text().split()
-        else:
-            firstCOfreq = ['N/A', ' ']
-
-        if MainUI.fitting_CMfactor_secondCOfreq.text() != 'N/A':
-            secondCOfreq = MainUI.fitting_CMfactor_secondCOfreq.text().split()
-        else:
-            secondCOfreq = ['N/A', ' ']
+        firstCO, secondCO, garbage = fit.cross_over_first(self.fittedFrequency_list, self.fittedCMfactor_list)
+        try:
+            rsquare = fit.returnFitRsquare(fit.result)
+        except:
+            rsquare = 'None'
+            print('No RSquare')
 
         if model == 'hopa':
             dict = {'Model':[model, ' '],
-                    'Rsqare':[MainUI.fitting_CMfactor_Rsquare.text(), ' '],
-                    '1st CO frequency':[firstCOfreq[0], firstCOfreq[1]],
-                    '2nd CO frequency':[secondCOfreq[0], secondCOfreq[1]],
+                    'Rsqare':[rsquare, ' '],
+                    '1st CO frequency':[firstCO, 'Hz'],
+                    '2nd CO frequency':[secondCO, 'Hz'],
                     'Buffer Conductivity': [fit.returnFittedParamtersVar2(fit.result, 'fitting_gen_buffer_cond'), 'S/m'],
                     'Buffer Permitivity': [fit.returnFittedParamtersVar2(fit.result, 'fitting_gen_buffer_perm'), 'ε'],
                     'Particle Conductivity': [fit.returnFittedParamtersVar2(fit.result, 'fitting_hopa_particle_cond'), 'S/m'],
@@ -1050,9 +1269,9 @@ class Data():
 
         elif model == 'sish':
             dict = {'Model': [model, ' '],
-                    'Rsqare': [MainUI.fitting_CMfactor_Rsquare.text(), ' '],
-                    '1st CO frequency':[firstCOfreq[0], firstCOfreq[1]],
-                    '2nd CO frequency':[secondCOfreq[0], secondCOfreq[1]],
+                    'Rsqare': [rsquare, ' '],
+                    '1st CO frequency':[firstCO, 'Hz'],
+                    '2nd CO frequency':[secondCO, 'Hz'],
                     'Buffer Conductivity': [fit.returnFittedParamtersVar2(fit.result, 'fitting_gen_buffer_cond'), 'S/m'],
                     'Buffer Permitivity': [fit.returnFittedParamtersVar2(fit.result, 'fitting_gen_buffer_perm'), 'ε'],
                     'Particle Radius': [fit.returnFittedParamtersVar2(fit.result, 'fitting_sish_particle_radius'), 'μm'],

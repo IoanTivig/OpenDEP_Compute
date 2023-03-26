@@ -1,0 +1,7 @@
+matplotlib~=3.7.0
+PyQt5~=5.15.9
+scikit-image~=0.19.3
+openpyxl~=3.1.1
+numpy~=1.24.2
+lmfit~=1.1.0
+shapely~=2.0.1

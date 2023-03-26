@@ -1,11 +1,25 @@
-import numpy as np
+# ------------------------------------------------------
+# ----------------- datamanagement.py ------------------
+# ------------------------------------------------------
+
+### START IMPORTS ###
+## Shapely imports ##
 from shapely.geometry import LineString
+
+## Numpy imports ##
+import numpy as np
+### END IMPORTS ###
+
 
 def cross_over(frequencyList, CMfactorList, firstcrossoverentry, secondcrossoverentry, markcrossover, MplCMWidget, MplCMWidget4, listlength):
     zeroList = [0] * listlength
+    backList = [0.01] * listlength
+
     first_line = LineString(np.column_stack((frequencyList, CMfactorList)))
     second_line = LineString(np.column_stack((frequencyList, zeroList)))
+    back_line = LineString(np.column_stack((frequencyList, backList)))
     intersection = first_line.intersection(second_line)
+    backintersection = first_line.intersection(back_line)
 
     if intersection.geom_type == 'MultiPoint':
         if LineString(intersection).xy[0][0] > 1000000:
@@ -28,14 +42,27 @@ def cross_over(frequencyList, CMfactorList, firstcrossoverentry, secondcrossover
 
     elif intersection.geom_type == 'Point':
         print((intersection.xy[0][0]))
-        if intersection.xy[0][0] > 1000000:
-            firstcrossoverentry.setText(str(round((intersection.xy[0][0] / 1000000), 2)) + " MHz")
-        elif intersection.xy[0][0] > 1000:
-            firstcrossoverentry.setText(str(int(intersection.xy[0][0] / 1000)) + " kHz")
-        else:
-            firstcrossoverentry.setText(str(int(intersection.xy[0][0])) + " Hz")
 
-        secondcrossoverentry.setText('N/A')
+        if intersection.xy[0][0] > backintersection.xy[0][0]:
+            if intersection.xy[0][0] > 1000000:
+                firstcrossoverentry.setText(str(round((intersection.xy[0][0] / 1000000), 2)) + " MHz")
+            elif intersection.xy[0][0] > 1000:
+                firstcrossoverentry.setText(str(int(intersection.xy[0][0] / 1000)) + " kHz")
+            else:
+                firstcrossoverentry.setText(str(int(intersection.xy[0][0])) + " Hz")
+
+            secondcrossoverentry.setText('N/A')
+
+        elif intersection.xy[0][0] < backintersection.xy[0][0]:
+            if intersection.xy[0][0] > 1000000:
+                secondcrossoverentry.setText(str(round((intersection.xy[0][0] / 1000000), 2)) + " MHz")
+            elif intersection.xy[0][0] > 1000:
+                secondcrossoverentry.setText(str(int(intersection.xy[0][0] / 1000)) + " kHz")
+            else:
+                secondcrossoverentry.setText(str(int(intersection.xy[0][0])) + " Hz")
+
+            firstcrossoverentry.setText('N/A')
+
 
     else:
         firstcrossoverentry.setText('N/A')
