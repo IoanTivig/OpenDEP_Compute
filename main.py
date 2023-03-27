@@ -16,10 +16,6 @@ OpenDEP
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     You can contact the developer/owner of OpenDEP at "ioan.tivig@gmail.com".
-
-    -------------------------------------------------------------------------
-    ------------------------------- MAIN FILE -------------------------------
-    -------------------------------------------------------------------------
 '''
 
 ### START IMPORTS ###
