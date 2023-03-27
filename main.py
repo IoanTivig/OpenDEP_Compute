@@ -249,6 +249,7 @@ class DataPointsUI(QDialog):
 
     def detectOutliersWow(self):
         fitOutliers = MyFittings()
+        print("Hello")
         instancedValidation_list = fitOutliers.returnOutliers(data.frequency_list, data.CMfactor_list, data.DEPforce_list, float(self.thresholdEntry.text()))
         print(self.thresholdEntry.text())
         print(instancedValidation_list)

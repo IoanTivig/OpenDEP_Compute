@@ -97,10 +97,10 @@ def autoProcessLoadandFit(autoProcessUI, datapointsUI, ParamsUI, MainUI):
         local_params = MyParameters()
         if MainUI.modelMainTab.currentIndex() == 0:
             model = 'hopa'
-            local_params.startupParameters(os.path.join(os.path.dirname(os.getcwd()), 'saves/default_hopa_parameters'))
+            local_params.startupParameters(os.path.join(os.getcwd(), 'saves/default_hopa_parameters'))
         elif MainUI.modelMainTab.currentIndex() == 1:
             model = 'sish'
-            local_params.startupParameters(os.path.join(os.path.dirname(os.getcwd()), 'saves/default_sish_parameters'))
+            local_params.startupParameters(os.path.join(os.getcwd(), 'saves/default_sish_parameters'))
 
         local_params.refreshFromGUIFittingParameters(ParamsUI, MainUI, model)
 
@@ -945,10 +945,11 @@ class MyFittings():
 
     def returnOutliers(self, frequency_list, CMfactor_list, DEPforce_list, threshold):
 
+        print(os.getcwd())
         outliersParameters = MyParameters()
-        outliersParameters.loadParameters(os.path.join(os.path.dirname(os.getcwd()), 'saves/default_outliers_parameters'))
+        outliersParameters.loadParameters(os.path.join(os.getcwd(), 'saves/default_outliers_parameters'))
         validation_list = []
-
+        print("Hello2")
         if len(CMfactor_list) > 2:
             what_to_fit = 'CMfactor'
         elif len(DEPforce_list) > 2:
