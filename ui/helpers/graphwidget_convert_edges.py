@@ -29,6 +29,8 @@ class GraphWidget_convert_edges(QWidget):
 
         self.canvas.axes = self.canvas.figure.add_subplot(111)
         self.canvas.axes.set_axis_off()
+        self.canvas.axes.get_xaxis().set_visible(False)
+        self.canvas.axes.get_yaxis().set_visible(False)
 
         self.setLayout(layout)
 
@@ -37,7 +39,7 @@ class GraphWidget_convert_edges(QWidget):
         image = io.imread(image_path)
         image_float = img_as_float(image)
 
-        self.canvas.axes.imshow(image_float)
+        self.canvas.axes.imshow(image_float, interpolation='nearest', aspect='auto')
         for i in edges_position:
             self.canvas.axes.axvline(i + points_to_remove, color='black', linestyle='--', linewidth=0.5)
 

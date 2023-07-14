@@ -239,7 +239,7 @@ def autoProcessLoadandFit(autoProcessUI, datapointsUI, ParamsUI, MainUI):
         CO_dictionary.update(local_dict)
         local_dict = CO_dictionary
 
-            # Fitted data #
+            # Fitted data_01 #
         for i in fitted_values_dictionary.keys():
             fitted_list = np.stack(fitted_values_dictionary[i][0], axis=-1)
             average_list = []
@@ -254,7 +254,7 @@ def autoProcessLoadandFit(autoProcessUI, datapointsUI, ParamsUI, MainUI):
             fitted_values_dictionary[i][2] = stdev_list
             #print(i, ':  AVG:', fitted_values_dictionary[i][1], ' STD:', fitted_values_dictionary[i][2])
 
-        # Experimental data #
+        # Experimental data_01 #
         indecies_list = []
         for i in validation_dictionary.keys():
             val_list = np.stack(validation_dictionary[i][0], axis=-1)
@@ -654,10 +654,10 @@ def frequencyConvertor(value, division):
 
 def awgnNoise(s, SNRdB, L=1):
 #AWGN channel
-#Add AWGN noise to input signal. The function adds AWGN noise vector to signal 's' to generate a resulting signal vector 'r' of specified SNR in dB. It also
+#Add AWGN noise to output signal. The function adds AWGN noise vector to signal 's' to generate a resulting signal vector 'r' of specified SNR in dB. It also
 #returns the noise vector 'n' that is added to the signal 's' and the power spectral density N0 of noise added
 #Parameters:
-    #s : input/transmitted signal vector
+    #s : output/transmitted signal vector
     #SNRdB : desired signal to noise ratio (expressed in dB) for the received signal
     #L : oversampling factor (applicable for waveform simulation) default L = 1.
 #Returns:
@@ -669,7 +669,7 @@ def awgnNoise(s, SNRdB, L=1):
     else:  # multi-dimensional signals like MFSK
         P = L * sum(sum(abs(s) ** 2)) / len(s)  # if s is a matrix [MxN]
     N0 = P / gamma  # Find the noise spectral density
-    if isrealobj(s):  # check if input is real/complex object type
+    if isrealobj(s):  # check if output is real/complex object type
         n = sqrt(N0 / 2) * standard_normal(s.shape)  # computed noise
     else:
         n = sqrt(N0 / 2) * (standard_normal(s.shape) + 1j * standard_normal(s.shape))
@@ -1176,12 +1176,12 @@ class Data():
 
             else:
                 return input_list
-                print('input list')
+                print('output list')
         except:
             print("================= [ERROR] =========================")
             print("[datamanagement] [Data] removeSelectedPoints method could not run")
 
-# Loads data from an excel file #
+# Loads data_01 from an excel file #
     def loadExcelData(self, file):
         self.frequency_list = []
         self.CMfactor_list = []
@@ -1422,7 +1422,7 @@ class Data():
 
         xvalues1 = Reference(ws, min_col=1 , min_row=2, max_row=2 + len(exp_freq))
         values1 = Reference(ws, min_col=i, min_row=2, max_row=2 + len(exp_freq))
-        series1 = Series(values=values1, xvalues=xvalues1, title='Experimental data')
+        series1 = Series(values=values1, xvalues=xvalues1, title='Experimental data_01')
 
         xvalues2 = Reference(ws, min_col=8, min_row=2, max_row=2 + len(fit_freq))
         values2 = Reference(ws, min_col=j, min_row=2, max_row=2 + len(fit_freq))

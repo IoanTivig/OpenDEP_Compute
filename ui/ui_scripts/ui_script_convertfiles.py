@@ -1,17 +1,20 @@
 # ------------------------------------------------------
 # ----------------- CONVERSION MODULE ------------------
 # ------------------------------------------------------
-
+import cv2
+import numpy as np
 # External imports #
 from PyQt5.QtCore import QThread
+from PyQt5.QtGui import QIntValidator, QDoubleValidator
 from PyQt5.QtWidgets import QDialog, QFileDialog
 from PyQt5.uic import loadUi
 from PyQt5 import QtGui
 
 # Local imports #
 from src.conversion import *
+from src.conversion_opendep_single import ConversionOpenDEPSC
 from src.threads.workers_convert import ConvertWorker
-
+from ui.resources.graphical_resources import *
 
 """
 Conversion UI script:
@@ -27,11 +30,12 @@ class ConvertUI(QDialog):
         QDialog.__init__(self)
         loadUi("ui/convert.ui", self)
         self.setWindowTitle("Convert")
-        self.setWindowIcon(QtGui.QIcon("icon.png"))
+        self.setWindowIcon(QtGui.QIcon("ui/resources/logos/opendep_logo_1.png"))
 
         self.qtvar_convertImages_closeButton.clicked.connect(self.close)
         self.qtvar_convertImages_convertButton.clicked.connect(self.convert)
         self.qtvar_convertImages_testButton.clicked.connect(self.test_edge_detection)
+        self.pyqt5_dynamic_odsc_button_detect_cells.clicked.connect(self.detect_cells)
 
         self.qtvar_convertImages_inputFolder.setText(os.path.expanduser("~/Desktop"))
         self.qtvar_convertImages_inputEdgesFile.setText(os.path.expanduser("~/Desktop"))
@@ -44,9 +48,33 @@ class ConvertUI(QDialog):
             lambda: self.getEdgesFilePath(self.qtvar_convertImages_inputEdgesFile)
         )
 
+        self.pyqt5_dynamic_odsc_button_loadfolder_input.clicked.connect(
+            lambda: self.getFolderPath(self.pyqt5_dynamic_odsc_entry_input_path)
+        )
+
+        self.pyqt5_dynamic_odsc_button_loadfolder_output.clicked.connect(
+            lambda: self.getFolderPath(self.pyqt5_dynamic_odsc_entry_output_path)
+        )
+
+        self.pyqt5_dynamic_odsc_button_loadfile_baseline.clicked.connect(
+            lambda: self.getEdgesFilePath(self.pyqt5_dynamic_odsc_entry_baseline_path)
+        )
+
+        float_validator = QDoubleValidator(0, 100, 2)
+        self.pyqt5_dynamic_odsc_entry_min_radius.setValidator(float_validator)
+        self.pyqt5_dynamic_odsc_entry_max_radius.setValidator(float_validator)
+        self.pyqt5_dynamic_odsc_entry_particle_distance.setValidator(float_validator)
+        self.pyqt5_dynamic_odsc_entry_scale_factor.setValidator(float_validator)
+        int_validator = QIntValidator(0, 999)
+        self.pyqt5_dynamic_odsc_entry_edge_value.setValidator(int_validator)
+        self.pyqt5_dynamic_odsc_entry_output_acum_threshold.setValidator(int_validator)
+
         self.window = window
         self.data = data
         self.success = bool
+
+        self.convert_opendep_single = ConversionOpenDEPSC()
+        self.refresh_opendep_single_ui()
 
     def getFolderPath(self, entry):
         folder = QFileDialog.getExistingDirectory(self, "Select a folder")
@@ -80,9 +108,9 @@ class ConvertUI(QDialog):
                 polynomial_deg=self.qtvar_convertImages_polydegree.value(),
             )
 
-            self.qtvar_convertImages_noEdgesLabel.setText(f"{edges_no} edges\ndetected")
+            self.qtvar_convertImages_noEdgesLabel.setText(f"{edges_no}\nedges\ndetected")
             self.qtvar_convertImages_avgSpacingEdge.setText(
-                f"{average_average_spacing} +/- {stdev_spaceing}\nedge spacing"
+                f"{average_average_spacing} \n+/-\n {stdev_spaceing}\nedge\nspacing"
             )
 
             self.GraphWidget_convert_edges.refresh_UI(
@@ -95,7 +123,7 @@ class ConvertUI(QDialog):
             self.qtvar_convertImages_statusLabel.setText("Failed")
 
     def convert(self):
-        #  Convert images to data #
+        #  Convert images to data_01 #
         # Step 1: Create a QThread  and worker object
         self.thread = QThread()
         self.worker = ConvertWorker()
@@ -132,4 +160,44 @@ class ConvertUI(QDialog):
             self.thread.finished.connect(
                 lambda: self.qtvar_convertImages_statusLabel.setText("Failed")
             )
-            
+
+    def refresh_opendep_single_ui(self):
+        self.convert_opendep_single.parm1 = int(self.pyqt5_dynamic_odsc_entry_edge_value.text())
+        self.convert_opendep_single.parm2 = int(self.pyqt5_dynamic_odsc_entry_output_acum_threshold.text())
+        self.convert_opendep_single.conversion_factor = float(self.pyqt5_dynamic_odsc_entry_scale_factor.text())
+        self.convert_opendep_single.min_radius = int(self.convert_opendep_single.conversion_factor *
+                                                     float(self.pyqt5_dynamic_odsc_entry_min_radius.text()))
+        self.convert_opendep_single.max_radius = int(self.convert_opendep_single.conversion_factor *
+                                                     float(self.pyqt5_dynamic_odsc_entry_max_radius.text()))
+        self.convert_opendep_single.cells_distance = int(self.convert_opendep_single.conversion_factor *
+                                                         float(self.pyqt5_dynamic_odsc_entry_particle_distance.text()))
+        print('yay')
+
+    def detect_cells(self):
+        self.refresh_opendep_single_ui()
+        baseline_path = self.pyqt5_dynamic_odsc_entry_baseline_path.text()
+
+        status, self.convert_opendep_single.cells_info = self.convert_opendep_single.detect_cells(
+            image_path=baseline_path)
+
+        if status:
+            marked_image = self.convert_opendep_single.mark_cells_on_image(
+                image_path=self.pyqt5_dynamic_odsc_entry_baseline_path.text(),
+                cell_info=self.convert_opendep_single.cells_info)
+
+            self.MPWidgetConvertDetectCells.refresh_UI(
+                image=marked_image
+            )
+
+        print(self.convert_opendep_single.cells_info)
+        cells_info = self.convert_opendep_single.cells_info
+        size_list = []
+        for i in self.convert_opendep_single.cells_info:
+            size_list.append(cells_info[i][2])
+        size_avg = str(round(np.average(size_list) / self.convert_opendep_single.conversion_factor, 2))
+        size_std = str(round(np.std(size_list) / self.convert_opendep_single.conversion_factor, 2))
+
+        print(size_avg, size_std)
+
+        self.pyqt5_dynamic_odsc_label_avgsize.setText(size_avg)
+        self.pyqt5_dynamic_odsc_label_stdsize.setText(size_std)

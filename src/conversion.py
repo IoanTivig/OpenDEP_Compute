@@ -11,7 +11,7 @@ from skimage import io, img_as_float
 
 """
 Conversion module:
-This file handles all image to data conversion functionality
+This file handles all image to data_01 conversion functionality
 It transforms images obtained through microscopic image acquisition
 to CM factors vs frequencies. It also handles automatic electrode detection
 for the integrated microfluidic chips.
@@ -47,7 +47,7 @@ class Conversion:
             x_axis.append(x)
             x = x + 1
 
-        # Fit with a polynomial function and extract the fit from data
+        # Fit with a polynomial function and extract the fit from data_01
         poly = np.polyfit(x_axis, image_averages, deg=polynomial_deg)
         image_averages = image_averages - np.polyval(poly, x_axis)
 
@@ -118,7 +118,7 @@ class Conversion:
         image_averages = image_averages[points_to_remove : -1 * points_to_remove]
         _bkg_averages = _bkg_averages[points_to_remove : -1 * points_to_remove]
 
-        # Substracting the background from data points
+        # Substracting the background from data_01 points
         norm_image_averages = []
         for i in range(0, len(image_averages)):
             j = image_averages[i] - _bkg_averages[i]
@@ -344,7 +344,7 @@ class Conversion:
 
             wb.save(folder + "\\" + centrfile + ".xlsx")
 
-            # Load data to main window
+            # Load data_01 to main window
             data.loadExcelData(folder + "\\" + centrfile + ".xlsx")
             mainUI.loadData()
 

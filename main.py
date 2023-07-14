@@ -163,7 +163,7 @@ class AutoProcessUI(QDialog):
         entry.setText(folder)
 
     def autoProcessButton(self):
-        ##  Load, fit and save processed data ##
+        ##  Load, fit and save processed data_01 ##
         # Step 1: Create a QThread  and worker object
         self.thread = QThread()
         self.worker = AutoWorker()
@@ -268,8 +268,8 @@ class DataPointsUI(QDialog):
             data.dataStatus_list.append(self.data_points_table.item(j, 4).text())
             data.dataValidation_list.append(self.data_points_table.item(j, 3).text())
 
-        #print(data.dataStatus_list, data.dataValidation_list)
-        #print(data.frequency_list, data.CMfactor_list)
+        #print(data_01.dataStatus_list, data_01.dataValidation_list)
+        #print(data_01.frequency_list, data_01.CMfactor_list)
 
         window.loadData()
         self.close()
@@ -388,7 +388,7 @@ class MainUI(QMainWindow):
 
     def convertFolder3DEPButton(self):
         try:
-            folder = QFileDialog.getExistingDirectory(self, 'Select a folder with all the data that you want to convert')
+            folder = QFileDialog.getExistingDirectory(self, 'Select a folder with all the data_01 that you want to convert')
             load3DEPloop(folder)
         except:
             print("[ERROR] [Main] [window] convertFolder3DEPButton method could not run")
@@ -401,7 +401,7 @@ class MainUI(QMainWindow):
         sish_params.saveParameters('saves/default_sish_parameters')
         app.exit()
 
-# Loads data from an excel file and plots on a matplotlib graph #
+# Loads data_01 from an excel file and plots on a matplotlib graph #
     def loadDataButton(self):
 
     # Data loading #
@@ -411,7 +411,7 @@ class MainUI(QMainWindow):
             self.loadData()
         except:
             print("================= [Warrning] =========================")
-            print("[Main] [MainUI] loadDataButton method could not run: No folder selected / No data to load")
+            print("[Main] [MainUI] loadDataButton method could not run: No folder selected / No data_01 to load")
 
 
     def loadData(self):
@@ -455,7 +455,7 @@ class MainUI(QMainWindow):
         self.MplCMWidget3.canvas.draw()
 
 
-# Fits the loded/ploted data with the model selected #
+# Fits the loded/ploted data_01 with the model selected #
     def fitHopa(self):
         try:
             self.model = 'hopa'
@@ -533,7 +533,7 @@ class MainUI(QMainWindow):
             data.saveExcelData(QFileDialog.getSaveFileName(self, filter="Excel file (*.xlsx)")[0], self.model, window, data, fit)
         except:
             print("================= [Warrning] =========================")
-            print("[Main] [MainUI] saveDataButton method could not run: No folder selected / No data to save")
+            print("[Main] [MainUI] saveDataButton method could not run: No folder selected / No data_01 to save")
 
 
     def saveExcel(self):
@@ -541,7 +541,7 @@ class MainUI(QMainWindow):
             self.wb.save(filename=QFileDialog.getSaveFileName(self, filter="Excel file (*.xlsx)")[0])
         except:
             print("================= [Warrning] =========================")
-            print("[Main] [MainUI] saveExcel method could not run: No data to save / Excel contextmenu closed")
+            print("[Main] [MainUI] saveExcel method could not run: No data_01 to save / Excel contextmenu closed")
 
 
     def GenerateSphModel(self):
