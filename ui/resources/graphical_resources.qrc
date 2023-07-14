@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="/ui/resources">
+    <file>spinbox/spinbox_pressed_right.png</file>
+    <file>spinbox/spinbox_hover_left.png</file>
+    <file>spinbox/spinbox_hover_right.png</file>
+    <file>spinbox/spinbox_left.png</file>
+    <file>spinbox/spinbox_right.png</file>
+    <file>spinbox/spinbox_pressed_left.png</file>
+    <file>spinbox/spinbox_right.png</file>
+    <file>dropdown/dropdown_arrow.png</file>
+    <file>checkbox/checkbox_checked.png</file>
+    <file>checkbox/checkbox_checked_hover.png</file>
+    <file>checkbox/checkbox_checked_pressed.png</file>
+    <file>checkbox/checkbox_unchecked.png</file>
+    <file>checkbox/checkbox_unchecked_hover.png</file>
+    <file>checkbox/checkbox_unchecked_pressed.png</file>
+    <file>radiobutton/radiobutton_unchecked.png</file>
+    <file>radiobutton/radiobutton_unchecked_hover.png</file>
+    <file>radiobutton/radiobutton_unchecked_pressed.png</file>
+    <file>radiobutton/radiobutton_checked.png</file>
+    <file>radiobutton/radiobutton_checked_hover.png</file>
+    <file>radiobutton/radiobutton_checked_pressed.png</file>
+  </qresource>
+</RCC>
