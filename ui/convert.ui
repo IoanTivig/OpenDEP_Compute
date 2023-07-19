@@ -6,46 +6,40 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>490</width>
-    <height>790</height>
+    <width>492</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>490</width>
-    <height>790</height>
+    <height>750</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>490</width>
-    <height>790</height>
+    <width>999999</width>
+    <height>999999</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QTabWidget" name="qtvar_convertImages_convertTabs">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>471</width>
-     <height>681</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Verdana</family>
-     <weight>75</weight>
-     <italic>false</italic>
-     <bold>true</bold>
-     <underline>false</underline>
-     <strikeout>false</strikeout>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QTabWidget::pane {
+  <layout class="QVBoxLayout" name="verticalLayout_13">
+   <item>
+    <widget class="QTabWidget" name="qtvar_convertImages_convertTabs">
+     <property name="font">
+      <font>
+       <family>Verdana</family>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+       <underline>false</underline>
+       <strikeout>false</strikeout>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTabWidget::pane {
 	background-color: rgb(232, 227, 218);
 	border: none;
 	border-radius: 3px;
@@ -139,127 +133,93 @@ QTabBar::tab:left:last, QTabBar::tab:right:last,
 QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
     margin-bottom: 0;
 }</string>
-   </property>
-   <property name="currentIndex">
-    <number>1</number>
-   </property>
-   <widget class="QWidget" name="OpenDEPpopulation_tab">
-    <attribute name="title">
-     <string>OpenDEP population</string>
-    </attribute>
-    <widget class="QLineEdit" name="qtvar_convertImages_inputFolder">
-     <property name="enabled">
-      <bool>true</bool>
      </property>
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>25</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
+     <property name="currentIndex">
+      <number>1</number>
      </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
+     <widget class="QWidget" name="OpenDEPpopulation_tab">
+      <attribute name="title">
+       <string>OpenDEP population</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_17" stretch="2,2,4">
+       <item>
+        <widget class="QFrame" name="verticalFrame_3">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 4px;</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_20">
+            <property name="spacing">
+             <number>5</number>
+            </property>
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="rightMargin">
+             <number>10</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_87">
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Input Folder location:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="qtvar_convertImages_inputFolder">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius: 4px;
 padding-left: 10px;
 background-color: rgb(248,214,176);
 </string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_87">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>25</y>
-       <width>171</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Input Folder location:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_92">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>125</y>
-       <width>141</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Output file name:</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="qtvar_convertImages_filename">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>125</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-padding-left: 10px;
-background-color: rgb(248,214,176);
-</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="qtvar_convertImages_testButton">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>320</y>
-       <width>91</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>14</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="qtvar_convertImages_inputFolderButton">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>31</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
 	border-radius: 4px;
 	background-color: rgb(255, 184, 90);
 	padding-left: 2px;
@@ -271,78 +231,85 @@ QPushButton:hover{
 QPushButton:pressed{
 	background-color: rgb(179, 197, 192);
 }</string>
-     </property>
-     <property name="text">
-      <string>Detect</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="qtvar_convertImages_inputEdgesFile">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>60</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
+              </property>
+              <property name="text">
+               <string>···</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_21">
+            <property name="spacing">
+             <number>5</number>
+            </property>
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="rightMargin">
+             <number>10</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_113">
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Input edges file location:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="qtvar_convertImages_inputEdgesFile">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius: 4px;
 padding-left: 10px;
 background-color: rgb(248,214,176);
 </string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_113">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>60</y>
-       <width>171</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Input edges file location:</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="qtvar_convertImages_inputFolderButton">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>25</y>
-       <width>30</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="qtvar_convertImages_inputEdgesButton">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>31</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
 	border-radius: 4px;
 	background-color: rgb(255, 184, 90);
 	padding-left: 2px;
@@ -354,98 +321,38 @@ QPushButton:hover{
 QPushButton:pressed{
 	background-color: rgb(179, 197, 192);
 }</string>
-     </property>
-     <property name="text">
-      <string>···</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="qtvar_convertImages_inputEdgesButton">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>60</y>
-       <width>30</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 4px;
-	background-color: rgb(255, 184, 90);
-	padding-left: 2px;
-	color: rgb(75, 75, 75);
-}
-QPushButton:hover{
-	background-color: rgb(248,214,176);	
-}
-QPushButton:pressed{
-	background-color: rgb(179, 197, 192);
-}</string>
-     </property>
-     <property name="text">
-      <string>···</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_33">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>451</width>
-       <height>151</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QFrame" name="frame">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>85</y>
-       <width>391</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QRadioButton" name="qtvar_convertImages_edgesRadio_selected">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>181</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Verdana</family>
-        <pointsize>9</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QRadioButton::indicator
+              </property>
+              <property name="text">
+               <string>···</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QFrame" name="horizontalFrame_14">
+            <layout class="QHBoxLayout" name="horizontalLayout_22">
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="rightMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QRadioButton" name="qtvar_convertImages_edgesRadio_selected">
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton::indicator
 {
 width: 15px;
 height: 15px;
@@ -481,33 +388,27 @@ QRadioButton::indicator:checked:pressed
 {
     image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
 }</string>
-      </property>
-      <property name="text">
-       <string>Use selected edges file</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="qtvar_convertImages_edgesRadio_inFolder">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>10</y>
-        <width>191</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Verdana</family>
-        <pointsize>9</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QRadioButton::indicator
+               </property>
+               <property name="text">
+                <string>Use selected edges file</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="qtvar_convertImages_edgesRadio_inFolder">
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton::indicator
 {
 width: 15px;
 height: 15px;
@@ -543,88 +444,221 @@ QRadioButton::indicator:checked:pressed
 {
     image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
 }</string>
-      </property>
-      <property name="text">
-       <string>Use edges file in folder </string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_34">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>170</y>
-       <width>221</width>
-       <height>131</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_35">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>170</y>
-       <width>221</width>
-       <height>131</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_89">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>185</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Edge Orientation:</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="qtvar_convertImages_orientation">
-     <property name="geometry">
-      <rect>
-       <x>140</x>
-       <y>185</y>
-       <width>81</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>8</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QComboBox
+               </property>
+               <property name="text">
+                <string>Use edges file in folder </string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_23">
+            <property name="spacing">
+             <number>5</number>
+            </property>
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="rightMargin">
+             <number>46</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_92">
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Output file name:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="qtvar_convertImages_filename">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius: 4px;
+padding-left: 10px;
+background-color: rgb(248,214,176);
+</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_24" stretch="1,1">
+         <item>
+          <widget class="QFrame" name="gridFrame">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 4px;</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_2" columnstretch="2,1">
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="topMargin">
+             <number>5</number>
+            </property>
+            <property name="rightMargin">
+             <number>10</number>
+            </property>
+            <property name="bottomMargin">
+             <number>5</number>
+            </property>
+            <property name="spacing">
+             <number>5</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_89">
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Edge Orientation:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_88">
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Points to remove:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="qtvar_convertImages_pointstoremove">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>8</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSpinBox {
+background-color: rgb(248, 214, 176);
+border-radius: 4px;
+padding: 0px 2px 0px 2px;
+border-width: 3;
+}
+
+QSpinBox:hover {
+background-color: rgb(255, 184, 90);
+}
+
+QSpinBox:selected {
+background-color: rgb(255, 184, 90);
+}
+
+QSpinBox::up-button {
+subcontrol-origin: border;
+subcontrol-position: right;
+image: url(:/ui/resources/spinbox/spinbox_hover_right.png);
+ }
+
+QSpinBox::down-button {
+subcontrol-origin: border;
+subcontrol-position: left;
+image: url(:/ui/resources/spinbox/spinbox_hover_left.png);
+ }
+
+QSpinBox::up-button:hover {
+image: url(:/ui/resources/spinbox/spinbox_right.png);
+ }
+
+QSpinBox::down-button:hover {
+image: url(:/ui/resources/spinbox/spinbox_left.png);	
+ }
+
+QSpinBox::up-button:pressed {
+image: url(:/ui/resources/spinbox/spinbox_pressed_right.png);
+}
+
+QSpinBox::down-button:pressed {
+image: url(:/ui/resources/spinbox/spinbox_pressed_left.png);
+ }</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="maximum">
+               <number>500</number>
+              </property>
+              <property name="value">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="qtvar_convertImages_orientation">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QComboBox
 {
 border-radius: 4px;
 padding-left: 5px;
@@ -661,66 +695,60 @@ padding:15px;
 }
 
 </string>
-     </property>
-     <property name="editable">
-      <bool>false</bool>
-     </property>
-     <property name="frame">
-      <bool>true</bool>
-     </property>
-     <item>
-      <property name="text">
-       <string>Vertical</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Horizontal</string>
-      </property>
-     </item>
-    </widget>
-    <widget class="QLabel" name="label_91">
-     <property name="geometry">
-      <rect>
-       <x>250</x>
-       <y>186</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Fit Poly. degree:</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="qtvar_convertImages_polydegree">
-     <property name="geometry">
-      <rect>
-       <x>380</x>
-       <y>185</y>
-       <width>71</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>8</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QSpinBox {
+              </property>
+              <property name="editable">
+               <bool>false</bool>
+              </property>
+              <property name="frame">
+               <bool>true</bool>
+              </property>
+              <item>
+               <property name="text">
+                <string>Vertical</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Horizontal</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_90">
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Pixels per edge:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QSpinBox" name="qtvar_convertImages_pixelsperedge">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSpinBox {
 background-color: rgb(248, 214, 176);
 border-radius: 4px;
 padding: 0px 2px 0px 2px;
@@ -762,65 +790,78 @@ image: url(:/ui/resources/spinbox/spinbox_pressed_right.png);
 QSpinBox::down-button:pressed {
 image: url(:/ui/resources/spinbox/spinbox_pressed_left.png);
  }</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="minimum">
-      <number>3</number>
-     </property>
-     <property name="maximum">
-      <number>10</number>
-     </property>
-     <property name="value">
-      <number>7</number>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_93">
-     <property name="geometry">
-      <rect>
-       <x>250</x>
-       <y>226</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Pixels to shift:</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="qtvar_convertImages_pixelstoshift">
-     <property name="geometry">
-      <rect>
-       <x>380</x>
-       <y>225</y>
-       <width>71</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>8</pointsize>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QSpinBox {
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="value">
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="gridFrame_2">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 4px;</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_3" columnstretch="0,0">
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="topMargin">
+             <number>5</number>
+            </property>
+            <property name="rightMargin">
+             <number>10</number>
+            </property>
+            <property name="bottomMargin">
+             <number>5</number>
+            </property>
+            <property name="spacing">
+             <number>5</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_91">
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Fit Poly. degree:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="qtvar_convertImages_polydegree">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSpinBox {
 background-color: rgb(248, 214, 176);
 border-radius: 4px;
 padding: 0px 2px 0px 2px;
@@ -862,65 +903,59 @@ image: url(:/ui/resources/spinbox/spinbox_pressed_right.png);
 QSpinBox::down-button:pressed {
 image: url(:/ui/resources/spinbox/spinbox_pressed_left.png);
  }</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="minimum">
-      <number>-200</number>
-     </property>
-     <property name="maximum">
-      <number>200</number>
-     </property>
-     <property name="value">
-      <number>0</number>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_104">
-     <property name="geometry">
-      <rect>
-       <x>250</x>
-       <y>266</y>
-       <width>131</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Min spacing (pixel):</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="qtvar_convertImages_minedgespacing">
-     <property name="geometry">
-      <rect>
-       <x>380</x>
-       <y>265</y>
-       <width>71</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>8</pointsize>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QSpinBox {
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="minimum">
+               <number>3</number>
+              </property>
+              <property name="maximum">
+               <number>10</number>
+              </property>
+              <property name="value">
+               <number>7</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_93">
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Pixels to shift:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="qtvar_convertImages_pixelstoshift">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSpinBox {
 background-color: rgb(248, 214, 176);
 border-radius: 4px;
 padding: 0px 2px 0px 2px;
@@ -962,64 +997,59 @@ image: url(:/ui/resources/spinbox/spinbox_pressed_right.png);
 QSpinBox::down-button:pressed {
 image: url(:/ui/resources/spinbox/spinbox_pressed_left.png);
  }</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="minimum">
-      <number>-500</number>
-     </property>
-     <property name="maximum">
-      <number>500</number>
-     </property>
-     <property name="value">
-      <number>50</number>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_88">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>225</y>
-       <width>131</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Points to remove:</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="qtvar_convertImages_pointstoremove">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>225</y>
-       <width>71</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>8</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QSpinBox {
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="minimum">
+               <number>-200</number>
+              </property>
+              <property name="maximum">
+               <number>200</number>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_104">
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Min spacing (pixel):</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QSpinBox" name="qtvar_convertImages_minedgespacing">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSpinBox {
 background-color: rgb(248, 214, 176);
 border-radius: 4px;
 padding: 0px 2px 0px 2px;
@@ -1061,352 +1091,322 @@ image: url(:/ui/resources/spinbox/spinbox_pressed_right.png);
 QSpinBox::down-button:pressed {
 image: url(:/ui/resources/spinbox/spinbox_pressed_left.png);
  }</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="maximum">
-      <number>500</number>
-     </property>
-     <property name="value">
-      <number>100</number>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="qtvar_convertImages_pixelsperedge">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>265</y>
-       <width>71</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>8</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QSpinBox {
-background-color: rgb(248, 214, 176);
-border-radius: 4px;
-padding: 0px 2px 0px 2px;
-border-width: 3;
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="minimum">
+               <number>-500</number>
+              </property>
+              <property name="maximum">
+               <number>500</number>
+              </property>
+              <property name="value">
+               <number>50</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QFrame" name="horizontalFrame_17">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 4px;</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_25" stretch="3,1">
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="gridFrame">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(232, 227, 218);
+border-radius: 4px;</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_4">
+             <property name="leftMargin">
+              <number>5</number>
+             </property>
+             <property name="topMargin">
+              <number>5</number>
+             </property>
+             <property name="rightMargin">
+              <number>5</number>
+             </property>
+             <property name="bottomMargin">
+              <number>5</number>
+             </property>
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="GraphWidget_convert_edges" name="GraphWidget_convert_edges" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>200</width>
+                 <height>250</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_15">
+            <property name="leftMargin">
+             <number>5</number>
+            </property>
+            <property name="topMargin">
+             <number>5</number>
+            </property>
+            <property name="rightMargin">
+             <number>5</number>
+            </property>
+            <property name="bottomMargin">
+             <number>5</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="qtvar_convertImages_testButton">
+              <property name="minimumSize">
+               <size>
+                <width>91</width>
+                <height>31</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>14</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+	border-radius: 4px;
+	background-color: rgb(255, 184, 90);
+	padding-left: 2px;
+	color: rgb(75, 75, 75);
 }
-
-QSpinBox:hover {
-background-color: rgb(255, 184, 90);
+QPushButton:hover{
+	background-color: rgb(248,214,176);	
 }
-
-QSpinBox:selected {
-background-color: rgb(255, 184, 90);
-}
-
-QSpinBox::up-button {
-subcontrol-origin: border;
-subcontrol-position: right;
-image: url(:/ui/resources/spinbox/spinbox_hover_right.png);
- }
-
-QSpinBox::down-button {
-subcontrol-origin: border;
-subcontrol-position: left;
-image: url(:/ui/resources/spinbox/spinbox_hover_left.png);
- }
-
-QSpinBox::up-button:hover {
-image: url(:/ui/resources/spinbox/spinbox_right.png);
- }
-
-QSpinBox::down-button:hover {
-image: url(:/ui/resources/spinbox/spinbox_left.png);	
- }
-
-QSpinBox::up-button:pressed {
-image: url(:/ui/resources/spinbox/spinbox_pressed_right.png);
-}
-
-QSpinBox::down-button:pressed {
-image: url(:/ui/resources/spinbox/spinbox_pressed_left.png);
- }</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="maximum">
-      <number>100</number>
-     </property>
-     <property name="value">
-      <number>1</number>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_90">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>265</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Pixels per edge:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_36">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>310</y>
-       <width>451</width>
-       <height>271</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_37">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>320</y>
-       <width>331</width>
-       <height>251</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(232, 227, 218);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="qtvar_convertImages_avgSpacingEdge">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>460</y>
-       <width>91</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>...</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="margin">
-      <number>5</number>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_39">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>370</y>
-       <width>91</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(232, 227, 218);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_40">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>460</y>
-       <width>91</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(232, 227, 218);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="qtvar_convertImages_noEdgesLabel">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>370</y>
-       <width>91</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>...</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="margin">
-      <number>5</number>
-     </property>
-    </widget>
-    <widget class="GraphWidget_convert_edges" name="GraphWidget_convert_edges" native="true">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>320</y>
-       <width>331</width>
-       <height>251</height>
-      </rect>
-     </property>
-    </widget>
-    <zorder>static_odsc_backgorund_36</zorder>
-    <zorder>static_odsc_backgorund_37</zorder>
-    <zorder>static_odsc_backgorund_33</zorder>
-    <zorder>qtvar_convertImages_inputFolder</zorder>
-    <zorder>label_87</zorder>
-    <zorder>label_92</zorder>
-    <zorder>qtvar_convertImages_filename</zorder>
-    <zorder>qtvar_convertImages_testButton</zorder>
-    <zorder>qtvar_convertImages_inputEdgesFile</zorder>
-    <zorder>label_113</zorder>
-    <zorder>qtvar_convertImages_inputFolderButton</zorder>
-    <zorder>qtvar_convertImages_inputEdgesButton</zorder>
-    <zorder>frame</zorder>
-    <zorder>static_odsc_backgorund_34</zorder>
-    <zorder>static_odsc_backgorund_35</zorder>
-    <zorder>label_89</zorder>
-    <zorder>qtvar_convertImages_orientation</zorder>
-    <zorder>label_91</zorder>
-    <zorder>qtvar_convertImages_polydegree</zorder>
-    <zorder>label_93</zorder>
-    <zorder>qtvar_convertImages_pixelstoshift</zorder>
-    <zorder>label_104</zorder>
-    <zorder>qtvar_convertImages_minedgespacing</zorder>
-    <zorder>label_88</zorder>
-    <zorder>qtvar_convertImages_pointstoremove</zorder>
-    <zorder>qtvar_convertImages_pixelsperedge</zorder>
-    <zorder>label_90</zorder>
-    <zorder>static_odsc_backgorund_39</zorder>
-    <zorder>static_odsc_backgorund_40</zorder>
-    <zorder>qtvar_convertImages_noEdgesLabel</zorder>
-    <zorder>qtvar_convertImages_avgSpacingEdge</zorder>
-    <zorder>GraphWidget_convert_edges</zorder>
-   </widget>
-   <widget class="QWidget" name="OpenDEPsinglecell_tab">
-    <attribute name="title">
-     <string>OpenDEP single-cell</string>
-    </attribute>
-    <widget class="QLabel" name="static_odsc_label_01">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>25</y>
-       <width>171</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Input Folder location:</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_input_path">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>25</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
+QPushButton:pressed{
+	background-color: rgb(179, 197, 192);
+}</string>
+              </property>
+              <property name="text">
+               <string>Detect</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="qtvar_convertImages_noEdgesLabel">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>91</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(232, 227, 218);
+brder-radius: 4px;</string>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="margin">
+               <number>5</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="qtvar_convertImages_avgSpacingEdge">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>91</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(232, 227, 218);
+border-radius: 4px;</string>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="margin">
+               <number>5</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="OpenDEPsinglecell_tab">
+      <attribute name="title">
+       <string>OpenDEP single-cell</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6" stretch="3,3,6">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="leftMargin">
+        <number>9</number>
+       </property>
+       <property name="topMargin">
+        <number>9</number>
+       </property>
+       <property name="rightMargin">
+        <number>9</number>
+       </property>
+       <property name="bottomMargin">
+        <number>9</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="verticalFrame">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 4px;</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="rightMargin">
+             <number>10</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="static_odsc_label_01">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Input Folder location:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_input_path">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius: 4px;
 padding: 0px 5px 0px 5px;
 background-color: rgb(248,214,176);
 </string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pyqt5_dynamic_odsc_button_loadfolder_input">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>25</y>
-       <width>30</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pyqt5_dynamic_odsc_button_loadfolder_input">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>31</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
 	border-radius: 4px;
 	background-color: rgb(255, 184, 90);
 	padding-left: 2px;
@@ -1418,184 +1418,182 @@ QPushButton:hover{
 QPushButton:pressed{
 	background-color: rgb(179, 197, 192);
 }</string>
-     </property>
-     <property name="text">
-      <string>···</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pyqt5_dynamic_odsc_button_loadfolder_output">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>90</y>
-       <width>30</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 4px;
-	background-color: rgb(255, 184, 90);
-	padding-left: 2px;
-	color: rgb(75, 75, 75);
-}
-QPushButton:hover{
-	background-color: rgb(248,214,176);	
-}
-QPushButton:pressed{
-	background-color: rgb(179, 197, 192);
-}</string>
-     </property>
-     <property name="text">
-      <string>···</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_label_02">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>90</y>
-       <width>171</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Output Folder location:</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_output_path">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>90</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLineEdit {
-border-radius: 4px;
-padding: 0px 5px 0px 5px;
-background-color: rgb(248,214,176);
+              </property>
+              <property name="text">
+               <string>···</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QFrame" name="horizontalFrame_2">
+            <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,1">
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="rightMargin">
+              <number>1</number>
+             </property>
+             <item>
+              <widget class="QRadioButton" name="pyqt5_dynamic_odsc_radio_output_specify">
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton::indicator
+{
+width: 15px;
+height: 15px;
+
 }
 
-QLineEdit:disabled {
-	background-color: rgb(220, 204, 191);
-}</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pyqt5_dynamic_odsc_button_loadfile_baseline">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>155</y>
-       <width>30</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 4px;
-	background-color: rgb(255, 184, 90);
-	padding-left: 2px;
-	color: rgb(75, 75, 75);
+QRadioButton::indicator::unchecked
+{
+	image: url(:/ui/resources/radiobutton/radiobutton_unchecked.png);
 }
-QPushButton:hover{
-	background-color: rgb(248,214,176);	
+
+QRadioButton::indicator:unchecked:hover
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_hover.png);
 }
-QPushButton:pressed{
-	background-color: rgb(179, 197, 192);
+
+QRadioButton::indicator:unchecked:pressed
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_pressed.png);
+}
+
+QRadioButton::indicator::checked 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked.png);
+}
+
+QRadioButton::indicator:checked:hover 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_hover.png);
+}
+
+QRadioButton::indicator:checked:pressed 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
 }</string>
-     </property>
-     <property name="text">
-      <string>···</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_label_03">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>155</y>
-       <width>171</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Baseline file location:</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_baseline_path">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>155</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLineEdit {
+               </property>
+               <property name="text">
+                <string>Specify output folder location</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="pyqt5_dynamic_odsc_radio_output_use_input">
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton::indicator
+{
+width: 15px;
+height: 15px;
+
+}
+
+QRadioButton::indicator::unchecked
+{
+	image: url(:/ui/resources/radiobutton/radiobutton_unchecked.png);
+}
+
+QRadioButton::indicator:unchecked:hover
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_hover.png);
+}
+
+QRadioButton::indicator:unchecked:pressed
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_pressed.png);
+}
+
+QRadioButton::indicator::checked 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked.png);
+}
+
+QRadioButton::indicator:checked:hover 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_hover.png);
+}
+
+QRadioButton::indicator:checked:pressed 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
+}</string>
+               </property>
+               <property name="text">
+                <string>Use Input folder</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="rightMargin">
+             <number>10</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="static_odsc_label_02">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Output Folder location:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_output_path">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
 border-radius: 4px;
 padding: 0px 5px 0px 5px;
 background-color: rgb(248,214,176);
@@ -1604,462 +1602,31 @@ background-color: rgb(248,214,176);
 QLineEdit:disabled {
 	background-color: rgb(220, 204, 191);
 }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_1">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>451</width>
-       <height>181</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>200</y>
-       <width>221</width>
-       <height>131</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_3">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>200</y>
-       <width>221</width>
-       <height>131</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_label_07">
-     <property name="geometry">
-      <rect>
-       <x>250</x>
-       <y>215</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Pixel/μm scale factor:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_label_04">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>215</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Min particle radius (μm):</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_label_05">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>255</y>
-       <width>161</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Max particle radius (μm):</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_min_radius">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>215</y>
-       <width>41</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-padding: 1px;
-background-color: rgb(248,214,176);
-</string>
-     </property>
-     <property name="text">
-      <string>1</string>
-     </property>
-     <property name="echoMode">
-      <enum>QLineEdit::Normal</enum>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_max_radius">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>255</y>
-       <width>41</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-padding: 1px;
-background-color: rgb(248,214,176);
-</string>
-     </property>
-     <property name="text">
-      <string>50</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_label_06">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>295</y>
-       <width>161</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Particles distance (μm):</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_label_08">
-     <property name="geometry">
-      <rect>
-       <x>250</x>
-       <y>255</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Edge detection value:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_label_09">
-     <property name="geometry">
-      <rect>
-       <x>250</x>
-       <y>295</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Acumulator threshold:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_4">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>340</y>
-       <width>451</width>
-       <height>301</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="MPWidgetConvertDetectCells" name="MPWidgetConvertDetectCells" native="true">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>350</y>
-       <width>331</width>
-       <height>281</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 10px;</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_particle_distance">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>295</y>
-       <width>41</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-padding: 1px;
-background-color: rgb(248,214,176);
-</string>
-     </property>
-     <property name="text">
-      <string>10</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_scale_factor">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>400</x>
-       <y>215</y>
-       <width>51</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-padding: 1px;
-background-color: rgb(248,214,176);
-</string>
-     </property>
-     <property name="text">
-      <string>9.61</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_edge_value">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>400</x>
-       <y>255</y>
-       <width>51</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-padding: 1px;
-background-color: rgb(248,214,176);
-</string>
-     </property>
-     <property name="text">
-      <string>15</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_output_acum_threshold">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>400</x>
-       <y>295</y>
-       <width>51</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-padding: 1px;
-background-color: rgb(248,214,176);
-</string>
-     </property>
-     <property name="text">
-      <string>30</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_5">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>349</y>
-       <width>331</width>
-       <height>281</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(232, 227, 218);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pyqt5_dynamic_odsc_button_detect_cells">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>349</y>
-       <width>91</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pyqt5_dynamic_odsc_button_loadfolder_output">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
 	border-radius: 4px;
 	background-color: rgb(255, 184, 90);
 	padding-left: 2px;
@@ -2071,750 +1638,1185 @@ QPushButton:hover{
 QPushButton:pressed{
 	background-color: rgb(179, 197, 192);
 }</string>
-     </property>
-     <property name="text">
-      <string>Detect</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_cell_index">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>588</y>
-       <width>71</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
+              </property>
+              <property name="text">
+               <string>···</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QFrame" name="horizontalFrame_4">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QRadioButton" name="pyqt5_dynamic_odsc_radio_baseline_specify">
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton::indicator
+{
+width: 15px;
+height: 15px;
+
+}
+
+QRadioButton::indicator::unchecked
+{
+	image: url(:/ui/resources/radiobutton/radiobutton_unchecked.png);
+}
+
+QRadioButton::indicator:unchecked:hover
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_hover.png);
+}
+
+QRadioButton::indicator:unchecked:pressed
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_pressed.png);
+}
+
+QRadioButton::indicator::checked 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked.png);
+}
+
+QRadioButton::indicator:checked:hover 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_hover.png);
+}
+
+QRadioButton::indicator:checked:pressed 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
+}</string>
+               </property>
+               <property name="text">
+                <string>Specify baseline file location</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="pyqt5_dynamic_odsc_radio_baseline_use_input">
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton::indicator
+{
+width: 15px;
+height: 15px;
+
+}
+
+QRadioButton::indicator::unchecked
+{
+	image: url(:/ui/resources/radiobutton/radiobutton_unchecked.png);
+}
+
+QRadioButton::indicator:unchecked:hover
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_hover.png);
+}
+
+QRadioButton::indicator:unchecked:pressed
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_pressed.png);
+}
+
+QRadioButton::indicator::checked 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked.png);
+}
+
+QRadioButton::indicator:checked:hover 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_hover.png);
+}
+
+QRadioButton::indicator:checked:pressed 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
+}</string>
+               </property>
+               <property name="text">
+                <string>Use Input folder</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="rightMargin">
+             <number>10</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="static_odsc_label_03">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(75, 75, 75);</string>
+              </property>
+              <property name="text">
+               <string>Baseline file location:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_baseline_path">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+border-radius: 4px;
+padding: 0px 5px 0px 5px;
+background-color: rgb(248,214,176);
+}
+
+QLineEdit:disabled {
+	background-color: rgb(220, 204, 191);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pyqt5_dynamic_odsc_button_loadfile_baseline">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+	border-radius: 4px;
+	background-color: rgb(255, 184, 90);
+	padding-left: 2px;
+	color: rgb(75, 75, 75);
+}
+QPushButton:hover{
+	background-color: rgb(248,214,176);	
+}
+QPushButton:pressed{
+	background-color: rgb(179, 197, 192);
+}</string>
+              </property>
+              <property name="text">
+               <string>···</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_16">
+         <item>
+          <widget class="QFrame" name="verticalFrame">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 4px;</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1,1,1,1">
+            <property name="leftMargin">
+             <number>5</number>
+            </property>
+            <property name="topMargin">
+             <number>5</number>
+            </property>
+            <property name="rightMargin">
+             <number>5</number>
+            </property>
+            <property name="bottomMargin">
+             <number>5</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="4,1">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="static_odsc_label_07">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(75, 75, 75);</string>
+                </property>
+                <property name="text">
+                 <string>Pixel/μm scale factor:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_scale_factor">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>41</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 4px;
+padding: 1px;
+background-color: rgb(248,214,176);
+</string>
+                </property>
+                <property name="text">
+                 <string>9.61</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="4,1">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="static_odsc_label_04">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(75, 75, 75);</string>
+                </property>
+                <property name="text">
+                 <string>Min particle radius (μm):</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_min_radius">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>41</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 4px;
+padding: 1px;
+background-color: rgb(248,214,176);
+</string>
+                </property>
+                <property name="text">
+                 <string>1</string>
+                </property>
+                <property name="echoMode">
+                 <enum>QLineEdit::Normal</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="4,1">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="static_odsc_label_05">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(75, 75, 75);</string>
+                </property>
+                <property name="text">
+                 <string>Max particle radius (μm):</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_max_radius">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>41</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 4px;
+padding: 1px;
+background-color: rgb(248,214,176);
+</string>
+                </property>
+                <property name="text">
+                 <string>50</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="4,1">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="static_odsc_label_06">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(75, 75, 75);</string>
+                </property>
+                <property name="text">
+                 <string>Particles distance (μm):</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_particle_distance">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>41</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 4px;
+padding: 1px;
+background-color: rgb(248,214,176);
+</string>
+                </property>
+                <property name="text">
+                 <string>10</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="verticalFrame_2">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 4px;</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_8" stretch="1,1,1,1">
+            <property name="leftMargin">
+             <number>5</number>
+            </property>
+            <property name="topMargin">
+             <number>5</number>
+            </property>
+            <property name="rightMargin">
+             <number>5</number>
+            </property>
+            <property name="bottomMargin">
+             <number>5</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="4,1">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="static_odsc_label_08">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(75, 75, 75);</string>
+                </property>
+                <property name="text">
+                 <string>Edge detection value:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_edge_value">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>41</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 4px;
+padding: 1px;
+background-color: rgb(248,214,176);
+</string>
+                </property>
+                <property name="text">
+                 <string>15</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="4,1">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="static_odsc_label_09">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(75, 75, 75);</string>
+                </property>
+                <property name="text">
+                 <string>Acumulator threshold:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_output_acum_threshold">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>41</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 4px;
+padding: 1px;
+background-color: rgb(248,214,176);
+</string>
+                </property>
+                <property name="text">
+                 <string>30</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="4,1">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="static_odsc_label_6">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(75, 75, 75);</string>
+                </property>
+                <property name="text">
+                 <string>Vertical crop (μm):</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_vertical_crop">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>41</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 4px;
+padding: 1px;
+background-color: rgb(248,214,176);
+</string>
+                </property>
+                <property name="text">
+                 <string>50</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_15" stretch="4,1">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="static_odsc_label_7">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(75, 75, 75);</string>
+                </property>
+                <property name="text">
+                 <string>Horizontal crop (μm):</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_horizontal_crop">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>41</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 4px;
+padding: 1px;
+background-color: rgb(248,214,176);
+</string>
+                </property>
+                <property name="text">
+                 <string>10</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QFrame" name="horizontalFrame_11">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 4px;</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_17" stretch="3,1">
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="frame_2">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(232, 227, 218);
+border-radius:4px;</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <property name="leftMargin">
+              <number>5</number>
+             </property>
+             <property name="topMargin">
+              <number>5</number>
+             </property>
+             <property name="rightMargin">
+              <number>5</number>
+             </property>
+             <property name="bottomMargin">
+              <number>5</number>
+             </property>
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="MPWidgetConvertDetectCells" name="MPWidgetConvertDetectCells" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>250</width>
+                 <height>200</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <property name="leftMargin">
+             <number>5</number>
+            </property>
+            <property name="topMargin">
+             <number>5</number>
+            </property>
+            <property name="rightMargin">
+             <number>5</number>
+            </property>
+            <property name="bottomMargin">
+             <number>5</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="pyqt5_dynamic_odsc_button_detect_cells">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>91</width>
+                <height>31</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+	border-radius: 4px;
+	background-color: rgb(255, 184, 90);
+	padding-left: 2px;
+	color: rgb(75, 75, 75);
+}
+QPushButton:hover{
+	background-color: rgb(248,214,176);	
+}
+QPushButton:pressed{
+	background-color: rgb(179, 197, 192);
+}</string>
+              </property>
+              <property name="text">
+               <string>Detect</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="verticalFrame_2">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(232, 227, 218);
+border-radius: 4px;</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_10" stretch="0,3">
+               <item>
+                <widget class="QLabel" name="static_odsc_label_10">
+                 <property name="font">
+                  <font>
+                   <family>Verdana</family>
+                   <pointsize>11</pointsize>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(75, 75, 75);
+padding-top:5px;</string>
+                 </property>
+                 <property name="text">
+                  <string>Cell size</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="pyqt5_dynamic_odsc_label_avgsize">
+                 <property name="font">
+                  <font>
+                   <family>Verdana</family>
+                   <pointsize>10</pointsize>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(75, 75, 75);
+background-color: rgb(255, 255, 255);
+margin: 5px;
+border-radius:4px;</string>
+                 </property>
+                 <property name="text">
+                  <string>ns</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="verticalFrame_2">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(232, 227, 218);
+border-radius: 4px;</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_11" stretch="1,1,5">
+               <property name="spacing">
+                <number>5</number>
+               </property>
+               <property name="leftMargin">
+                <number>5</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>5</number>
+               </property>
+               <property name="bottomMargin">
+                <number>5</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="static_odsc_label_12">
+                 <property name="font">
+                  <font>
+                   <family>Verdana</family>
+                   <pointsize>11</pointsize>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(75, 75, 75);</string>
+                 </property>
+                 <property name="text">
+                  <string>Measured</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="static_odsc_label_13">
+                 <property name="font">
+                  <font>
+                   <family>Verdana</family>
+                   <pointsize>11</pointsize>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(75, 75, 75);</string>
+                 </property>
+                 <property name="text">
+                  <string>cell index</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_cell_index">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>31</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Verdana</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border-radius: 4px;
 padding: 1px;
 background-color: rgb(248,214,176);
 color: rgb(75, 75, 75);
 </string>
-     </property>
-     <property name="text">
-      <string>1</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
+                 </property>
+                 <property name="text">
+                  <string>1</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="DEPtechcsv_tab">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <attribute name="title">
+       <string>3DEP csv</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_18">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Under development !</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
-    <widget class="QLabel" name="static_odsc_label_13">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>552</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>11</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
+   </item>
+   <item>
+    <widget class="QFrame" name="horizontalFrame_12">
      <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
+      <string notr="true">background-color: rgb(232, 227, 218);
+border-radius: 4px;</string>
      </property>
-     <property name="text">
-      <string>cell index</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_8">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>528</y>
-       <width>91</width>
-       <height>101</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(232, 227, 218);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_label_12">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>527</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>11</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Measured</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_6">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>398</y>
-       <width>91</width>
-       <height>121</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-background-color: rgb(232, 227, 218);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_label_10">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>398</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>11</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>Cell size</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="pyqt5_dynamic_odsc_label_avgsize">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>431</y>
-       <width>71</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>11</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>ns</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_label_11">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>454</y>
-       <width>71</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>11</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>+/-</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="pyqt5_dynamic_odsc_label_stdsize">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>479</y>
-       <width>71</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Verdana</family>
-       <pointsize>11</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(75, 75, 75);</string>
-     </property>
-     <property name="text">
-      <string>ns</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="static_odsc_backgorund_7">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>430</y>
-       <width>71</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
+     <layout class="QHBoxLayout" name="horizontalLayout_19" stretch="1,1">
+      <item>
+       <widget class="QLabel" name="qtvar_convertImages_statusLabel">
+        <property name="font">
+         <font>
+          <family>Verdana</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">padding:5px;
+margin: 5px;
+border-radius:5px;
 background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QFrame" name="static_odsc_frame_radio_output">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>50</y>
-       <width>391</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QRadioButton" name="pyqt5_dynamic_odsc_radio_output_specify">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>221</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Verdana</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QRadioButton::indicator
-{
-width: 15px;
-height: 15px;
-
-}
-
-QRadioButton::indicator::unchecked
-{
-	image: url(:/ui/resources/radiobutton/radiobutton_unchecked.png);
-}
-
-QRadioButton::indicator:unchecked:hover
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_hover.png);
-}
-
-QRadioButton::indicator:unchecked:pressed
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_pressed.png);
-}
-
-QRadioButton::indicator::checked 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked.png);
-}
-
-QRadioButton::indicator:checked:hover 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked_hover.png);
-}
-
-QRadioButton::indicator:checked:pressed 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
-}</string>
-      </property>
-      <property name="text">
-       <string>Specify output folder location</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="pyqt5_dynamic_odsc_radio_output_use_input">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>10</y>
-        <width>141</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Verdana</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QRadioButton::indicator
-{
-width: 15px;
-height: 15px;
-
-}
-
-QRadioButton::indicator::unchecked
-{
-	image: url(:/ui/resources/radiobutton/radiobutton_unchecked.png);
-}
-
-QRadioButton::indicator:unchecked:hover
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_hover.png);
-}
-
-QRadioButton::indicator:unchecked:pressed
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_pressed.png);
-}
-
-QRadioButton::indicator::checked 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked.png);
-}
-
-QRadioButton::indicator:checked:hover 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked_hover.png);
-}
-
-QRadioButton::indicator:checked:pressed 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
-}</string>
-      </property>
-      <property name="text">
-       <string>Use Input folder</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QFrame" name="static_odsc_frame_radio_baseline">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>115</y>
-       <width>391</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QRadioButton" name="pyqt5_dynamic_odsc_radio_baseline_specify">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>221</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Verdana</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QRadioButton::indicator
-{
-width: 15px;
-height: 15px;
-
-}
-
-QRadioButton::indicator::unchecked
-{
-	image: url(:/ui/resources/radiobutton/radiobutton_unchecked.png);
-}
-
-QRadioButton::indicator:unchecked:hover
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_hover.png);
-}
-
-QRadioButton::indicator:unchecked:pressed
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_pressed.png);
-}
-
-QRadioButton::indicator::checked 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked.png);
-}
-
-QRadioButton::indicator:checked:hover 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked_hover.png);
-}
-
-QRadioButton::indicator:checked:pressed 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
-}</string>
-      </property>
-      <property name="text">
-       <string>Specify baseline file location</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="pyqt5_dynamic_odsc_radio_baseline_use_input">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>10</y>
-        <width>141</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Verdana</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QRadioButton::indicator
-{
-width: 15px;
-height: 15px;
-
-}
-
-QRadioButton::indicator::unchecked
-{
-	image: url(:/ui/resources/radiobutton/radiobutton_unchecked.png);
-}
-
-QRadioButton::indicator:unchecked:hover
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_hover.png);
-}
-
-QRadioButton::indicator:unchecked:pressed
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_pressed.png);
-}
-
-QRadioButton::indicator::checked 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked.png);
-}
-
-QRadioButton::indicator:checked:hover 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked_hover.png);
-}
-
-QRadioButton::indicator:checked:pressed 
-{
-    image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
-}</string>
-      </property>
-      <property name="text">
-       <string>Use Input folder</string>
-      </property>
-     </widget>
-    </widget>
-    <zorder>static_odsc_backgorund_4</zorder>
-    <zorder>static_odsc_backgorund_6</zorder>
-    <zorder>static_odsc_backgorund_7</zorder>
-    <zorder>static_odsc_backgorund_8</zorder>
-    <zorder>static_odsc_backgorund_5</zorder>
-    <zorder>static_odsc_backgorund_1</zorder>
-    <zorder>static_odsc_label_01</zorder>
-    <zorder>pyqt5_dynamic_odsc_entry_input_path</zorder>
-    <zorder>pyqt5_dynamic_odsc_button_loadfolder_input</zorder>
-    <zorder>pyqt5_dynamic_odsc_button_loadfolder_output</zorder>
-    <zorder>static_odsc_label_02</zorder>
-    <zorder>pyqt5_dynamic_odsc_entry_output_path</zorder>
-    <zorder>pyqt5_dynamic_odsc_button_loadfile_baseline</zorder>
-    <zorder>static_odsc_label_03</zorder>
-    <zorder>pyqt5_dynamic_odsc_entry_baseline_path</zorder>
-    <zorder>static_odsc_backgorund_2</zorder>
-    <zorder>static_odsc_backgorund_3</zorder>
-    <zorder>static_odsc_label_07</zorder>
-    <zorder>static_odsc_label_04</zorder>
-    <zorder>static_odsc_label_05</zorder>
-    <zorder>pyqt5_dynamic_odsc_entry_min_radius</zorder>
-    <zorder>pyqt5_dynamic_odsc_entry_max_radius</zorder>
-    <zorder>static_odsc_label_06</zorder>
-    <zorder>static_odsc_label_08</zorder>
-    <zorder>static_odsc_label_09</zorder>
-    <zorder>pyqt5_dynamic_odsc_entry_particle_distance</zorder>
-    <zorder>pyqt5_dynamic_odsc_entry_scale_factor</zorder>
-    <zorder>pyqt5_dynamic_odsc_entry_edge_value</zorder>
-    <zorder>pyqt5_dynamic_odsc_entry_output_acum_threshold</zorder>
-    <zorder>pyqt5_dynamic_odsc_button_detect_cells</zorder>
-    <zorder>pyqt5_dynamic_odsc_entry_cell_index</zorder>
-    <zorder>static_odsc_label_13</zorder>
-    <zorder>static_odsc_label_12</zorder>
-    <zorder>static_odsc_label_11</zorder>
-    <zorder>pyqt5_dynamic_odsc_label_stdsize</zorder>
-    <zorder>MPWidgetConvertDetectCells</zorder>
-    <zorder>pyqt5_dynamic_odsc_label_avgsize</zorder>
-    <zorder>static_odsc_label_10</zorder>
-    <zorder>static_odsc_frame_radio_output</zorder>
-    <zorder>static_odsc_frame_radio_baseline</zorder>
-   </widget>
-   <widget class="QWidget" name="DEPtechcsv_tab">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <attribute name="title">
-     <string>3DEP csv</string>
-    </attribute>
-    <widget class="QLabel" name="label">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>260</y>
-       <width>221</width>
-       <height>121</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>16</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Under development !</string>
-     </property>
-    </widget>
-   </widget>
-  </widget>
-  <widget class="QPushButton" name="qtvar_convertImages_closeButton">
-   <property name="geometry">
-    <rect>
-     <x>380</x>
-     <y>740</y>
-     <width>91</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Verdana</family>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton {
-	border-radius: 4px;
-	background-color: rgb(255, 184, 90);
-	padding-left: 2px;
-	color: rgb(75, 75, 75);
-}
-QPushButton:hover{
-	background-color: rgb(248,214,176);	
-}
-QPushButton:pressed{
-	background-color: rgb(179, 197, 192);
-}</string>
-   </property>
-   <property name="text">
-    <string>Close</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="qtvar_convertImages_convertButton">
-   <property name="geometry">
-    <rect>
-     <x>280</x>
-     <y>740</y>
-     <width>91</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Verdana</family>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton {
-	border-radius: 4px;
-	background-color: rgb(255, 184, 90);
-	padding-left: 2px;
-	color: rgb(75, 75, 75);
-}
-QPushButton:hover{
-	background-color: rgb(248,214,176);	
-}
-QPushButton:pressed{
-	background-color: rgb(179, 197, 192);
-}</string>
-   </property>
-   <property name="text">
-    <string>Convert</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="backgorund_7">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>700</y>
-     <width>471</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border-radius: 4px;
-background-color: rgb(232, 227, 218);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="qtvar_convertImages_statusLabel">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>720</y>
-     <width>241</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Verdana</family>
-     <pointsize>14</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">padding:5px;</string>
-   </property>
-   <property name="text">
-    <string>...</string>
-   </property>
-   <property name="margin">
-    <number>5</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="backgorund_8">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>710</y>
-     <width>251</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border-radius: 4px;
-background-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="qtvar_convertImages_multiSampleCheckbox">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>700</y>
-     <width>131</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Verdana</family>
-     <pointsize>9</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox::indicator
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="margin">
+         <number>5</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_12" stretch="0,0">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <property name="leftMargin">
+         <number>5</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>5</number>
+        </property>
+        <property name="bottomMargin">
+         <number>5</number>
+        </property>
+        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+         <widget class="QCheckBox" name="qtvar_convertImages_multiSampleCheckbox">
+          <property name="font">
+           <font>
+            <family>Verdana</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QCheckBox::indicator
 {
 width: 15px;
 height: 15px;
@@ -2850,18 +2852,88 @@ QCheckBox::indicator:checked:pressed
 {
 	image: url(:/ui/resources/checkbox/checkbox_checked_pressed.png);
 }</string>
-   </property>
-   <property name="text">
-    <string>Multiple samples</string>
-   </property>
-  </widget>
-  <zorder>backgorund_7</zorder>
-  <zorder>qtvar_convertImages_convertTabs</zorder>
-  <zorder>qtvar_convertImages_closeButton</zorder>
-  <zorder>qtvar_convertImages_convertButton</zorder>
-  <zorder>backgorund_8</zorder>
-  <zorder>qtvar_convertImages_statusLabel</zorder>
-  <zorder>qtvar_convertImages_multiSampleCheckbox</zorder>
+          </property>
+          <property name="text">
+           <string>Multiple samples</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_18">
+          <item>
+           <widget class="QPushButton" name="qtvar_convertImages_convertButton">
+            <property name="minimumSize">
+             <size>
+              <width>91</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	border-radius: 4px;
+	background-color: rgb(255, 184, 90);
+	padding-left: 2px;
+	color: rgb(75, 75, 75);
+}
+QPushButton:hover{
+	background-color: rgb(248,214,176);	
+}
+QPushButton:pressed{
+	background-color: rgb(179, 197, 192);
+}</string>
+            </property>
+            <property name="text">
+             <string>Convert</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="qtvar_convertImages_closeButton">
+            <property name="minimumSize">
+             <size>
+              <width>91</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	border-radius: 4px;
+	background-color: rgb(255, 184, 90);
+	padding-left: 2px;
+	color: rgb(75, 75, 75);
+}
+QPushButton:hover{
+	background-color: rgb(248,214,176);	
+}
+QPushButton:pressed{
+	background-color: rgb(179, 197, 192);
+}</string>
+            </property>
+            <property name="text">
+             <string>Close</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <customwidgets>
   <customwidget>
@@ -2882,50 +2954,18 @@ QCheckBox::indicator:checked:pressed
  </resources>
  <connections>
   <connection>
-   <sender>pyqt5_dynamic_odsc_radio_output_specify</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>pyqt5_dynamic_odsc_entry_output_path</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>207</x>
-     <y>105</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>221</x>
-     <y>136</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>pyqt5_dynamic_odsc_radio_output_use_input</sender>
    <signal>toggled(bool)</signal>
    <receiver>pyqt5_dynamic_odsc_entry_output_path</receiver>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>309</x>
-     <y>111</y>
+     <x>278</x>
+     <y>97</y>
     </hint>
     <hint type="destinationlabel">
-     <x>309</x>
-     <y>136</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pyqt5_dynamic_odsc_radio_baseline_specify</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>pyqt5_dynamic_odsc_entry_baseline_path</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>136</x>
-     <y>178</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>202</x>
-     <y>199</y>
+     <x>274</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -2936,28 +2976,12 @@ QCheckBox::indicator:checked:pressed
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>356</x>
-     <y>171</y>
+     <x>322</x>
+     <y>165</y>
     </hint>
     <hint type="destinationlabel">
-     <x>358</x>
-     <y>202</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>qtvar_convertImages_multiSampleCheckbox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>pyqt5_dynamic_odsc_radio_output_use_input</receiver>
-   <slot>toggle()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>416</x>
-     <y>714</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>377</x>
-     <y>105</y>
+     <x>321</x>
+     <y>197</y>
     </hint>
    </hints>
   </connection>
@@ -2965,15 +2989,31 @@ QCheckBox::indicator:checked:pressed
    <sender>qtvar_convertImages_multiSampleCheckbox</sender>
    <signal>toggled(bool)</signal>
    <receiver>pyqt5_dynamic_odsc_radio_baseline_use_input</receiver>
-   <slot>toggle()</slot>
+   <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>398</x>
-     <y>716</y>
+     <x>381</x>
+     <y>676</y>
     </hint>
     <hint type="destinationlabel">
-     <x>395</x>
-     <y>173</y>
+     <x>384</x>
+     <y>172</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>qtvar_convertImages_multiSampleCheckbox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>pyqt5_dynamic_odsc_radio_output_use_input</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>404</x>
+     <y>671</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>97</y>
     </hint>
    </hints>
   </connection>
@@ -2984,12 +3024,12 @@ QCheckBox::indicator:checked:pressed
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>342</x>
-     <y>718</y>
+     <x>333</x>
+     <y>673</y>
     </hint>
     <hint type="destinationlabel">
-     <x>83</x>
-     <y>107</y>
+     <x>133</x>
+     <y>100</y>
     </hint>
    </hints>
   </connection>
@@ -3000,12 +3040,12 @@ QCheckBox::indicator:checked:pressed
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>328</x>
-     <y>731</y>
+     <x>311</x>
+     <y>678</y>
     </hint>
     <hint type="destinationlabel">
-     <x>64</x>
-     <y>173</y>
+     <x>149</x>
+     <y>169</y>
     </hint>
    </hints>
   </connection>

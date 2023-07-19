@@ -199,5 +199,5 @@ class ConvertUI(QDialog):
 
         print(size_avg, size_std)
 
-        self.pyqt5_dynamic_odsc_label_avgsize.setText(size_avg)
-        self.pyqt5_dynamic_odsc_label_stdsize.setText(size_std)
+        self.pyqt5_dynamic_odsc_label_avgsize.setText(size_avg + "\n-/+\n" + size_std)
+        #self.pyqt5_dynamic_odsc_label_stdsize.setText(size_std)
