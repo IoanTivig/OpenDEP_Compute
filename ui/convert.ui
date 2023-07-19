@@ -1340,7 +1340,7 @@ background-color: rgb(232, 227, 218);</string>
       <rect>
        <x>20</x>
        <y>25</y>
-       <width>151</width>
+       <width>171</width>
        <height>21</height>
       </rect>
      </property>
@@ -1366,9 +1366,9 @@ background-color: rgb(232, 227, 218);</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>190</x>
        <y>25</y>
-       <width>241</width>
+       <width>221</width>
        <height>21</height>
       </rect>
      </property>
@@ -1464,7 +1464,7 @@ QPushButton:pressed{
       <rect>
        <x>20</x>
        <y>90</y>
-       <width>151</width>
+       <width>171</width>
        <height>21</height>
       </rect>
      </property>
@@ -1490,9 +1490,9 @@ QPushButton:pressed{
      </property>
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>190</x>
        <y>90</y>
-       <width>241</width>
+       <width>221</width>
        <height>21</height>
       </rect>
      </property>
@@ -1557,7 +1557,7 @@ QPushButton:pressed{
       <rect>
        <x>20</x>
        <y>155</y>
-       <width>151</width>
+       <width>171</width>
        <height>21</height>
       </rect>
      </property>
@@ -1583,9 +1583,9 @@ QPushButton:pressed{
      </property>
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>190</x>
        <y>155</y>
-       <width>241</width>
+       <width>221</width>
        <height>21</height>
       </rect>
      </property>
