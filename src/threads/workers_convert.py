@@ -63,4 +63,22 @@ class ConvertWorker(QObject):
                     edge_width=convertUI.qtvar_convertImages_pixelsperedge.value(),
                     poly_deg=convertUI.qtvar_convertImages_polydegree.value(),
                 )
+
+        elif convertUI.qtvar_convertImages_convertTabs.currentIndex() == 1:
+            convertUI.refresh_opendep_single_ui()
+            baseline_path = convertUI.pyqt5_dynamic_odsc_entry_baseline_path.text()
+            input_path = convertUI.pyqt5_dynamic_odsc_entry_input_path.text()
+            output_path = convertUI.pyqt5_dynamic_odsc_entry_output_path.text()
+            cell_index = int(convertUI.pyqt5_dynamic_odsc_entry_cell_index.text())
+
+            cropped_image = convertUI.convert_opendep_single.convert_single_cell(
+                input_path=input_path,
+                output_path=output_path,
+                baseline_path=baseline_path,
+                cell_index=cell_index)
+
+            convertUI.MPWidgetConvertDetectCells.refresh_UI(
+                image=cropped_image
+            )
+
         self.finished.emit()

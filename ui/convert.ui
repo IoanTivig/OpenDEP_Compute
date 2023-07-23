@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>492</width>
-    <height>750</height>
+    <width>490</width>
+    <height>790</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>490</width>
-    <height>750</height>
+    <height>790</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -1302,7 +1302,7 @@ border-radius: 4px;</string>
       <attribute name="title">
        <string>OpenDEP single-cell</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_6" stretch="3,3,6">
+      <layout class="QVBoxLayout" name="verticalLayout_6" stretch="3,3,6,0">
        <property name="spacing">
         <number>6</number>
        </property>
@@ -2334,7 +2334,7 @@ background-color: rgb(248,214,176);
                  <string notr="true">color: rgb(75, 75, 75);</string>
                 </property>
                 <property name="text">
-                 <string>Vertical crop (μm):</string>
+                 <string>Vertical crop (pixel):</string>
                 </property>
                </widget>
               </item>
@@ -2361,7 +2361,7 @@ background-color: rgb(248,214,176);
 </string>
                 </property>
                 <property name="text">
-                 <string>50</string>
+                 <string>150</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -2396,7 +2396,7 @@ background-color: rgb(248,214,176);
                  <string notr="true">color: rgb(75, 75, 75);</string>
                 </property>
                 <property name="text">
-                 <string>Horizontal crop (μm):</string>
+                 <string>Horizontal crop (pixel):</string>
                 </property>
                </widget>
               </item>
@@ -2423,7 +2423,7 @@ background-color: rgb(248,214,176);
 </string>
                 </property>
                 <property name="text">
-                 <string>10</string>
+                 <string>200</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -2608,114 +2608,190 @@ border-radius:4px;</string>
               </layout>
              </widget>
             </item>
-            <item>
-             <widget class="QFrame" name="verticalFrame_2">
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(232, 227, 218);
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="horizontalFrame">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
 border-radius: 4px;</string>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_11" stretch="1,1,5">
-               <property name="spacing">
-                <number>5</number>
-               </property>
-               <property name="leftMargin">
-                <number>5</number>
-               </property>
-               <property name="topMargin">
-                <number>5</number>
-               </property>
-               <property name="rightMargin">
-                <number>5</number>
-               </property>
-               <property name="bottomMargin">
-                <number>5</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="static_odsc_label_12">
-                 <property name="font">
-                  <font>
-                   <family>Verdana</family>
-                   <pointsize>11</pointsize>
-                   <weight>50</weight>
-                   <italic>false</italic>
-                   <bold>false</bold>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(75, 75, 75);</string>
-                 </property>
-                 <property name="text">
-                  <string>Measured</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="static_odsc_label_13">
-                 <property name="font">
-                  <font>
-                   <family>Verdana</family>
-                   <pointsize>11</pointsize>
-                   <weight>50</weight>
-                   <italic>false</italic>
-                   <bold>false</bold>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(75, 75, 75);</string>
-                 </property>
-                 <property name="text">
-                  <string>cell index</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_cell_index">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>31</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>Verdana</family>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">border-radius: 4px;
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="2,1,2,1">
+          <item>
+           <widget class="QLabel" name="static_odsc_label_12">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>9</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(75, 75, 75);</string>
+            </property>
+            <property name="text">
+             <string>Cell index:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="pyqt5_dynamic_odsc_entry_cell_index">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>21</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 4px;
 padding: 1px;
+margin-right: 5px;
 background-color: rgb(248,214,176);
 color: rgb(75, 75, 75);
 </string>
-                 </property>
-                 <property name="text">
-                  <string>1</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
+            </property>
+            <property name="text">
+             <string>1</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="static_odsc_label_13">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>9</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(75, 75, 75);
+margin-left: 5px;</string>
+            </property>
+            <property name="text">
+             <string>Cell movement direction:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="pyqt5_dynamic_odsc_combo_movement_direction">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox
+{
+border-radius: 4px;
+padding-left: 5px;
+background-color: rgb(255, 184, 90);
+}
+
+QComboBox:hover
+{
+background-color: rgb(248,214,176);
+}
+
+QComboBox::drop-down{
+background-color: transparent;
+border-radius: 4px;
+}
+
+QComboBox::drop-down:hover{
+background-color: transparent;
+}
+
+QComboBox::down-arrow
+{
+image: url(:/ui/resources/dropdown/dropdown_arrow.png);
+margin-right: 5px;
+}
+
+QComboBox QListView {
+background-color: rgb(255, 184, 90);
+padding:4px;
+}
+
+QComboBox QListView::item {
+padding:15px;
+}
+
+</string>
+            </property>
+            <property name="editable">
+             <bool>false</bool>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Horizontal</string>
+             </property>
             </item>
-           </layout>
+            <item>
+             <property name="text">
+              <string>Vertical</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </widget>

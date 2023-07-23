@@ -60,6 +60,8 @@ class ConvertUI(QDialog):
             lambda: self.getEdgesFilePath(self.pyqt5_dynamic_odsc_entry_baseline_path)
         )
 
+        self.qtvar_convertImages_convertTabs.currentChanged.connect(self.tab_change)
+
         float_validator = QDoubleValidator(0, 100, 2)
         self.pyqt5_dynamic_odsc_entry_min_radius.setValidator(float_validator)
         self.pyqt5_dynamic_odsc_entry_max_radius.setValidator(float_validator)
@@ -74,7 +76,20 @@ class ConvertUI(QDialog):
         self.success = bool
 
         self.convert_opendep_single = ConversionOpenDEPSC()
+        #self.bkg_convert_opendep_single = ConversionOpenDEPSC()
         self.refresh_opendep_single_ui()
+
+    def tab_change(self):
+        if self.qtvar_convertImages_convertTabs.currentIndex() == 0:
+            self.qtvar_convertImages_multiSampleCheckbox.setEnabled(True)
+            self.qtvar_convertImages_convertButton.setEnabled(True)
+        elif self.qtvar_convertImages_convertTabs.currentIndex() == 1:
+            self.qtvar_convertImages_multiSampleCheckbox.setCheckState(False)
+            self.qtvar_convertImages_multiSampleCheckbox.setEnabled(False)
+            self.qtvar_convertImages_convertButton.setEnabled(True)
+        else:
+            self.qtvar_convertImages_multiSampleCheckbox.setEnabled(False)
+            self.qtvar_convertImages_convertButton.setEnabled(False)
 
     def getFolderPath(self, entry):
         folder = QFileDialog.getExistingDirectory(self, "Select a folder")
@@ -171,7 +186,10 @@ class ConvertUI(QDialog):
                                                      float(self.pyqt5_dynamic_odsc_entry_max_radius.text()))
         self.convert_opendep_single.cells_distance = int(self.convert_opendep_single.conversion_factor *
                                                          float(self.pyqt5_dynamic_odsc_entry_particle_distance.text()))
-        print('yay')
+        self.convert_opendep_single.y_crop = int(self.pyqt5_dynamic_odsc_entry_vertical_crop.text())
+        self.convert_opendep_single.x_crop = int(self.pyqt5_dynamic_odsc_entry_horizontal_crop.text())
+        self.convert_opendep_single.cell_index = int(self.pyqt5_dynamic_odsc_entry_cell_index.text())
+        self.convert_opendep_single.movement_direction = self.pyqt5_dynamic_odsc_combo_movement_direction.currentText()
 
     def detect_cells(self):
         self.refresh_opendep_single_ui()

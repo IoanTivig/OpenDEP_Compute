@@ -17,6 +17,14 @@ class ConversionOpenDEPSC:
         self.min_radius = 10
         self.max_radius = 200
 
+        self.y_crop = 100
+        self.x_crop = 200
+        self.crop_coord = []
+        self.cell_index = 1
+        self.movement_direction = 'Horizontal'
+
+        self.baseline_coord = []
+        self.radius_list = []
         self.cells_info = None
 
     def detect_cells(self, image_path):
@@ -80,40 +88,91 @@ class ConversionOpenDEPSC:
 
         return img
 
-    def crop_images_around_cell(self, input_path, output_path, cell_index, cells_info):
+    def get_sample_data(self, input_path, output_path):
 
-        x = cells_info[cell_index][0]
-        y = cells_info[cell_index][1]
-        radius = cells_info[cell_index][2]
-        print(x, y, radius)
-
-        values_list = [[], [], []]
+        x = self.crop_coord[1]
+        y = self.crop_coord[0]
+        print(x, y)
+        values_list = [[], []]
 
         # iterate through the names of contents of the folder
         for image_path in os.listdir(input_path):
             instance_path = os.path.join(input_path, image_path)
             image_to_crop = cv2.imread(instance_path)
-            crop_img = image_to_crop[y - 100:y + 100, x - 200:x + 200]
+            crop_img = image_to_crop[y - self.y_crop:y + self.y_crop, x - self.x_crop:x + self.x_crop]
 
             fullpath = os.path.join(output_path, image_path)
             cv2.imwrite(fullpath, crop_img)
 
             instanced_status, instanced_cells_info = self.detect_cells(fullpath)
-            instanced_marked_image = convert.mark_cells_on_image(
+            instanced_marked_image = self.mark_cells_on_image(
                 image_path=fullpath,
                 cell_info=instanced_cells_info,
                 is_bkg=False)
 
             cv2.imwrite(fullpath, instanced_marked_image)
-            values_list[0].append(instanced_cells_info[1][0])
-            values_list[1].append(instanced_cells_info[1][1])
-            values_list[2].append(instanced_cells_info[1][2])
+            values_list[0].append(instanced_cells_info[1][1])
+            values_list[1].append(instanced_cells_info[1][0])
+            self.radius_list.append(instanced_cells_info[1][2])
 
-        avg_radius = np.average(values_list[2])
-        stdev_radius = np.std(values_list[2])
-        values_list = values_list[0:-1]
+        avg_radius = round(np.average(self.radius_list) / self.conversion_factor, 3)
+        stdev_radius = round(np.std(self.radius_list) / self.conversion_factor, 3)
+
+        for i in range(len(values_list[0])):
+            values_list[0][i] = round((float(values_list[0][i]) - float(self.baseline_coord[0])) / self.conversion_factor, 3)
+        for i in range(len(values_list[1])):
+            values_list[1][i] = round((float(values_list[1][i]) - float(self.baseline_coord[1])) / self.conversion_factor, 3)
+
+        if self.movement_direction == 'Horizontal':
+            values_list = values_list[1]
+        else:
+            values_list = values_list[0]
 
         return values_list, avg_radius, stdev_radius
+
+    def get_baseline_data(self, baseline_path, cell_index):
+        status, cells_info = self.detect_cells(
+            image_path=baseline_path)
+
+        crop_x = cells_info[cell_index][0]
+        crop_y = cells_info[cell_index][1]
+        self.crop_coord = [crop_y, crop_x]
+        radius = cells_info[cell_index][2]
+        self.radius_list = [radius]
+
+        image_to_crop = cv2.imread(baseline_path)
+        crop_img = image_to_crop[self.crop_coord[0] - self.y_crop:self.crop_coord[0] + self.y_crop, self.crop_coord[1] - self.x_crop:self.crop_coord[1] + self.x_crop]
+
+        name, ext = os.path.splitext(baseline_path)
+        fullpath = "{name}_{uid}{ext}".format(name=name, uid='cropped', ext=ext)
+        cv2.imwrite(fullpath, crop_img)
+
+        status, cells_info = self.detect_cells(
+            image_path=fullpath)
+
+        marked_image = self.mark_cells_on_image(
+            image_path=fullpath,
+            cell_info=cells_info,
+            is_bkg=False)
+
+        cv2.imwrite(fullpath, marked_image)
+
+        print(cells_info)
+        baseline_x = cells_info[1][0]
+        baseline_y = cells_info[1][1]
+        self.baseline_coord = [baseline_y, baseline_x]
+        baseline_radius = cells_info[1][2]
+        self.radius_list.append(baseline_radius)
+
+        # return crop_img, crop_x, crop_y, baseline_x, baseline_y
+        print(self.baseline_coord, self.crop_coord, self.radius_list)
+        return marked_image
+
+    def convert_single_cell(self, input_path, output_path, baseline_path, cell_index):
+        marked_image = self.get_baseline_data(baseline_path, cell_index)
+        values_list, avg_radius, stdev_radius = self.get_sample_data(input_path, output_path)
+        print(values_list, avg_radius, stdev_radius)
+        return marked_image
 
 
 def random_thing():
@@ -128,8 +187,8 @@ def random_thing():
         cv2.waitKey()
         cell_index = int(input())
 
-        values_list, avg_radius, stdev_radius = convert.crop_images_around_cell(convert.input_path, convert.output_path,
-                                                                                cell_index, convert.cells_info)
+        values_list, avg_radius, stdev_radius = convert.get_sample_data(convert.input_path, convert.output_path,
+                                                                        cell_index, convert.cells_info)
 
         for i in range(len(values_list[0])):
             print(values_list[0][i] / convert.conversion_factor, "  --  ",
