@@ -1,4 +1,6 @@
 import os
+import re
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -93,10 +95,13 @@ class ConversionOpenDEPSC:
         x = self.crop_coord[1]
         y = self.crop_coord[0]
         print(x, y)
-        values_list = [[], []]
+        values_list = [[], [], []]
 
         # iterate through the names of contents of the folder
         for image_path in os.listdir(input_path):
+            frequency = re.split("OpenDEP_|Hz", image_path)
+            values_list[2].append(float(frequency[1]))
+
             instance_path = os.path.join(input_path, image_path)
             image_to_crop = cv2.imread(instance_path)
             crop_img = image_to_crop[y - self.y_crop:y + self.y_crop, x - self.x_crop:x + self.x_crop]
@@ -124,9 +129,15 @@ class ConversionOpenDEPSC:
             values_list[1][i] = round((float(values_list[1][i]) - float(self.baseline_coord[1])) / self.conversion_factor, 3)
 
         if self.movement_direction == 'Horizontal':
-            values_list = values_list[1]
+            values_list = [values_list[1], values_list[2]]
         else:
-            values_list = values_list[0]
+            values_list = [values_list[0], values_list[2]]
+
+        values_list[0] = np.array(values_list[0])
+        values_list[1] = np.array(values_list[1])
+        sort = values_list[1].argsort()
+        values_list[0] = list(values_list[0][sort])
+        values_list[1] = list(values_list[1][sort])
 
         return values_list, avg_radius, stdev_radius
 
@@ -172,6 +183,11 @@ class ConversionOpenDEPSC:
         marked_image = self.get_baseline_data(baseline_path, cell_index)
         values_list, avg_radius, stdev_radius = self.get_sample_data(input_path, output_path)
         print(values_list, avg_radius, stdev_radius)
+        for i in values_list[0]:
+            print(i)
+        for i in values_list[1]:
+            print(i)
+
         return marked_image
 
 
