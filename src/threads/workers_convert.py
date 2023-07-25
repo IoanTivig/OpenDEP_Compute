@@ -71,7 +71,7 @@ class ConvertWorker(QObject):
             output_path = convertUI.pyqt5_dynamic_odsc_entry_output_path.text()
             cell_index = int(convertUI.pyqt5_dynamic_odsc_entry_cell_index.text())
 
-            cropped_image = convertUI.convert_opendep_single.convert_single_cell(
+            cropped_image, frequencies, cm_factors, cell_radius = convertUI.convert_opendep_single.convert_single_cell(
                 input_path=input_path,
                 output_path=output_path,
                 baseline_path=baseline_path,
@@ -80,5 +80,12 @@ class ConvertWorker(QObject):
             convertUI.MPWidgetConvertDetectCells.refresh_UI(
                 image=cropped_image
             )
+
+            data.frequency_list = frequencies
+            data.CMfactor_list = cm_factors
+            data.CMfactor_errors_list = []
+            window.fitting_sish_particle_radius_value_entry.setText(str(cell_radius))
+
+            window.loadData()
 
         self.finished.emit()

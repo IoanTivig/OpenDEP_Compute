@@ -124,9 +124,9 @@ class ConversionOpenDEPSC:
         stdev_radius = round(np.std(self.radius_list) / self.conversion_factor, 3)
 
         for i in range(len(values_list[0])):
-            values_list[0][i] = round((float(values_list[0][i]) - float(self.baseline_coord[0])) / self.conversion_factor, 3)
+            values_list[0][i] = (round((float(values_list[0][i]) - float(self.baseline_coord[0])) / self.conversion_factor, 3) * -1)
         for i in range(len(values_list[1])):
-            values_list[1][i] = round((float(values_list[1][i]) - float(self.baseline_coord[1])) / self.conversion_factor, 3)
+            values_list[1][i] = (round((float(values_list[1][i]) - float(self.baseline_coord[1])) / self.conversion_factor, 3) * -1)
 
         if self.movement_direction == 'Horizontal':
             values_list = [values_list[1], values_list[2]]
@@ -183,12 +183,12 @@ class ConversionOpenDEPSC:
         marked_image = self.get_baseline_data(baseline_path, cell_index)
         values_list, avg_radius, stdev_radius = self.get_sample_data(input_path, output_path)
         print(values_list, avg_radius, stdev_radius)
-        for i in values_list[0]:
-            print(i)
-        for i in values_list[1]:
-            print(i)
 
-        return marked_image
+        cell_radius = round(float(avg_radius), 3)
+        frequencies = values_list[1]
+        cm_factors = values_list[0]
+
+        return marked_image, frequencies, cm_factors, cell_radius
 
 
 def random_thing():
