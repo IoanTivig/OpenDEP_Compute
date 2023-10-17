@@ -44,9 +44,6 @@ class LiveCaptureUI(QDialog):
         self.pyqt5_dynamic_odsc_button_loadfolder_output.clicked.connect(
             lambda: self.getFolderPath(self.pyqt5_dynamic_odsc_entry_output_path)
         )
-        self.pyqt5_dynamic_odsc_button_loadfile_correction.clicked.connect(
-            lambda: self.getFilePath(self.pyqt5_dynamic_odsc_entry_correction_path)
-        )
 
         self.pyqt5_dynamic_odsc_button_reload_cameras.clicked.connect(
             self.get_cameras
@@ -91,10 +88,38 @@ class LiveCaptureUI(QDialog):
         self.camera.setCamera(self.camera_details_list[index][0])
 
     def single_capture(self, file_name):
-        path = self.pyqt5_dynamic_odsc_entry_output_path.text()
-        self.camera.setTransfer("Save_to_PC_only")
-        self.camera.capture(os.path.join(path, file_name))
+        self.capture(file_name)
         self.single_capture_index = self.single_capture_index + 1
+
+    def capture(self, file_name):
+        # Check if image was saved and reload it thorough OpenCV
+        path = self.pyqt5_dynamic_odsc_entry_output_path.text()
+        file_path = os.path.join(path, file_name)
+        self.camera.setTransfer("Save_to_PC_only")
+        self.camera.capture(os.path.join(file_path))
+
+        # Check if image was saved and reload it thorough OpenCV
+        new_file_path = file_path + '.jpg'
+        while not os.path.exists(new_file_path):
+            time.sleep(0.1)
+        image = cv2.imread(new_file_path)
+
+        # Transform image in black and white
+        #image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+        # Crop image
+        if self.pyqt5_dynamic_odsc_checkbox_crop.isChecked():
+            image = self.crop_image(image, self.pyqt5_dynamic_odsc_entry_crop.text())
+
+        # Rotate image
+        if self.pyqt5_dynamic_odsc_checkbox_rotate.isChecked():
+            image = self.rotate_image(image, self.pyqt5_dynamic_odsc_combo_rotation.currentText())
+
+        # Add image to UI Graph
+        self.GraphWidgetLiveCapture.refresh_UI(image)
+
+        # Save image
+        cv2.imwrite(new_file_path, image)
 
     def start_capture(self):
         # Live Timed Multi Capture#
@@ -135,3 +160,23 @@ class LiveCaptureUI(QDialog):
 
     def resume_capture(self):
         self.pause_thread = False
+
+    def crop_image(self, image, percentage):
+        vertical = (image.shape[0] / 100 * int(
+            percentage)) / 2
+        horizontal = (image.shape[1] / 100 * int(
+            percentage)) / 2
+        cropped_image = image[int(vertical):int(image.shape[0] - vertical),
+                        int(horizontal):int(image.shape[1] - horizontal)]
+        return cropped_image
+
+    def rotate_image(self, image, rotation):
+        if str(rotation) == "90":
+            rotated_image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
+        elif str(rotation) == "180":
+            rotated_image = cv2.rotate(image, cv2.ROTATE_180)
+        elif str(rotation) == "270":
+            rotated_image = cv2.rotate(image, cv2.ROTATE_90_COUNTERCLOCKWISE)
+        else:
+            rotated_image = image
+        return rotated_image

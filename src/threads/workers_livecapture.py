@@ -3,6 +3,7 @@
 # ------------------------------------------------------
 
 # External imports #
+import os
 import cv2
 import numpy as np
 from PyQt5.QtCore import QObject, pyqtSignal
@@ -42,12 +43,15 @@ class LiveCaptureWorker(QObject):
         frequency_list = np.geomspace(min_frequency, max_frequency, points_no)
 
         # Capture the baseline image
-        self.live_capture_UI.single_capture('baseline')
+        self.live_capture_UI.capture('baseline')
+        #self.live_capture_UI.single_capture('baseline')
+
+
 
         # Start to loop through each frequency from the computed list
         for i in range(len(frequency_list)):
-            print(frequency_list[i])
 
+            # Update all UI labels for each capture
             current_frequency = self.frequency_text_format(frequency_list[i])
             if i + 1 < len(frequency_list):
                 next_frequency = self.frequency_text_format(frequency_list[i + 1])
@@ -64,6 +68,7 @@ class LiveCaptureWorker(QObject):
                 str(i + 1)
             )
 
+            # Update all UI labels for each second that passed
             for j in range(
                 int(self.live_capture_UI.pyqt5_dynamic_odsc_entry_delay.text())
             ):
@@ -74,6 +79,7 @@ class LiveCaptureWorker(QObject):
                     str(max_point)
                 )
 
+                # Verify every 0.2 seconds if the stop / pause flags are up
                 for z in range(5):
                     time.sleep(0.2)
                     if self.live_capture_UI.stop_thread == True:
@@ -83,18 +89,14 @@ class LiveCaptureWorker(QObject):
                 if self.live_capture_UI.stop_thread == True:
                     break
 
-            # Capture the image an name it accordingly to the frequency
+            # Capture the image and name it accordingly to the frequency
+            filename = 'OpenDEP_' + str(self.frequency_int_format(frequency_list[i], 2)) + 'Hz'
+            self.live_capture_UI.capture(filename)
 
-            file_name = 'OpenDEP_' + str(self.frequency_int_format(frequency_list[i], 2)) + 'Hz'
-            self.live_capture_UI.single_capture(file_name)
-
-            if self.live_capture_UI.stop_thread == True:
+            if self.live_capture_UI.stop_thread:
                 break
 
-        path = self.live_capture_UI.pyqt5_dynamic_odsc_entry_output_path.text()
-        for filename in os.listdir(path):
-            self.crop_image(path, filename)
-
+        time.sleep(1)
         self.live_capture_UI.stop_capture()
         self.finished.emit()
 
@@ -113,14 +115,3 @@ class LiveCaptureWorker(QObject):
         new_value = int(round(value/10**(length - no_digits), 0) * 10**(length - no_digits))
 
         return new_value
-
-    def crop_image(self, path, filename):
-        file_path = os.path.join(path, filename)
-        image = cv2.imread(file_path)
-        vertical = (image.shape[0] / 100 * int(
-            self.live_capture_UI.pyqt5_dynamic_odsc_entry_vertical_crop.text())) / 2
-        horizontal = (image.shape[1] / 100 * int(
-            self.live_capture_UI.pyqt5_dynamic_odsc_entry_horizontal_crop.text())) / 2
-        cropped_image = image[int(vertical):int(image.shape[0] - vertical),
-                        int(horizontal):int(image.shape[1] - horizontal)]
-        cv2.imwrite(file_path, cropped_image)
