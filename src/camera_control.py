@@ -16,15 +16,21 @@ class Camera:
         if (os.path.exists(exeDir + r"/CameraControlRemoteCmd.exe")): # Check if file path exists
             self.exeDir = exeDir
             self.verbose = verbose
-            
-            if not "CameraControl.exe" in (i.name() for i in psutil.process_iter()): # Open program if closed
-                self.openProgram()
-                time.sleep(10)
         
         else:
             print("Error: digiCamControl not found.")
             
-    
+    def verifyDigiCam(self):
+        if "CameraControl.exe" in (i.name() for i in psutil.process_iter()):
+            return True
+        else:
+            return False
+
+    def launchDigiCam(self):
+        if not "CameraControl.exe" in (i.name() for i in psutil.process_iter()):
+            self.openProgram()
+            time.sleep(10)
+
     def openProgram(self):
         'Opens the CameraControl.exe application.'
         subprocess.Popen(self.exeDir + r"/CameraControl.exe")

@@ -25,7 +25,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_13" stretch="3">
+  <layout class="QVBoxLayout" name="verticalLayout_13" stretch="0">
    <property name="topMargin">
     <number>2</number>
    </property>
@@ -37,6 +37,9 @@
    </property>
    <item>
     <widget class="QTabWidget" name="qtvar_convertImages_convertTabs">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="font">
       <font>
        <family>Verdana</family>
@@ -144,27 +147,11 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
 }</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="OpenDEPpopulation_tab">
-      <attribute name="title">
-       <string>OpenDEP population</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_17" stretch="0">
-       <item>
-        <widget class="QFrame" name="verticalFrame_3">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 4px;</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_14"/>
-        </widget>
-       </item>
-      </layout>
-     </widget>
      <widget class="QWidget" name="OpenDEPsinglecell_tab">
       <attribute name="title">
-       <string>OpenDEP single-cell</string>
+       <string>DSRL Camera</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_6" stretch="2,2,2,8,1">
        <property name="spacing">
@@ -188,7 +175,7 @@ border-radius: 4px;</string>
           <string notr="true">background-color: rgb(255, 255, 255);
 border-radius: 4px;</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1">
+         <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,1">
           <property name="sizeConstraint">
            <enum>QLayout::SetDefaultConstraint</enum>
           </property>
@@ -294,6 +281,93 @@ QPushButton:pressed{
              </widget>
             </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QFrame" name="horizontalFrame_16">
+            <layout class="QHBoxLayout" name="horizontalLayout_27" stretch="1,1">
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>2</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="pyqt5_dynamic_odsc_button_launch_software">
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>31</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	border-radius: 4px;
+	background-color: rgb(255, 184, 90);
+	padding-left: 2px;
+	color: rgb(75, 75, 75);
+}
+QPushButton:hover{
+	background-color: rgb(248,214,176);	
+}
+QPushButton:pressed{
+	background-color: rgb(179, 197, 192);
+}</string>
+               </property>
+               <property name="text">
+                <string>Launch Software</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pyqt5_dynamic_odsc_button_check_software">
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>31</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	border-radius: 4px;
+	background-color: rgb(255, 184, 90);
+	padding-left: 2px;
+	color: rgb(75, 75, 75);
+}
+QPushButton:hover{
+	background-color: rgb(248,214,176);	
+}
+QPushButton:pressed{
+	background-color: rgb(179, 197, 192);
+}</string>
+               </property>
+               <property name="text">
+                <string>Check Software</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </item>
           <item>
            <widget class="QFrame" name="horizontalFrame_15">
@@ -1731,6 +1805,40 @@ QPushButton:pressed{
              </widget>
             </item>
            </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="OpenDEPpopulation_tab">
+      <attribute name="title">
+       <string>Video Camera</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_17" stretch="0">
+       <item>
+        <widget class="QFrame" name="verticalFrame_3">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 4px;</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Under development</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>

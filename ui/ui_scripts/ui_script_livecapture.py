@@ -31,15 +31,20 @@ class LiveCaptureUI(QDialog):
         self.setWindowIcon(QtGui.QIcon("ui/resources/logos/opendep_logo_1.png"))
 
         self.camera = dccp.Camera()
-        self.camera_details_list = self.camera.listCamerasDetails()
+
+        self.camera_details_list = []
         self.single_capture_index = 0
         self.stop_thread = False
         self.pause_thread = False
 
-        self.pyqt5_dynamic_odsc_button_start_capture.clicked.connect(self.start_capture)
+        self.pyqt5_dynamic_odsc_entry_output_path.setText(os.path.expanduser("~/Desktop"))
+
+        self.pyqt5_dynamic_odsc_button_start_capture.clicked.connect(self.multi_capture)
         self.pyqt5_dynamic_odsc_button_stop_capture.clicked.connect(self.stop_capture)
         self.pyqt5_dynamic_odsc_button_pause_capture.clicked.connect(self.pause_capture)
         self.pyqt5_dynamic_odsc_button_resume_capture.clicked.connect(self.resume_capture)
+        self.pyqt5_dynamic_odsc_button_check_software.clicked.connect(self.verifySoftware)
+        self.pyqt5_dynamic_odsc_button_launch_software.clicked.connect(self.launchSoftware)
 
         self.pyqt5_dynamic_odsc_button_loadfolder_output.clicked.connect(
             lambda: self.getFolderPath(self.pyqt5_dynamic_odsc_entry_output_path)
@@ -54,8 +59,15 @@ class LiveCaptureUI(QDialog):
         )
 
     def OPEN(self):
-        self.get_cameras()
         self.show()
+
+    def verifySoftware(self):
+        print(self.camera.verifyDigiCam())
+
+    def launchSoftware(self):
+        if not self.camera.verifyDigiCam():
+            self.camera.launchDigiCam()
+            self.get_cameras()
 
     def getFolderPath(self, entry):
         folder = QFileDialog.getExistingDirectory(self, "Select output folder")
@@ -69,27 +81,29 @@ class LiveCaptureUI(QDialog):
             entry.setText(file)
 
     def get_cameras(self):
-        name_list = []
-        self.camera_details_list = self.camera.listCamerasDetails()
-        self.pyqt5_dynamic_odsc_combo_camera.clear()
-        for i in self.camera_details_list:
-            name_list.append(i[1])
+        if self.camera.verifyDigiCam():
+            name_list = []
+            self.camera_details_list = self.camera.listCamerasDetails()
+            self.pyqt5_dynamic_odsc_combo_camera.clear()
+            for i in self.camera_details_list:
+                name_list.append(i[1])
 
-        if 'error' not in name_list[0]:
-            for i in name_list:
-                self.pyqt5_dynamic_odsc_combo_camera.addItem(i[1:])
-        elif 'error' in name_list[0]:
-            self.pyqt5_dynamic_odsc_combo_camera.addItem("No available camera")
+            if 'error' not in name_list[0]:
+                for i in name_list:
+                    self.pyqt5_dynamic_odsc_combo_camera.addItem(i[1:])
+            elif 'error' in name_list[0]:
+                self.pyqt5_dynamic_odsc_combo_camera.addItem("No available camera")
 
-        self.select_camera()
+            self.select_camera()
 
     def select_camera(self):
         index = self.pyqt5_dynamic_odsc_combo_camera.currentIndex()
         self.camera.setCamera(self.camera_details_list[index][0])
 
     def single_capture(self, file_name):
-        self.capture(file_name)
-        self.single_capture_index = self.single_capture_index + 1
+        if self.camera.verifyDigiCam():
+            self.capture(file_name)
+            self.single_capture_index = self.single_capture_index + 1
 
     def capture(self, file_name):
         # Check if image was saved and reload it thorough OpenCV
@@ -121,29 +135,30 @@ class LiveCaptureUI(QDialog):
         # Save image
         cv2.imwrite(new_file_path, image)
 
-    def start_capture(self):
-        # Live Timed Multi Capture#
-        # Step 1: Set some parameters
-        self.stop_thread = False
-        self.pause_thread = False
-        self.pyqt5_dynamic_odsc_button_start_capture.setDisabled(True)
-        self.pyqt5_dynamic_odsc_button_stop_capture.setDisabled(False)
-        # Step 2: Create a QThread  and worker object
-        self.thread = QThread()
-        self.worker = LiveCaptureWorker()
+    def multi_capture(self):
+        if self.camera.verifyDigiCam():
+            # Live Timed Multi Capture#
+            # Step 1: Set some parameters
+            self.stop_thread = False
+            self.pause_thread = False
+            self.pyqt5_dynamic_odsc_button_start_capture.setDisabled(True)
+            self.pyqt5_dynamic_odsc_button_stop_capture.setDisabled(False)
+            # Step 2: Create a QThread  and worker object
+            self.thread = QThread()
+            self.worker = LiveCaptureWorker()
 
-        # Setp 3: Set arguments
-        self.worker.live_capture_UI = self
+            # Setp 3: Set arguments
+            self.worker.live_capture_UI = self
 
-        # Step 4: Move worker to the thread
-        self.worker.moveToThread(self.thread)
-        # Step 5: Connect signals and slots
-        self.thread.started.connect(self.worker.multi_capture_process)
-        # Step 6: Start the thread
-        self.worker.finished.connect(self.thread.quit)
-        self.worker.finished.connect(self.worker.deleteLater)
-        self.thread.finished.connect(self.thread.deleteLater)
-        self.thread.start()
+            # Step 4: Move worker to the thread
+            self.worker.moveToThread(self.thread)
+            # Step 5: Connect signals and slots
+            self.thread.started.connect(self.worker.multi_capture_process)
+            # Step 6: Start the thread
+            self.worker.finished.connect(self.thread.quit)
+            self.worker.finished.connect(self.worker.deleteLater)
+            self.thread.finished.connect(self.thread.deleteLater)
+            self.thread.start()
 
     def stop_capture(self):
         self.pyqt5_dynamic_odsc_button_start_capture.setDisabled(False)
