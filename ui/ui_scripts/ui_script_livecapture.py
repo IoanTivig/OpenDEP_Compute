@@ -12,6 +12,7 @@ from PyQt5 import QtGui
 
 # Local imports #
 import src.camera_control as dccp
+import src.function_generator_control as func_gen
 from src.threads.workers_livecapture import *
 
 """
@@ -31,6 +32,8 @@ class LiveCaptureUI(QDialog):
         self.setWindowIcon(QtGui.QIcon("ui/resources/logos/opendep_logo_1.png"))
 
         self.camera = dccp.Camera()
+        self.generator = func_gen.FunctionGenerator()
+        #self.generator.connect_instrument('ASRL6::INSTR')
 
         self.camera_details_list = []
         self.single_capture_index = 0
@@ -45,15 +48,20 @@ class LiveCaptureUI(QDialog):
         self.pyqt5_dynamic_odsc_button_resume_capture.clicked.connect(self.resume_capture)
         self.pyqt5_dynamic_odsc_button_check_software.clicked.connect(self.verifySoftware)
         self.pyqt5_dynamic_odsc_button_launch_software.clicked.connect(self.launchSoftware)
+        self.pyqt5_dynamic_odsc_button_reload_cameras.clicked.connect(self.get_cameras)
+        self.pyqt5_dynamic_odsc_combo_camera.currentIndexChanged.connect(self.select_camera)
+
+        self.pyqt5_dynamic_odsc_button_reload_generator.clicked.connect(self.get_generators)
+        self.pyqt5_dynamic_odsc_combo_generators.currentIndexChanged.connect(self.select_generator)
+        self.pyqt5_dynamic_odsc_button_generator_output_on.clicked.connect(self.generator_output_on)
+        self.pyqt5_dynamic_odsc_button_generator_output_off.clicked.connect(self.generator_output_off)
+        self.pyqt5_dynamic_odsc_button_generator_download.clicked.connect(self.generator_download_parameters)
+        self.pyqt5_dynamic_odsc_button_generator_upload.clicked.connect(self.generator_upload_parameters)
 
         self.pyqt5_dynamic_odsc_button_loadfolder_output.clicked.connect(
             lambda: self.getFolderPath(self.pyqt5_dynamic_odsc_entry_output_path)
         )
 
-        self.pyqt5_dynamic_odsc_button_reload_cameras.clicked.connect(
-            self.get_cameras
-        )
-        self.pyqt5_dynamic_odsc_combo_camera.currentIndexChanged.connect(self.select_camera)
         self.pyqt5_dynamic_odsc_button_single_capture.clicked.connect(
             lambda: self.single_capture('single_capture_' + str(self.single_capture_index))
         )
@@ -80,6 +88,37 @@ class LiveCaptureUI(QDialog):
         if check:
             entry.setText(file)
 
+    def generator_output_on(self):
+        self.generator.start_output()
+
+    def generator_output_off(self):
+        self.generator.stop_output()
+
+    def generator_upload_parameters(self):
+        try:
+            self.generator.set_frequency(self.pyqt5_dynamic_odsc_spinbox_generator_frequency.value())
+            self.generator.set_voltage(self.pyqt5_dynamic_odsc_dspinbox_generator_amplitude.value())
+            self.generator.set_sinusoidal()
+        except:
+            print('No generator connected')
+
+    def generator_download_parameters(self):
+        try:
+            self.pyqt5_dynamic_odsc_spinbox_generator_frequency.setValue(int(float(self.generator.get_frequency())))
+            self.pyqt5_dynamic_odsc_dspinbox_generator_amplitude.setValue(float(self.generator.get_voltage()))
+        except:
+            print('No generator connected')
+
+    def get_generators(self):
+        id_list = self.generator.get_all_instruments()
+        self.pyqt5_dynamic_odsc_combo_generators.clear()
+        for i in id_list:
+            try:
+                self.generator.connect_instrument(i)
+                self.pyqt5_dynamic_odsc_combo_generators.addItem(i)
+            except:
+                continue
+
     def get_cameras(self):
         if self.camera.verifyDigiCam():
             name_list = []
@@ -99,6 +138,15 @@ class LiveCaptureUI(QDialog):
     def select_camera(self):
         index = self.pyqt5_dynamic_odsc_combo_camera.currentIndex()
         self.camera.setCamera(self.camera_details_list[index][0])
+
+    def select_generator(self):
+        index = self.pyqt5_dynamic_odsc_combo_generators.currentIndex()
+        id = self.pyqt5_dynamic_odsc_combo_generators.itemText(index)
+        print(id)
+        try:
+            self.generator.connect_instrument(id)
+        except:
+            print('Not compatible')
 
     def single_capture(self, file_name):
         if self.camera.verifyDigiCam():
@@ -121,6 +169,7 @@ class LiveCaptureUI(QDialog):
         # Transform image in black and white
         #image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
+        time.sleep(0.25)
         # Crop image
         if self.pyqt5_dynamic_odsc_checkbox_crop.isChecked():
             image = self.crop_image(image, self.pyqt5_dynamic_odsc_entry_crop.text())
@@ -167,6 +216,8 @@ class LiveCaptureUI(QDialog):
         self.pyqt5_dynamic_odsc_label_next_frequency.setText('0 Hz')
         self.pyqt5_dynamic_odsc_label_current_point.setText('0')
         self.pyqt5_dynamic_odsc_label_countdown.setText('0')
+        if self.pyqt5_dynamic_odsc_checkbox_use_generator.isChecked():
+            self.generator.stop_output()
         self.pause_thread = False
         self.stop_thread = True
 

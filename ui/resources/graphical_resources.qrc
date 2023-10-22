@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="/ui/resources">
+    <file>buttons/download_icon.png</file>
+    <file>buttons/upload_icon.png</file>
+    <file>buttons/refresh_icon.png</file>
     <file>spinbox/spinbox_pressed_right.png</file>
     <file>spinbox/spinbox_hover_left.png</file>
     <file>spinbox/spinbox_hover_right.png</file>
@@ -20,5 +23,8 @@
     <file>radiobutton/radiobutton_checked.png</file>
     <file>radiobutton/radiobutton_checked_hover.png</file>
     <file>radiobutton/radiobutton_checked_pressed.png</file>
+    <file>buttons/refresh_icon.png</file>
+    <file>buttons/upload_icon.png</file>
+    <file>buttons/download_icon.png</file>
   </qresource>
 </RCC>

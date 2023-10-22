@@ -46,12 +46,16 @@ class LiveCaptureWorker(QObject):
 
         # Capture the baseline image
         self.live_capture_UI.capture('baseline')
-        #self.live_capture_UI.single_capture('baseline')
 
-
+        # Start function generator output
+        if self.live_capture_UI.pyqt5_dynamic_odsc_checkbox_use_generator.isChecked():
+            self.live_capture_UI.generator.start_output()
 
         # Start to loop through each frequency from the computed list
         for i in range(len(frequency_list)):
+            # Set the current_frequency for Function generator
+            if self.live_capture_UI.pyqt5_dynamic_odsc_checkbox_use_generator.isChecked():
+                self.live_capture_UI.generator.set_frequency(frequency_list[i])
 
             # Update all UI labels for each capture
             current_frequency = self.frequency_text_format(frequency_list[i])
@@ -92,12 +96,20 @@ class LiveCaptureWorker(QObject):
                     break
 
             # Capture the image and name it accordingly to the frequency
-            filename = 'OpenDEP_' + str(self.frequency_int_format(frequency_list[i], 2)) + 'Hz'
-            self.live_capture_UI.capture(filename)
+            if self.live_capture_UI.pyqt5_dynamic_odsc_checkbox_use_generator.isChecked():
+                filename = 'OpenDEP_' + str(int(frequency_list[i])) + 'Hz'
+            else:
+                filename = 'OpenDEP_' + str(self.frequency_int_format(frequency_list[i], 2)) + 'Hz'
+
+            try:
+                self.live_capture_UI.capture(filename)
+            except:
+                print("Data point skipped")
 
             if self.live_capture_UI.stop_thread:
                 break
 
+        # Stop capture
         time.sleep(1)
         self.live_capture_UI.stop_capture()
         self.finished.emit()
