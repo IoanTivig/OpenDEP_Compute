@@ -1,4 +1,4 @@
-# OpenDEP Control
+# OpenDEP Compute
 Dielectrophoresis (DEP) experiments conversion to spectra / spectra fitting software. With this software you can convert sets of images 
 obtained manualy or with OpenDEP Control and fitting the obtained DEP spectra with one of the two implemented functions: Homogenous particle
 or single-shell. 
