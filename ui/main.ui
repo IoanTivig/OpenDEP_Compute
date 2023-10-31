@@ -2622,19 +2622,6 @@
          <string>Parameters</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="qtvar_main_sish_liveCaptureButton">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>380</y>
-          <width>81</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Live Capture</string>
-        </property>
-       </widget>
       </widget>
      </widget>
      <widget class="QTabWidget" name="GraphTab_2">

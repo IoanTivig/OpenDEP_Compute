@@ -23,7 +23,7 @@ If you need any help with the installation, please contact me.
 ## Publications
 1. [OpenDEP: An Open-Source Platform for Dielectrophoresis Spectra Acquisition and Analysis](https://pubs.acs.org/doi/10.1021/acsomega.3c06052)
 
-## Other DEP Tools
+## Other DEP Tools (not developed by me)
 1. [MyDEP](https://mydepsoftware.github.io/)
 
 ## Other
