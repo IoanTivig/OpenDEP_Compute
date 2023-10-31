@@ -34,7 +34,6 @@ from src.datamanagement import *
 
 from ui.ui_scripts.ui_script_renamefiles import *
 from ui.ui_scripts.ui_script_convertfiles import *
-from ui.ui_scripts.ui_script_livecapture import *
 
 ### PyQt5 imports ###
 from PyQt5 import QtGui
@@ -731,11 +730,9 @@ datapointsUI = DataPointsUI()
 autoProcessUI = AutoProcessUI()
 convertUI = ConvertUI(window, data)
 renameUI = RenameUI()
-liveCaptureUI = LiveCaptureUI()
 
 window.qtvar_main_sish_convertButton.clicked.connect(convertUI.OPEN)
 window.qtvar_main_hopa_convertButton.clicked.connect(convertUI.OPEN)
-window.qtvar_main_sish_liveCaptureButton.clicked.connect(liveCaptureUI.OPEN)
 window.fitting_hopa_settings_button.clicked.connect(paramsUI.OPEN)
 
 window.menu_parameters_settings.triggered.connect(paramsUI.OPEN)
