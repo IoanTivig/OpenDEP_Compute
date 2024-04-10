@@ -44,6 +44,7 @@ class ConvertWorker(QObject):
                             min_edge_spacing=convertUI.qtvar_convertImages_minedgespacing.value(),
                             no_pixels_shift=convertUI.qtvar_convertImages_pixelstoshift.value(),
                             edge_orientation=convertUI.qtvar_convertImages_orientation.currentText(),
+                            grayness_over_brightness=convertUI.qtvar_convertImages_radio_population_brightfieldmc.isChecked(),
                             edge_width=convertUI.qtvar_convertImages_pixelsperedge.value(),
                             poly_deg=convertUI.qtvar_convertImages_polydegree.value(),
                         )
@@ -60,6 +61,7 @@ class ConvertWorker(QObject):
                     min_edge_spacing=convertUI.qtvar_convertImages_minedgespacing.value(),
                     no_pixels_shift=convertUI.qtvar_convertImages_pixelstoshift.value(),
                     edge_orientation=convertUI.qtvar_convertImages_orientation.currentText(),
+                    grayness_over_brightness=convertUI.qtvar_convertImages_radio_population_brightfieldmc.isChecked(),
                     edge_width=convertUI.qtvar_convertImages_pixelsperedge.value(),
                     poly_deg=convertUI.qtvar_convertImages_polydegree.value(),
                 )

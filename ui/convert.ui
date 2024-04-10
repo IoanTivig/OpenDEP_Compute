@@ -135,7 +135,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
 }</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="OpenDEPpopulation_tab">
       <attribute name="title">
@@ -506,6 +506,130 @@ background-color: rgb(248,214,176);
              </widget>
             </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QFrame" name="horizontalFrame_15">
+            <layout class="QHBoxLayout" name="horizontalLayout_26">
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="rightMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QRadioButton" name="qtvar_convertImages_radio_population_brightfieldmc">
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton::indicator
+{
+width: 15px;
+height: 15px;
+
+}
+
+QRadioButton::indicator::unchecked
+{
+	image: url(:/ui/resources/radiobutton/radiobutton_unchecked.png);
+}
+
+QRadioButton::indicator:unchecked:hover
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_hover.png);
+}
+
+QRadioButton::indicator:unchecked:pressed
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_pressed.png);
+}
+
+QRadioButton::indicator::checked 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked.png);
+}
+
+QRadioButton::indicator:checked:hover 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_hover.png);
+}
+
+QRadioButton::indicator:checked:pressed 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
+}</string>
+               </property>
+               <property name="text">
+                <string>Bright-field microscopy</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="qtvar_convertImages_radio_population_fluorescencemc">
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton::indicator
+{
+width: 15px;
+height: 15px;
+
+}
+
+QRadioButton::indicator::unchecked
+{
+	image: url(:/ui/resources/radiobutton/radiobutton_unchecked.png);
+}
+
+QRadioButton::indicator:unchecked:hover
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_hover.png);
+}
+
+QRadioButton::indicator:unchecked:pressed
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_unchecked_pressed.png);
+}
+
+QRadioButton::indicator::checked 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked.png);
+}
+
+QRadioButton::indicator:checked:hover 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_hover.png);
+}
+
+QRadioButton::indicator:checked:pressed 
+{
+    image: url(:/ui//resources/radiobutton/radiobutton_checked_pressed.png);
+}</string>
+               </property>
+               <property name="text">
+                <string>Fluorescence microscopy</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </item>
          </layout>
         </widget>

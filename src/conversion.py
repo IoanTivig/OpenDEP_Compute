@@ -95,6 +95,7 @@ class Conversion:
         points_to_remove,
         edge_orientation="Vertical",
         edge_width=1,
+        grayness_over_brightness=True,
     ):
         # Parameters
         # points_to_remove - Number of points to be removed from end and start of image array
@@ -140,7 +141,12 @@ class Conversion:
             )
         selected_image_averages = np.array(selected_image_averages)
         brightness_factor = np.mean(selected_image_averages)
-        grayness_factor = -1 * brightness_factor
+
+        if grayness_over_brightness == True:
+            grayness_factor = -1 * brightness_factor
+        else:
+            grayness_factor = brightness_factor
+
         grayness_errors = np.std(selected_image_averages)
 
         # Returns
@@ -165,6 +171,7 @@ class Conversion:
         min_edge_spacing=25,
         no_pixels_shift=0,
         edge_orientation="Vertical",
+        grayness_over_brightness=True,
         edge_width=1,
         poly_deg=7,
     ):
@@ -233,6 +240,7 @@ class Conversion:
                             points_to_remove=points_to_remove,
                             edge_orientation=edge_orientation,
                             edge_width=edge_width,
+                            grayness_over_brightness=grayness_over_brightness,
                         )
 
                         # Get the associated frequency for each grayness factor
