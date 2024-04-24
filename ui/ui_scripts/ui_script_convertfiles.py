@@ -114,6 +114,8 @@ class ConvertUI(QDialog):
                 edges_no,
                 average_average_spacing,
                 stdev_spaceing,
+                electrode_positions,
+                electrode_gaps_positions,
             ) = convert.detect_edges(
                 image_file=self.qtvar_convertImages_inputEdgesFile.text(),
                 points_to_remove=self.qtvar_convertImages_pointstoremove.value(),
@@ -132,6 +134,7 @@ class ConvertUI(QDialog):
                 edges_position=edges_position,
                 image_path=self.qtvar_convertImages_inputEdgesFile.text(),
                 points_to_remove=self.qtvar_convertImages_pointstoremove.value(),
+                electrodes_positions=electrode_positions,
             )
         except:
             print("[ERROR] [CONVERSION] Test edge detection couldn't compute")

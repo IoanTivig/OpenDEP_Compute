@@ -73,13 +73,13 @@ for i in range(0, sample_no):
     add_plot(df, ax, shift=shift)
 
 #ax.set_title('DC3F 800 microS/cm', size=14, y=1.025)
-#plt.legend(fontsize=16)
+plt.legend(fontsize=16)
 #plt.xlabel('Frequency (Hz)', fontsize=16)
 #plt.ylabel('CM factor', fontsize=16)
 plt.grid(color='lightgrey', linestyle='--', linewidth=1.5)
 plt.xticks(fontsize=14, weight='bold')
 plt.yticks([-1, -0.5, 0, 0.5, 1], fontsize=16, weight='bold')
-
+plt.axhline(y=0, color='black', linewidth=1.5, linestyle='--')
 
 plt.savefig('Basic.png', dpi=300)
 plt.show()

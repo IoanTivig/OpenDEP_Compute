@@ -84,8 +84,22 @@ class Conversion:
         for i in range(0, len(edges_position_filtered)):
             edges_position_filtered[i] = edges_position_filtered[i] + no_pixels_shift
 
+        # get between which edges the electrodes are (the electrodes are the darker zones
+        electrodes_positions = [] #This should be a list of tuples with the start and end of the electrodes
+        electrode_gaps_positions = [] #This should be a list of tuples with the start and end of the gaps between the electrodes
+        for i in range(0, len(edges_position_filtered) - 1):
+            # get grayness between the edges
+            grayness = np.mean(image_averages[edges_position_filtered[i]:edges_position_filtered[i + 1]])
+            if grayness < 0:
+                electrodes_positions.append((edges_position_filtered[i], edges_position_filtered[i + 1]))
+            else:
+                electrode_gaps_positions.append((edges_position_filtered[i], edges_position_filtered[i + 1]))
+
+        #print("Electrode gaps positions: ", electrode_gaps_positions)
+        #print("Electrodes positions: ", electrodes_positions)
+
         # Returns
-        return edges_position_filtered, edges_no, average_spaceing, stdev_spaceing
+        return edges_position_filtered, edges_no, average_spaceing, stdev_spaceing, electrodes_positions, electrode_gaps_positions
 
     def convert_image_to_CM(
         self,
@@ -95,35 +109,64 @@ class Conversion:
         points_to_remove,
         edge_orientation="Vertical",
         edge_width=1,
+        bkg_area_width=5,
         grayness_over_brightness=True,
+        bkg_separated=False,
     ):
         # Parameters
         # points_to_remove - Number of points to be removed from end and start of image array
         image = io.imread(image)  # The image that needs to be calculated
-        _bkg = io.imread(background_image)  # The background image for correction
+        if bkg_separated == True:
+            _bkg = io.imread(background_image)  # The background image for correction
         edge_orientation = edge_orientation  # Orientation of your electrodes, hence of your electrode edges
         # edges_position - The list with the position of each edge
 
         # Transform images into 2D float arrays
         image_float = img_as_float(image)
-        _bkg_float = img_as_float(_bkg)
+        if bkg_separated == True:
+            _bkg_float = img_as_float(_bkg)
 
         # Obtain averages of all values along selected direction
+        _bkg_averages = []
         if edge_orientation == "Vertical":
             image_averages = np.mean(image_float, 0)
-            _bkg_averages = np.mean(_bkg_float, 0)
+            if bkg_separated == True:
+                _bkg_averages = np.mean(_bkg_float, 0)
         if edge_orientation == "Horizontal":
             image_averages = np.mean(image_float, 1)
-            _bkg_averages = np.mean(_bkg_float, 1)
+            if bkg_separated == True:
+                _bkg_averages = np.mean(_bkg_float, 1)
 
         # Remove unwanted points from start and end
         image_averages = image_averages[points_to_remove : -1 * points_to_remove]
-        _bkg_averages = _bkg_averages[points_to_remove : -1 * points_to_remove]
+        if bkg_separated == True:
+            _bkg_averages = _bkg_averages[points_to_remove : -1 * points_to_remove]
+
+        # verify the zones
+
+        # create an average gryness from the hole image
+        #_bkg_from_itself_averages = np.mean(image_averages)
+        # Create an average background from the image itself, in a range between the two edges
+        if bkg_separated == False:
+            electrode_and_gaps_center = []
+            _intermediary_averages = []
+            for i in range(len(edges_position)):
+                if i == len(edges_position) - 1:
+                    break
+                center = int(np.mean([edges_position[i], edges_position[i+1]]))
+                electrode_and_gaps_center.append(center)
+            for i in electrode_and_gaps_center:
+                _intermediary_averages.append(np.mean(image_averages[i - int(bkg_area_width/2) : i + int(bkg_area_width/2)]))
+            _bkg_from_itself_averages = np.mean(_intermediary_averages)
+
 
         # Substracting the background from data_01 points
         norm_image_averages = []
         for i in range(0, len(image_averages)):
-            j = image_averages[i] - _bkg_averages[i]
+            if bkg_separated == True:
+                j = image_averages[i] - _bkg_averages[i]
+            elif bkg_separated == False:
+                j = image_averages[i] - _bkg_from_itself_averages
             norm_image_averages.append(j)
 
         # Creating a dummy array for the x axis
@@ -149,6 +192,11 @@ class Conversion:
 
         grayness_errors = np.std(selected_image_averages)
 
+        # make a _bkg_averages array with only the _bkg_from_itself_averages value
+        if bkg_separated == False:
+            for i in range(0, len(image_averages)):
+                _bkg_averages.append(_bkg_from_itself_averages)
+
         # Returns
         return (
             x,
@@ -173,7 +221,9 @@ class Conversion:
         edge_orientation="Vertical",
         grayness_over_brightness=True,
         edge_width=1,
+        bkg_area_width=5,
         poly_deg=7,
+        bkg_separated=False,
     ):
         try:
             # Create the processed images folder
@@ -203,6 +253,8 @@ class Conversion:
                 edges_no,
                 average_spaceing,
                 stdev_spaceing,
+                electrodes_positions,
+                electrode_gaps_positions
             ) = self.detect_edges(
                 image_file=image_path,
                 points_to_remove=points_to_remove,
@@ -240,7 +292,9 @@ class Conversion:
                             points_to_remove=points_to_remove,
                             edge_orientation=edge_orientation,
                             edge_width=edge_width,
+                            bkg_area_width=bkg_area_width,
                             grayness_over_brightness=grayness_over_brightness,
+                            bkg_separated=bkg_separated,
                         )
 
                         # Get the associated frequency for each grayness factor

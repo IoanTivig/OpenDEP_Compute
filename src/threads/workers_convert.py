@@ -47,6 +47,8 @@ class ConvertWorker(QObject):
                             grayness_over_brightness=convertUI.qtvar_convertImages_radio_population_brightfieldmc.isChecked(),
                             edge_width=convertUI.qtvar_convertImages_pixelsperedge.value(),
                             poly_deg=convertUI.qtvar_convertImages_polydegree.value(),
+                            bkg_separated=convertUI.qtvar_convertImages_radio_population_bkg_separately.isChecked(),
+                            bkg_area_width=int(convertUI.qtvar_convertImages_population_spin_bkgbandwidth.value()),
                         )
 
             else:
@@ -64,6 +66,8 @@ class ConvertWorker(QObject):
                     grayness_over_brightness=convertUI.qtvar_convertImages_radio_population_brightfieldmc.isChecked(),
                     edge_width=convertUI.qtvar_convertImages_pixelsperedge.value(),
                     poly_deg=convertUI.qtvar_convertImages_polydegree.value(),
+                    bkg_separated=convertUI.qtvar_convertImages_radio_population_bkg_separately.isChecked(),
+                    bkg_area_width=int(convertUI.qtvar_convertImages_population_spin_bkgbandwidth.value()),
                 )
 
         elif convertUI.qtvar_convertImages_convertTabs.currentIndex() == 1:
