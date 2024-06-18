@@ -32,3 +32,7 @@ def model_hopa_DEPforce(frequencyList, ElectricFieldGrad, ParticleRadius, Partic
         DEPforceList.append(y)
 
     return DEPforceList
+
+
+def hopa_CMfactor_EF_unknown(freq, fitting_gen_fieldgrad, fitting_hopa_particle_perm, fitting_hopa_particle_cond, fitting_gen_buffer_perm, fitting_gen_buffer_cond):
+    return hopa_CMfactor(freq, fitting_hopa_particle_perm, fitting_hopa_particle_cond, fitting_gen_buffer_perm, fitting_gen_buffer_cond) * fitting_gen_fieldgrad

@@ -460,6 +460,7 @@ class MainUI(QMainWindow):
         try:
             self.model = 'hopa'
             self.fitDataButton(self.model, hopa_params)
+            print('Hopa fit done')
         except:
             print('Fit failed')
 
@@ -475,9 +476,11 @@ class MainUI(QMainWindow):
         params.refreshFromGUIFittingParameters(paramsUI, window, model)
 
     # Data fiting #
+        print(f'Fitting Step 0: {model}')
         self.result = fit.fit(data.removeSelectedPoints(data.frequency_list), data.removeSelectedPoints(data.CMfactor_list), data.removeSelectedPoints(data.DEPforce_list), params.parameters, model=model, what_to_fit=self.what_to_fit, trei_DEP = self.fitting_gen_fieldgrad_comboBox.currentText(), method=self.method)
+        print('Fitting Step 1')
         data.fittedFrequency_list, data.fittedCMfactor_list, data.fittedDEPforce_list = fit.returnFittedValues2(self.result, model,self.what_to_fit, 50, data.removeSelectedPoints(data.frequency_list), params)
-
+        print('Fitting Step 2')
         if self.fitting_gen_fieldgrad_comboBox.currentText() == 'Unspecified':
             instanced_list = []
             for i in data.CMfactor_list:
@@ -490,6 +493,7 @@ class MainUI(QMainWindow):
             data.CMfactor_list = instanced_list
             data.CMfactor_errors_list = instanced_errors_list
             self.loadData()
+
 
     # Parameters refresh with new fitted values #
         fit.returnFittedParameters(self.result, window, model)

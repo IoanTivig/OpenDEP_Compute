@@ -911,16 +911,16 @@ class MyFittings():
 
     def fit(self, frequency_list, CMfactor_list, DEPforce_list, parameters, model, what_to_fit, trei_DEP, method):
         if trei_DEP == 'Unspecified' and model == 'hopa' and what_to_fit == 'CMfactor':
-            self.mod = Model(hopa_CMfactor_3DEP)
+            self.mod = Model(hopa_CMfactor_EF_unknown)
         elif trei_DEP == 'Unspecified' and model == 'sish' and what_to_fit == 'CMfactor':
-            self.mod = Model(sish_CMfactor_3DEP)
+            self.mod = Model(sish_CMfactor_EF_unknown)
         elif model == 'hopa' and what_to_fit == 'CMfactor':
             self.mod = Model(hopa_CMfactor)
         elif model == 'hopa' and what_to_fit == 'DEPforce':
             self.mod = Model(hopa_DEPforce)
-        elif model ==  'sish'and what_to_fit == 'CMfactor':
+        elif model == 'sish'and what_to_fit == 'CMfactor':
             self.mod = Model(sish_CMfactor)
-        elif model ==  'sish'and what_to_fit == 'DEPforce':
+        elif model == 'sish'and what_to_fit == 'DEPforce':
             self.mod = Model(sish_DEPforce)
 
         if what_to_fit == 'CMfactor':
