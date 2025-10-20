@@ -29,8 +29,9 @@ class Conversion:
         edge_orientation="Vertical",
         polynomial_deg=7,
     ):
+
         # Transform images into 2D float arrays
-        image_float = img_as_float(io.imread(image_file))
+        image_float = img_as_float(io.imread(image_file, as_gray=True))
 
         # Obtain averages of all values along selected direction
         if edge_orientation == "Vertical":
@@ -39,7 +40,8 @@ class Conversion:
             image_averages = np.mean(image_float, 1)
 
         # Remove unwanted points from start and end
-        image_averages = image_averages[points_to_remove : -1 * points_to_remove]
+        if points_to_remove > 0:
+            image_averages = image_averages[points_to_remove : -1 * points_to_remove]
 
         # Get the x axis values for polynomial fit
         x_axis = []
@@ -97,7 +99,6 @@ class Conversion:
 
         #print("Electrode gaps positions: ", electrode_gaps_positions)
         #print("Electrodes positions: ", electrodes_positions)
-
         # Returns
         return edges_position_filtered, edges_no, average_spaceing, stdev_spaceing, electrodes_positions, electrode_gaps_positions
 
@@ -115,9 +116,9 @@ class Conversion:
     ):
         # Parameters
         # points_to_remove - Number of points to be removed from end and start of image array
-        image = io.imread(image)  # The image that needs to be calculated
+        image = io.imread(image, as_gray=True)  # The image that needs to be calculated
         if bkg_separated == True:
-            _bkg = io.imread(background_image)  # The background image for correction
+            _bkg = io.imread(background_image, as_gray=True)  # The background image for correction
         edge_orientation = edge_orientation  # Orientation of your electrodes, hence of your electrode edges
         # edges_position - The list with the position of each edge
 

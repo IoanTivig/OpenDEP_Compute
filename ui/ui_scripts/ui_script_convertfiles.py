@@ -107,38 +107,41 @@ class ConvertUI(QDialog):
         self.show()
 
     def test_edge_detection(self):
-        try:
-            convert = Conversion()
-            (
-                edges_position,
-                edges_no,
-                average_average_spacing,
-                stdev_spaceing,
-                electrode_positions,
-                electrode_gaps_positions,
-            ) = convert.detect_edges(
-                image_file=self.qtvar_convertImages_inputEdgesFile.text(),
-                points_to_remove=self.qtvar_convertImages_pointstoremove.value(),
-                min_edge_spacing=self.qtvar_convertImages_minedgespacing.value(),
-                no_pixels_shift=self.qtvar_convertImages_pixelstoshift.value(),
-                edge_orientation=self.qtvar_convertImages_orientation.currentText(),
-                polynomial_deg=self.qtvar_convertImages_polydegree.value(),
-            )
-
-            self.qtvar_convertImages_noEdgesLabel.setText(f"{edges_no}\nedges\ndetected")
-            self.qtvar_convertImages_avgSpacingEdge.setText(
-                f"{average_average_spacing} \n+/-\n {stdev_spaceing}\nedge\nspacing"
-            )
-
-            self.GraphWidget_convert_edges.refresh_UI(
-                edges_position=edges_position,
-                image_path=self.qtvar_convertImages_inputEdgesFile.text(),
-                points_to_remove=self.qtvar_convertImages_pointstoremove.value(),
-                electrodes_positions=electrode_positions,
-            )
-        except:
-            print("[ERROR] [CONVERSION] Test edge detection couldn't compute")
-            self.qtvar_convertImages_statusLabel.setText("Failed")
+        #try:
+        print("Checkpoint 0")
+        convert = Conversion()
+        print("Checkpoint 1")
+        (
+            edges_position,
+            edges_no,
+            average_average_spacing,
+            stdev_spaceing,
+            electrode_positions,
+            electrode_gaps_positions,
+        ) = convert.detect_edges(
+            image_file=self.qtvar_convertImages_inputEdgesFile.text(),
+            points_to_remove=self.qtvar_convertImages_pointstoremove.value(),
+            min_edge_spacing=self.qtvar_convertImages_minedgespacing.value(),
+            no_pixels_shift=self.qtvar_convertImages_pixelstoshift.value(),
+            edge_orientation=self.qtvar_convertImages_orientation.currentText(),
+            polynomial_deg=self.qtvar_convertImages_polydegree.value(),
+        )
+        print("Checkpoint 2")
+        self.qtvar_convertImages_noEdgesLabel.setText(f"{edges_no}\nedges\ndetected")
+        self.qtvar_convertImages_avgSpacingEdge.setText(
+            f"{average_average_spacing} \n+/-\n {stdev_spaceing}\nedge\nspacing"
+        )
+        print("Checkpoint 3")
+        self.GraphWidget_convert_edges.refresh_UI(
+            edges_position=edges_position,
+            image_path=self.qtvar_convertImages_inputEdgesFile.text(),
+            points_to_remove=self.qtvar_convertImages_pointstoremove.value(),
+            electrodes_positions=electrode_positions,
+        )
+        print("Checkpoint 4")
+        #except:
+            #print("[ERROR] [CONVERSION] Test edge detection couldn't compute")
+            #self.qtvar_convertImages_statusLabel.setText("Failed")
 
     def convert(self):
         #  Convert images to data_01 #
