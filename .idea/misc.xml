@@ -3,7 +3,7 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.12 (OpenDEPMachineL)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (OpenDEPMachineL)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (OpenDEP_Compute)" project-jdk-type="Python SDK" />
   <component name="PyCharmProfessionalAdvertiser">
     <option name="shown" value="true" />
   </component>

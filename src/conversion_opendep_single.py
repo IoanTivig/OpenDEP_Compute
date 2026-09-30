@@ -94,20 +94,27 @@ class ConversionOpenDEPSC:
 
         x = self.crop_coord[1]
         y = self.crop_coord[0]
+        print("hello 1")
         print(x, y)
         values_list = [[], [], []]
 
-        # iterate through the names of contents of the folder
         for image_path in os.listdir(input_path):
+            print("hello 1.1")
+            # Check if first part of file is OpenDEP_ and last part is Hz
+            if not image_path.startswith("OpenDEP_"):
+                continue
             frequency = re.split("OpenDEP_|Hz", image_path)
             values_list[2].append(float(frequency[1]))
+            print(f"Current Frequency: {frequency[1]}")
 
             instance_path = os.path.join(input_path, image_path)
             image_to_crop = cv2.imread(instance_path)
             crop_img = image_to_crop[y - self.y_crop:y + self.y_crop, x - self.x_crop:x + self.x_crop]
-
+            print("hello 1.2")
             fullpath = os.path.join(output_path, image_path)
+            print("hello 1.2.1")
             cv2.imwrite(fullpath, crop_img)
+            print("hello 1.3")
 
             instanced_status, instanced_cells_info = self.detect_cells(fullpath)
             instanced_marked_image = self.mark_cells_on_image(
@@ -119,7 +126,8 @@ class ConversionOpenDEPSC:
             values_list[0].append(instanced_cells_info[1][1])
             values_list[1].append(instanced_cells_info[1][0])
             self.radius_list.append(instanced_cells_info[1][2])
-
+            print("hello 1.4")
+        print("hello 1.5")
         avg_radius = round(np.average(self.radius_list) / self.conversion_factor, 3)
         stdev_radius = round(np.std(self.radius_list) / self.conversion_factor, 3)
 
@@ -180,14 +188,17 @@ class ConversionOpenDEPSC:
         return marked_image
 
     def convert_single_cell(self, input_path, output_path, baseline_path, cell_index):
+        print("hello start")
         marked_image = self.get_baseline_data(baseline_path, cell_index)
+        print("hello 1")
         values_list, avg_radius, stdev_radius = self.get_sample_data(input_path, output_path)
         print(values_list, avg_radius, stdev_radius)
-
+        print("hello 2")
         cell_radius = round(float(avg_radius), 3)
+        print("hello 3")
         frequencies = values_list[1]
         cm_factors = values_list[0]
-
+        print("hello final")
         return marked_image, frequencies, cm_factors, cell_radius
 
 

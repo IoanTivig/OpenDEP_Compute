@@ -16,8 +16,15 @@ Those will further be converted to CM factor values vs frequencies
 
 def auto_rename(folder, freq_list):
     count = 0
+    no_files = 0
     file_list = os.listdir(folder)
-    if len(file_list) == len(freq_list):
+    for i in file_list:
+        if i.lower().endswith((".png", ".jpg", ".jpeg", ".tif", "tiff")):
+            no_files = no_files + 1
+        else:
+            file_list.remove(i)
+
+    if no_files == len(freq_list):
         for filename in file_list:
             if filename.lower().endswith((".png", ".jpg", ".jpeg", ".tif", "tiff")):
                 suffix = re.split("\.", filename)
