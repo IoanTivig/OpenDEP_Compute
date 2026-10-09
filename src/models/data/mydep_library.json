@@ -1,0 +1,1550 @@
+{
+ "format": "OpenDEP Compute parameter library",
+ "format_version": 1,
+ "notice": "Parameter sets from the literature database of MyDEP 1.0.1 (Cottet J, Fabregue O, Berger C, Buret F, Renaud P, Frenea-Robin M. MyDEP: a new computational tool for dielectric modeling of particles and cells. Biophys J 116 (2019) 12-18, doi:10.1016/j.bpj.2018.11.021; https://zenodo.org/records/2537957). Copyright (c) 2018 Universite de Lyon - Laboratoire Ampere CNRS UMR 5005 & EPFL - LMIS4. Distributed under the MIT licence (see licence). Values converted to OpenDEP Compute display units; each entry cites the publication its values come from.",
+ "licence": "MIT",
+ "licence_text": "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+ "entries": [
+  {
+   "name": "Polystyrene bead",
+   "model": "homogeneous",
+   "values": {
+    "radius": 0.5,
+    "eps_p": 2.56,
+    "sigma_p": 0.0,
+    "k_s": 0.782
+   },
+   "reference": {
+    "authors": "Arnold, W. M., Schwan, H. P. & Zimmermann, U",
+    "year": 1987,
+    "title": "Surface Conductance and Other Properties of Latex-Particles Measured by Electrorotation",
+    "journal": "Journal of Physical Chemistry",
+    "doi": "10.1021/j100303a043"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Cell with membrane",
+   "model": "single_shell",
+   "values": {
+    "radius": 6.0,
+    "eps_cyto": 50.0,
+    "sigma_cyto": 0.6,
+    "d_mem": 6.0,
+    "eps_mem": 12.0,
+    "sigma_mem": 1e-06
+   },
+   "reference": {
+    "authors": "Fuhr, G., Glasser, H., Muller, T. & Schnelle, T.",
+    "year": 1994,
+    "title": "Cell manipulation and cultivation under a.c. electric field influence in highly conductive culture media",
+    "journal": "Biochimica et Biophysica Acta",
+    "doi": "10.1016/0304-4165(94)90062-0"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Red Blood Cell",
+   "model": "single_shell",
+   "values": {
+    "radius": 3.6,
+    "eps_cyto": 59.0,
+    "sigma_cyto": 0.31,
+    "d_mem": 4.5,
+    "eps_mem": 4.44,
+    "sigma_mem": 1e-06
+   },
+   "reference": {
+    "authors": "Gascoyne, P., Satayavivad, J. & Ruchirawat, M.",
+    "year": 2004,
+    "title": "Microfluidic approaches to malaria detection",
+    "journal": "Acta Tropica",
+    "doi": "10.1016/j.actatropica.2003.11.009"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Jurkat cell",
+   "model": "single_shell",
+   "values": {
+    "radius": 5.0,
+    "eps_cyto": 45.0,
+    "sigma_cyto": 0.4,
+    "d_mem": 5.0,
+    "eps_mem": 6.0,
+    "sigma_mem": 3e-06
+   },
+   "reference": {
+    "authors": "Reichle, C., Schnelle, T., Muller, T., Leya, T. & Fuhr, G.",
+    "year": 2000,
+    "title": "A new microsystem for automated electrorotation measurements using laser tweezers",
+    "journal": "Biochimica Et Biophysica Acta-Bioenergetics",
+    "doi": "10.1016/S0005-2728(00)00150-X"
+   },
+   "remark": "th_cm and r_ext are missing",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "HEK 293 cell line",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 7.5,
+    "eps_cyto": 71.0,
+    "sigma_cyto": 0.533,
+    "c_mem": 8.5,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Zimmermann, D., Kiesel, M., Terpitz, U., Zhou, A., Reuss, R., Kraus, J., Schenk, W. A., Bamberg, E. & Sukhorukov, V. L.",
+    "year": 2008,
+    "title": "A combined patch-clamp and electrorotation study of the voltage- and frequency-dependent membrane capacitance caused by structurally dissimilar lipophilic anions",
+    "journal": "Journal of Membrane Biology",
+    "doi": "10.1007/s00232-007-9090-4"
+   },
+   "remark": "isotonic medium (300 mOsm), sigma_m=0.06 S/m, r_ext is missing",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Friend murine erythroleukemia DS19 cells",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 5.5,
+    "eps_cyto": 84.0,
+    "sigma_cyto": 0.72,
+    "c_mem": 17.5,
+    "g_mem": 50.0
+   },
+   "reference": {
+    "authors": "Wang, X. B., Huang, Y., Gascoyne, P. R. C. & Becker, F. F.",
+    "year": 1997,
+    "title": "Dielectrophoretic manipulation of particles",
+    "journal": "Ieee Transactions on Industry Applications",
+    "doi": "10.1109/28.585855"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Mouse myeloma SP2 cell line",
+   "model": "single_shell",
+   "values": {
+    "radius": 10.0,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.18,
+    "d_mem": 16.2,
+    "eps_mem": 11.0,
+    "sigma_mem": 1e-07
+   },
+   "reference": {
+    "authors": "Mahaworasilpa, T. L., Coster, H. G. L. & George, E. P.",
+    "year": 1994,
+    "title": "Forces on Biological Cells Due to Applied Alternating (Ac) Electric-Fields .1. Dielectrophoresis.",
+    "journal": "Biochimica Et Biophysica Acta-Biomembranes",
+    "doi": "10.1016/0005-2736(94)90340-9"
+   },
+   "remark": "hypotonic medium (100 mOsmol/kg), sigma_m=0.001 S/m, Pb calculation of th_cm",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Mouse myeloma SP2 cell line elec",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 10.0,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.12,
+    "c_mem": 6.0,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Mahaworasilpa, T. L., Coster, H. G. L. & George, E. P.",
+    "year": 1994,
+    "title": "Forces on Biological Cells Due to Applied Alternating (Ac) Electric-Fields .1. Dielectrophoresis.",
+    "journal": "Biochimica Et Biophysica Acta-Biomembranes",
+    "doi": "10.1016/0005-2736(94)90340-9"
+   },
+   "remark": "hypotonic medium (100 mOsmol/kg), sigma_m=0.001 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human chronic myelogenous leukemia K562 cell line",
+   "model": "single_shell",
+   "values": {
+    "radius": 10.0,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.12,
+    "d_mem": 13.3,
+    "eps_mem": 3.0,
+    "sigma_mem": 1e-07
+   },
+   "reference": {
+    "authors": "Mahaworasilpa, T. L., Coster, H. G. L. & George, E. P.",
+    "year": 1994,
+    "title": "Forces on Biological Cells Due to Applied Alternating (Ac) Electric-Fields .1. Dielectrophoresis.",
+    "journal": "Biochimica Et Biophysica Acta-Biomembranes",
+    "doi": "10.1016/0005-2736(94)90340-9"
+   },
+   "remark": "hypotonic medium (100 mOsmol/kg), sigma_m=0.001 S/m, Pb calculation of th_cm",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human chronic myelogenous leukemia K562 cell line elec",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 10.0,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.12,
+    "c_mem": 2.0,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Mahaworasilpa, T. L., Coster, H. G. L. & George, E. P.",
+    "year": 1994,
+    "title": "Forces on Biological Cells Due to Applied Alternating (Ac) Electric-Fields .1. Dielectrophoresis.",
+    "journal": "Biochimica Et Biophysica Acta-Biomembranes",
+    "doi": "10.1016/0005-2736(94)90340-9"
+   },
+   "remark": "hypotonic medium (100 mOsmol/kg), sigma_m=0.001 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human breast cancer MDA-MB-231 cell line",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 6.93,
+    "eps_cyto": 75.0,
+    "sigma_cyto": 0.7,
+    "c_mem": 22.0,
+    "g_mem": 320.0
+   },
+   "reference": {
+    "authors": "Wang, X. B., Huang, Y., Wang, X., Becker, F. F. & Gascoyne, P. R.",
+    "year": 1997,
+    "title": "Dielectrophoretic manipulation of cells with spiral electrodes",
+    "journal": "Biophysical Journal",
+    "doi": "10.1016/S0006-3495(97)78834-9"
+   },
+   "remark": "sigma_m=56 mS/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human red cell",
+   "model": "single_shell",
+   "values": {
+    "radius": 2.4,
+    "eps_cyto": 50.0,
+    "sigma_cyto": 0.53,
+    "d_mem": 8.0,
+    "eps_mem": 9.04,
+    "sigma_mem": 1e-06
+   },
+   "reference": {
+    "authors": "Gimsa, J. & Wachner, D.",
+    "year": 1998,
+    "title": "A unified resistor-capacitor model for impedance, dielectrophoresis, electrorotation, and induced transmembrane potential",
+    "journal": "Biophysical Journal",
+    "doi": "10.1016/S0006-3495(98)77600-3"
+   },
+   "remark": "sigma_m=0.12 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Uncleaved frog (Xenopus laevis) egg",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 600.0,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.15,
+    "c_mem": 8.2,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Asami, K. & Irimajiri, A.",
+    "year": 2000,
+    "title": "Dielectrospectroscopic monitoring of early embryogenesis in single frog embryos",
+    "journal": "Physics in Medicine and Biology",
+    "doi": "10.1088/0031-9155/45/11/312"
+   },
+   "remark": "sigma_m=0.077 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Chlorella cell",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 4.0,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.005,
+    "c_mem": 5.0,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Ogata, S., Yasukawa, T. & Matsue, T.",
+    "year": 2001,
+    "title": "Dielectrophoretic manipulation of a single chlorella cell with dual-microdisk electrode",
+    "journal": "Bioelectrochemistry",
+    "doi": "10.1016/S1567-5394(01)00112-8"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human carcinoma (HeLa) cell",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 5.0,
+    "eps_cyto": 47.5,
+    "sigma_cyto": 0.84,
+    "c_mem": 19.0,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Jen, C. P. & Chen, T. W.",
+    "year": 2009,
+    "title": "Selective trapping of live and dead mammalian cells using insulator-based dielectrophoresis within open-top microstructures",
+    "journal": "Biomedical Microdevices",
+    "doi": "10.1007/s10544-008-9269-1"
+   },
+   "remark": "model, only c_cm measured from (Asami - 1990), sigma_m=1.76e-3 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "MCF10A",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 9.25,
+    "eps_cyto": 50.0,
+    "sigma_cyto": 1.0,
+    "c_mem": 19.4,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Henslee, E. A., Sano, M. B., Rojas, A. D., Schmelz, E. M. & Davalos, R. V.",
+    "year": 2011,
+    "title": "Selective concentration of human cancer cells using contactless dielectrophoresis",
+    "journal": "Electrophoresis",
+    "doi": "10.1002/elps.201100081"
+   },
+   "remark": "sigma_m=1E-2, c_cm from (Han - 2007), sigma_cm and epsilon_cm from (Sancho - 2010)",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "MCF7",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 9.1,
+    "eps_cyto": 50.0,
+    "sigma_cyto": 1.0,
+    "c_mem": 18.6,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Henslee, E. A., Sano, M. B., Rojas, A. D., Schmelz, E. M. & Davalos, R. V.",
+    "year": 2011,
+    "title": "Selective concentration of human cancer cells using contactless dielectrophoresis",
+    "journal": "Electrophoresis",
+    "doi": "10.1002/elps.201100081"
+   },
+   "remark": "sigma_m=1E-2, c_cm from (Han - 2007), sigma_cm and epsilon_cm from (Sancho - 2010)",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "MDA-MB-231",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 8.93,
+    "eps_cyto": 50.0,
+    "sigma_cyto": 1.0,
+    "c_mem": 16.3,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Henslee, E. A., Sano, M. B., Rojas, A. D., Schmelz, E. M. & Davalos, R. V.",
+    "year": 2011,
+    "title": "Selective concentration of human cancer cells using contactless dielectrophoresis",
+    "journal": "Electrophoresis",
+    "doi": "10.1002/elps.201100081"
+   },
+   "remark": "sigma_m=1E-2, c_cm from (Han - 2007), sigma_cm and epsilon_cm from (Sancho - 2010)",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Uninfected Baby Hamster Kidney fibroblast (BHK(C-13))",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 6.7,
+    "eps_cyto": 61.0,
+    "sigma_cyto": 0.23,
+    "c_mem": 23.0,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Archer, S., Morgan, H. & Rixon, F. J.",
+    "year": 1999,
+    "title": "Electrorotation studies of baby hamster kidney fibroblasts infected with herpes simplex virus type 1",
+    "journal": "Biophysical Journal",
+    "doi": "10.1016/S0006-3495(99)77437-0"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "HSV-1-infected Baby Hamster Kidney fibroblast (BHK(C-13))",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 6.8,
+    "eps_cyto": 46.0,
+    "sigma_cyto": 0.45,
+    "c_mem": 15.2,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Archer, S., Morgan, H. & Rixon, F. J.",
+    "year": 1999,
+    "title": "Electrorotation studies of baby hamster kidney fibroblasts infected with herpes simplex virus type 1",
+    "journal": "Biophysical Journal",
+    "doi": "10.1016/S0006-3495(99)77437-0"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "White Blood cell",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 5.6,
+    "eps_cyto": 111.0,
+    "sigma_cyto": 0.721,
+    "c_mem": 9.8,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Lannin, T., Su, W. W., Gruber, C., Cardle, I., Huang, C., Thege, F. & Kirby, B.",
+    "year": 2016,
+    "title": "Automated electrorotation shows electrokinetic separation of pancreatic cancer cells is robust to acquired chemotherapy resistance, serum starvation, and EMT",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.4964929"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "U937 (Lymphoma cell)",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 7.5,
+    "eps_cyto": 106.0,
+    "sigma_cyto": 0.75,
+    "c_mem": 14.0,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Lannin, T., Su, W. W., Gruber, C., Cardle, I., Huang, C., Thege, F. & Kirby, B.",
+    "year": 2016,
+    "title": "Automated electrorotation shows electrokinetic separation of pancreatic cancer cells is robust to acquired chemotherapy resistance, serum starvation, and EMT",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.4964929"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "PANC1 (Pancreatic cancer cell)",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 12.1,
+    "eps_cyto": 90.0,
+    "sigma_cyto": 0.476,
+    "c_mem": 20.2,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Lannin, T., Su, W. W., Gruber, C., Cardle, I., Huang, C., Thege, F. & Kirby, B.",
+    "year": 2016,
+    "title": "Automated electrorotation shows electrokinetic separation of pancreatic cancer cells is robust to acquired chemotherapy resistance, serum starvation, and EMT",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.4964929"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Serum-starved PANC1",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 12.6,
+    "eps_cyto": 134.0,
+    "sigma_cyto": 0.462,
+    "c_mem": 15.4,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Lannin, T., Su, W. W., Gruber, C., Cardle, I., Huang, C., Thege, F. & Kirby, B.",
+    "year": 2016,
+    "title": "Automated electrorotation shows electrokinetic separation of pancreatic cancer cells is robust to acquired chemotherapy resistance, serum starvation, and EMT",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.4964929"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "EMT-induced PANC1",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 12.7,
+    "eps_cyto": 91.0,
+    "sigma_cyto": 0.536,
+    "c_mem": 20.1,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Lannin, T., Su, W. W., Gruber, C., Cardle, I., Huang, C., Thege, F. & Kirby, B.",
+    "year": 2016,
+    "title": "Automated electrorotation shows electrokinetic separation of pancreatic cancer cells is robust to acquired chemotherapy resistance, serum starvation, and EMT",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.4964929"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "BxPC3 (Pancreatic cancer cell)",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 8.1,
+    "eps_cyto": 91.0,
+    "sigma_cyto": 0.453,
+    "c_mem": 22.5,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Lannin, T., Su, W. W., Gruber, C., Cardle, I., Huang, C., Thege, F. & Kirby, B.",
+    "year": 2016,
+    "title": "Automated electrorotation shows electrokinetic separation of pancreatic cancer cells is robust to acquired chemotherapy resistance, serum starvation, and EMT",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.4964929"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Serum starved BxPC3",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 8.5,
+    "eps_cyto": 88.0,
+    "sigma_cyto": 0.467,
+    "c_mem": 21.7,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Lannin, T., Su, W. W., Gruber, C., Cardle, I., Huang, C., Thege, F. & Kirby, B.",
+    "year": 2016,
+    "title": "Automated electrorotation shows electrokinetic separation of pancreatic cancer cells is robust to acquired chemotherapy resistance, serum starvation, and EMT",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.4964929"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "BxGR80c, strongly gemcitabine resistant subclone",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 9.9,
+    "eps_cyto": 85.0,
+    "sigma_cyto": 0.503,
+    "c_mem": 26.4,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Lannin, T., Su, W. W., Gruber, C., Cardle, I., Huang, C., Thege, F. & Kirby, B.",
+    "year": 2016,
+    "title": "Automated electrorotation shows electrokinetic separation of pancreatic cancer cells is robust to acquired chemotherapy resistance, serum starvation, and EMT",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.4964929"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "BxGR360c, strongly gemcitabine resistant subclone",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 9.6,
+    "eps_cyto": 92.0,
+    "sigma_cyto": 0.575,
+    "c_mem": 25.9,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Lannin, T., Su, W. W., Gruber, C., Cardle, I., Huang, C., Thege, F. & Kirby, B.",
+    "year": 2016,
+    "title": "Automated electrorotation shows electrokinetic separation of pancreatic cancer cells is robust to acquired chemotherapy resistance, serum starvation, and EMT",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.4964929"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Rhopilema nomadica nematocyst untreated capsule",
+   "model": "single_shell",
+   "values": {
+    "radius": 7.32,
+    "eps_cyto": 25.0,
+    "sigma_cyto": 0.25,
+    "d_mem": 70.0,
+    "eps_mem": 5.5,
+    "sigma_mem": 12.6
+   },
+   "reference": {
+    "authors": "Park, S., Capelin, D., Piriatinskiy, G., Lotan, T. & Yossifon, G.",
+    "year": 2017,
+    "title": "Dielectrophoretic characterization and isolation of jellyfish stinging capsules",
+    "journal": "Electrophoresis",
+    "doi": "10.1002/elps.201700072"
+   },
+   "remark": "sigma_m=0.0159 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human T-lymphocyte",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 3.29,
+    "eps_cyto": 103.9,
+    "sigma_cyto": 0.65,
+    "c_mem": 10.5,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Yang, J., Huang, Y., Wang, X. J., Wang, X. B., Becker, F. F. & Gascoyne, P. R. C.",
+    "year": 1999,
+    "title": "Dielectric properties of human leukocyte subpopulations determined by electrorotation as a cell separation criterion",
+    "journal": "Biophysical Journal",
+    "doi": "10.1016/s0006-3495(99)77483-7"
+   },
+   "remark": "sigma_m=0.056 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human B-lymphocyte",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 3.29,
+    "eps_cyto": 154.4,
+    "sigma_cyto": 0.73,
+    "c_mem": 12.6,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Yang, J., Huang, Y., Wang, X. J., Wang, X. B., Becker, F. F. & Gascoyne, P. R. C.",
+    "year": 1999,
+    "title": "Dielectric properties of human leukocyte subpopulations determined by electrorotation as a cell separation criterion",
+    "journal": "Biophysical Journal",
+    "doi": "10.1016/s0006-3495(99)77483-7"
+   },
+   "remark": "sigma_m=0.056 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human monocyte",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 4.63,
+    "eps_cyto": 126.8,
+    "sigma_cyto": 0.56,
+    "c_mem": 15.3,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Yang, J., Huang, Y., Wang, X. J., Wang, X. B., Becker, F. F. & Gascoyne, P. R. C.",
+    "year": 1999,
+    "title": "Dielectric properties of human leukocyte subpopulations determined by electrorotation as a cell separation criterion",
+    "journal": "Biophysical Journal",
+    "doi": "10.1016/s0006-3495(99)77483-7"
+   },
+   "remark": "sigma_m=0.056 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human granulocyte",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 4.73,
+    "eps_cyto": 150.9,
+    "sigma_cyto": 0.6,
+    "c_mem": 11.0,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Yang, J., Huang, Y., Wang, X. J., Wang, X. B., Becker, F. F. & Gascoyne, P. R. C.",
+    "year": 1999,
+    "title": "Dielectric properties of human leukocyte subpopulations determined by electrorotation as a cell separation criterion",
+    "journal": "Biophysical Journal",
+    "doi": "10.1016/s0006-3495(99)77483-7"
+   },
+   "remark": "sigma_m=0.056 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human colon cancer cell HT-29 (0.1 S/m)",
+   "model": "single_shell",
+   "values": {
+    "radius": 6.6,
+    "eps_cyto": 63.27,
+    "sigma_cyto": 0.182,
+    "d_mem": 5.0,
+    "eps_mem": 7.67,
+    "sigma_mem": 0.0001091
+   },
+   "reference": {
+    "authors": "Wu, L., Lanry Yung, L. Y. & Lim, K. M.",
+    "year": 2012,
+    "title": "Dielectrophoretic capture voltage spectrum for measurement of dielectric properties and separation of cancer cells",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.3690470"
+   },
+   "remark": "sigma_m=0.1 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human colon cancer cell HT-29 (0.05 S/m)",
+   "model": "single_shell",
+   "values": {
+    "radius": 6.6,
+    "eps_cyto": 61.14,
+    "sigma_cyto": 0.203,
+    "d_mem": 5.0,
+    "eps_mem": 6.01,
+    "sigma_mem": 3.482e-05
+   },
+   "reference": {
+    "authors": "Wu, L., Lanry Yung, L. Y. & Lim, K. M.",
+    "year": 2012,
+    "title": "Dielectrophoretic capture voltage spectrum for measurement of dielectric properties and separation of cancer cells",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.3690470"
+   },
+   "remark": "sigma_m=0.05 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human colon cancer cell HT-29 (0.01 S/m)",
+   "model": "single_shell",
+   "values": {
+    "radius": 6.6,
+    "eps_cyto": 58.31,
+    "sigma_cyto": 0.279,
+    "d_mem": 5.0,
+    "eps_mem": 4.68,
+    "sigma_mem": 6.63e-06
+   },
+   "reference": {
+    "authors": "Wu, L., Lanry Yung, L. Y. & Lim, K. M.",
+    "year": 2012,
+    "title": "Dielectrophoretic capture voltage spectrum for measurement of dielectric properties and separation of cancer cells",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.3690470"
+   },
+   "remark": "sigma_m=0.01 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Live U937 monocyte",
+   "model": "single_shell",
+   "values": {
+    "radius": 11.5,
+    "eps_cyto": 50.0,
+    "sigma_cyto": 0.5,
+    "d_mem": 7.0,
+    "eps_mem": 12.5,
+    "sigma_mem": 1e-06
+   },
+   "reference": {
+    "authors": "Yildizhan, Y., Erdem, N., Islam, M., Martinez-Duarte, R. & Elitas, M.",
+    "year": 2017,
+    "title": "Dielectrophoretic Separation of Live and Dead Monocytes Using 3D Carbon-Electrodes",
+    "journal": "Sensors (Basel)",
+    "doi": "10.3390/s17112691"
+   },
+   "remark": "data from Erdem 2017 and other papers",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Dead U937 monocyte",
+   "model": "single_shell",
+   "values": {
+    "radius": 11.0,
+    "eps_cyto": 80.0,
+    "sigma_cyto": 0.002,
+    "d_mem": 7.0,
+    "eps_mem": 12.5,
+    "sigma_mem": 0.01
+   },
+   "reference": {
+    "authors": "Yildizhan, Y., Erdem, N., Islam, M., Martinez-Duarte, R. & Elitas, M.",
+    "year": 2017,
+    "title": "Dielectrophoretic Separation of Live and Dead Monocytes Using 3D Carbon-Electrodes",
+    "journal": "Sensors (Basel)",
+    "doi": "10.3390/s17112691"
+   },
+   "remark": "data from Erdem 2017 and other papers",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Ambystoma mexicanum (Axotol) embryo",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 1000.0,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.03,
+    "c_mem": 10.0,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Abou-Ali, G., Kaler, K., Paul, R., Bjorklund, N. K. & Gordon, R.",
+    "year": 2002,
+    "title": "Electrorotation of axolotl embryos",
+    "journal": "Bioelectromagnetics",
+    "doi": "10.1002/bem.10011"
+   },
+   "remark": "Only theoretical information, no measurements",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Mouse hippocampal neuron cell",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 4.3,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.85,
+    "c_mem": 10.6,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Zhou, T., Ming, Y., Perry, S. F. & Tatic-Lucic, S.",
+    "year": 2016,
+    "title": "Estimation of the physical properties of neurons and glial cells using dielectrophoresis crossover frequency",
+    "journal": "Journal of Biological Physics",
+    "doi": "10.1007/s10867-016-9424-5"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Mouse hippocampal glial cell",
+   "model": "single_shell_cg",
+   "values": {
+    "radius": 4.3,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.35,
+    "c_mem": 12.0,
+    "g_mem": 0.0
+   },
+   "reference": {
+    "authors": "Zhou, T., Ming, Y., Perry, S. F. & Tatic-Lucic, S.",
+    "year": 2016,
+    "title": "Estimation of the physical properties of neurons and glial cells using dielectrophoresis crossover frequency",
+    "journal": "Journal of Biological Physics",
+    "doi": "10.1007/s10867-016-9424-5"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "K562",
+   "model": "single_shell",
+   "values": {
+    "radius": 8.0,
+    "eps_cyto": 40.0,
+    "sigma_cyto": 0.23,
+    "d_mem": 10.0,
+    "eps_mem": 8.0,
+    "sigma_mem": 1.8e-06
+   },
+   "reference": {
+    "authors": "Demircan, Y., Koyuncuoglu, A., Erdem, M., Ozgur, E., Gunduz, U. & Kulah, H.",
+    "year": 2015,
+    "title": "Label-free detection of multidrug resistance in K562 cells through isolated 3D-electrode dielectrophoresis",
+    "journal": "Electrophoresis",
+    "doi": "10.1002/elps.201400391"
+   },
+   "remark": "Data from (Labeed - 2003)",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "K562AR",
+   "model": "single_shell",
+   "values": {
+    "radius": 8.0,
+    "eps_cyto": 40.0,
+    "sigma_cyto": 0.5,
+    "d_mem": 10.0,
+    "eps_mem": 9.0,
+    "sigma_mem": 2e-06
+   },
+   "reference": {
+    "authors": "Demircan, Y., Koyuncuoglu, A., Erdem, M., Ozgur, E., Gunduz, U. & Kulah, H.",
+    "year": 2015,
+    "title": "Label-free detection of multidrug resistance in K562 cells through isolated 3D-electrode dielectrophoresis",
+    "journal": "Electrophoresis",
+    "doi": "10.1002/elps.201400391"
+   },
+   "remark": "Data from (Labeed - 2003 but r_ext=8.6 خ¼m)",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Viable yeast cell (Saccharomyces cerevisiae RXII)",
+   "model": "two_shell",
+   "values": {
+    "radius": 3.5,
+    "eps_cyto": 50.0,
+    "sigma_cyto": 0.3,
+    "d_mem": 8.0,
+    "eps_mem": 6.0,
+    "sigma_mem": 2.5e-07,
+    "d_wall": 220.0,
+    "eps_wall": 60.0,
+    "sigma_wall": 0.024
+   },
+   "reference": {
+    "authors": "Talary, M. S., Burt, J. P. H., Tame, J. A. & Pethig, R.",
+    "year": 1996,
+    "title": "Electromanipulation and separation of cells using travelling electric fields",
+    "journal": "Journal of Physics D-Applied Physics",
+    "doi": "10.1088/0022-3727/29/8/021"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Non-viable yeast cell (Saccharomyces cerevisiae RXII)",
+   "model": "two_shell",
+   "values": {
+    "radius": 3.0,
+    "eps_cyto": 50.0,
+    "sigma_cyto": 0.012,
+    "d_mem": 8.0,
+    "eps_mem": 6.0,
+    "sigma_mem": 0.00016,
+    "d_wall": 220.0,
+    "eps_wall": 60.0,
+    "sigma_wall": 0.0025
+   },
+   "reference": {
+    "authors": "Talary, M. S., Burt, J. P. H., Tame, J. A. & Pethig, R.",
+    "year": 1996,
+    "title": "Electromanipulation and separation of cells using travelling electric fields",
+    "journal": "Journal of Physics D-Applied Physics",
+    "doi": "10.1088/0022-3727/29/8/021"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Viable yeast cell (Saccharomyces cerevisiae RXII)",
+   "model": "two_shell",
+   "values": {
+    "radius": 4.0,
+    "eps_cyto": 50.0,
+    "sigma_cyto": 0.2,
+    "d_mem": 8.0,
+    "eps_mem": 6.0,
+    "sigma_mem": 2.5e-07,
+    "d_wall": 220.0,
+    "eps_wall": 60.0,
+    "sigma_wall": 0.014
+   },
+   "reference": {
+    "authors": "Huang, Y., Holzel, R., Pethig, R. & Wang, X.-B.",
+    "year": 1992,
+    "title": "Differences in the AC electrodynamics of viable and non-viable yeast cells determined through combined dielectrophoresis and electrorotation studies",
+    "journal": "Physics in Medicine and Biology",
+    "doi": "10.1088/0031-9155/37/7/003"
+   },
+   "remark": "epsilonr_cp, epsilonr_cm, epsilonr_cw and th_cm from (Holzel - 1990)",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Non-viable heat-treated yeast cell (Saccharomyces cerevisiae RXII)",
+   "model": "two_shell",
+   "values": {
+    "radius": 3.5,
+    "eps_cyto": 50.0,
+    "sigma_cyto": 0.007,
+    "d_mem": 8.0,
+    "eps_mem": 6.0,
+    "sigma_mem": 0.00016,
+    "d_wall": 250.0,
+    "eps_wall": 60.0,
+    "sigma_wall": 0.0015
+   },
+   "reference": {
+    "authors": "Huang, Y., Holzel, R., Pethig, R. & Wang, X.-B.",
+    "year": 1992,
+    "title": "Differences in the AC electrodynamics of viable and non-viable yeast cells determined through combined dielectrophoresis and electrorotation studies",
+    "journal": "Physics in Medicine and Biology",
+    "doi": "10.1088/0031-9155/37/7/003"
+   },
+   "remark": "epsilonr_cp, epsilonr_cm, epsilonr_cw and th_cm from (Holzel - 1990)",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Rhopilema nomadica nematocyst untreated capsule",
+   "model": "two_shell",
+   "values": {
+    "radius": 7.32,
+    "eps_cyto": 30.0,
+    "sigma_cyto": 0.21,
+    "d_mem": 1140.0,
+    "eps_mem": 25.0,
+    "sigma_mem": 0.08,
+    "d_wall": 70.0,
+    "eps_wall": 5.5,
+    "sigma_wall": 1.26e-05
+   },
+   "reference": {
+    "authors": "Park, S., Capelin, D., Piriatinskiy, G., Lotan, T. & Yossifon, G.",
+    "year": 2017,
+    "title": "Dielectrophoretic characterization and isolation of jellyfish stinging capsules",
+    "journal": "Electrophoresis",
+    "doi": "10.1002/elps.201700072"
+   },
+   "remark": "sigma_m=0.0159 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Rhopilema nomadica nematocyst CaCl2 treated capsule",
+   "model": "two_shell",
+   "values": {
+    "radius": 6.95,
+    "eps_cyto": 26.0,
+    "sigma_cyto": 0.18,
+    "d_mem": 1320.0,
+    "eps_mem": 19.0,
+    "sigma_mem": 0.09,
+    "d_wall": 70.0,
+    "eps_wall": 7.0,
+    "sigma_wall": 1.6e-06
+   },
+   "reference": {
+    "authors": "Park, S., Capelin, D., Piriatinskiy, G., Lotan, T. & Yossifon, G.",
+    "year": 2017,
+    "title": "Dielectrophoretic characterization and isolation of jellyfish stinging capsules",
+    "journal": "Electrophoresis",
+    "doi": "10.1002/elps.201700072"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Rhopilema nomadica nematocyst NaCl treated capsule",
+   "model": "two_shell",
+   "values": {
+    "radius": 7.57,
+    "eps_cyto": 25.0,
+    "sigma_cyto": 2.0,
+    "d_mem": 1040.0,
+    "eps_mem": 20.0,
+    "sigma_mem": 2.0,
+    "d_wall": 70.0,
+    "eps_wall": 30.0,
+    "sigma_wall": 0.00011
+   },
+   "reference": {
+    "authors": "Park, S., Capelin, D., Piriatinskiy, G., Lotan, T. & Yossifon, G.",
+    "year": 2017,
+    "title": "Dielectrophoretic characterization and isolation of jellyfish stinging capsules",
+    "journal": "Electrophoresis",
+    "doi": "10.1002/elps.201700072"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human B lymphocytes : normal cell line",
+   "model": "three_shell",
+   "values": {
+    "radius": 3.3,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 1.31,
+    "d_mem": 7.0,
+    "eps_mem": 12.8,
+    "sigma_mem": 5.6e-05,
+    "r_nuc": 2.78,
+    "d_env": 40.0,
+    "eps_env": 106.0,
+    "sigma_env": 0.0111,
+    "eps_np": 120.0,
+    "sigma_np": 2.04
+   },
+   "reference": {
+    "authors": "Polevaya, Y., Ermolina, I., Schlesinger, M., Ginzburg, B. Z., & Feldman, Y.",
+    "year": 1999,
+    "title": "Time domain dielectric spectroscopy study of human cells. II. Normal and malignant white blood cells",
+    "journal": "Biochimica et Biophysica Acta",
+    "doi": "10.1016/S0005-2736(99)00072-3"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human B lymphocytes : Magala cell line",
+   "model": "three_shell",
+   "values": {
+    "radius": 5.3,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.55,
+    "d_mem": 7.0,
+    "eps_mem": 11.4,
+    "sigma_mem": 8.8e-06,
+    "r_nuc": 4.47,
+    "d_env": 40.0,
+    "eps_env": 72.5,
+    "sigma_env": 0.0037,
+    "eps_np": 120.0,
+    "sigma_np": 1.08
+   },
+   "reference": {
+    "authors": "Polevaya, Y., Ermolina, I., Schlesinger, M., Ginzburg, B. Z., & Feldman, Y.",
+    "year": 1999,
+    "title": "Time domain dielectric spectroscopy study of human cells. II. Normal and malignant white blood cells",
+    "journal": "Biochimica et Biophysica Acta",
+    "doi": "10.1016/S0005-2736(99)00072-3"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human B lymphocytes : Farage cell line",
+   "model": "three_shell",
+   "values": {
+    "radius": 5.2,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.48,
+    "d_mem": 7.0,
+    "eps_mem": 9.8,
+    "sigma_mem": 9.1e-06,
+    "r_nuc": 4.39,
+    "d_env": 40.0,
+    "eps_env": 60.3,
+    "sigma_env": 0.0044,
+    "eps_np": 120.0,
+    "sigma_np": 1.07
+   },
+   "reference": {
+    "authors": "Polevaya, Y., Ermolina, I., Schlesinger, M., Ginzburg, B. Z., & Feldman, Y.",
+    "year": 1999,
+    "title": "Time domain dielectric spectroscopy study of human cells. II. Normal and malignant white blood cells",
+    "journal": "Biochimica et Biophysica Acta",
+    "doi": "10.1016/S0005-2736(99)00072-3"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human B lymphocytes : Raji cell line",
+   "model": "three_shell",
+   "values": {
+    "radius": 6.4,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.58,
+    "d_mem": 7.0,
+    "eps_mem": 8.8,
+    "sigma_mem": 8.2e-06,
+    "r_nuc": 5.4,
+    "d_env": 40.0,
+    "eps_env": 79.9,
+    "sigma_env": 0.004,
+    "eps_np": 120.0,
+    "sigma_np": 1.02
+   },
+   "reference": {
+    "authors": "Polevaya, Y., Ermolina, I., Schlesinger, M., Ginzburg, B. Z., & Feldman, Y.",
+    "year": 1999,
+    "title": "Time domain dielectric spectroscopy study of human cells. II. Normal and malignant white blood cells",
+    "journal": "Biochimica et Biophysica Acta",
+    "doi": "10.1016/S0005-2736(99)00072-3"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human B lymphocytes : Bjab cell line",
+   "model": "three_shell",
+   "values": {
+    "radius": 6.3,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.88,
+    "d_mem": 7.0,
+    "eps_mem": 8.0,
+    "sigma_mem": 1.1e-05,
+    "r_nuc": 5.31,
+    "d_env": 40.0,
+    "eps_env": 108.0,
+    "sigma_env": 0.0021,
+    "eps_np": 120.0,
+    "sigma_np": 1.39
+   },
+   "reference": {
+    "authors": "Polevaya, Y., Ermolina, I., Schlesinger, M., Ginzburg, B. Z., & Feldman, Y.",
+    "year": 1999,
+    "title": "Time domain dielectric spectroscopy study of human cells. II. Normal and malignant white blood cells",
+    "journal": "Biochimica et Biophysica Acta",
+    "doi": "10.1016/S0005-2736(99)00072-3"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human B lymphocytes : Daudi cell line",
+   "model": "three_shell",
+   "values": {
+    "radius": 6.8,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.85,
+    "d_mem": 7.0,
+    "eps_mem": 7.2,
+    "sigma_mem": 9.5e-06,
+    "r_nuc": 5.74,
+    "d_env": 40.0,
+    "eps_env": 66.1,
+    "sigma_env": 0.0027,
+    "eps_np": 120.0,
+    "sigma_np": 1.44
+   },
+   "reference": {
+    "authors": "Polevaya, Y., Ermolina, I., Schlesinger, M., Ginzburg, B. Z., & Feldman, Y.",
+    "year": 1999,
+    "title": "Time domain dielectric spectroscopy study of human cells. II. Normal and malignant white blood cells",
+    "journal": "Biochimica et Biophysica Acta",
+    "doi": "10.1016/S0005-2736(99)00072-3"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human T lymphocytes : normal cell line",
+   "model": "three_shell",
+   "values": {
+    "radius": 3.4,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.65,
+    "d_mem": 7.0,
+    "eps_mem": 11.1,
+    "sigma_mem": 2.74e-05,
+    "r_nuc": 2.87,
+    "d_env": 40.0,
+    "eps_env": 85.6,
+    "sigma_env": 0.0088,
+    "eps_np": 120.0,
+    "sigma_np": 1.26
+   },
+   "reference": {
+    "authors": "Polevaya, Y., Ermolina, I., Schlesinger, M., Ginzburg, B. Z., & Feldman, Y.",
+    "year": 1999,
+    "title": "Time domain dielectric spectroscopy study of human cells. II. Normal and malignant white blood cells",
+    "journal": "Biochimica et Biophysica Acta",
+    "doi": "10.1016/S0005-2736(99)00072-3"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human T lymphocytes : Peer cell line",
+   "model": "three_shell",
+   "values": {
+    "radius": 5.1,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.81,
+    "d_mem": 7.0,
+    "eps_mem": 9.5,
+    "sigma_mem": 1.29e-05,
+    "r_nuc": 4.3,
+    "d_env": 40.0,
+    "eps_env": 61.6,
+    "sigma_env": 0.0021,
+    "eps_np": 120.0,
+    "sigma_np": 1.42
+   },
+   "reference": {
+    "authors": "Polevaya, Y., Ermolina, I., Schlesinger, M., Ginzburg, B. Z., & Feldman, Y.",
+    "year": 1999,
+    "title": "Time domain dielectric spectroscopy study of human cells. II. Normal and malignant white blood cells",
+    "journal": "Biochimica et Biophysica Acta",
+    "doi": "10.1016/S0005-2736(99)00072-3"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Human T lymphocytes : HDMAR cell line",
+   "model": "three_shell",
+   "values": {
+    "radius": 5.9,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.88,
+    "d_mem": 7.0,
+    "eps_mem": 7.0,
+    "sigma_mem": 1.45e-05,
+    "r_nuc": 4.98,
+    "d_env": 40.0,
+    "eps_env": 101.2,
+    "sigma_env": 0.003,
+    "eps_np": 120.0,
+    "sigma_np": 1.58
+   },
+   "reference": {
+    "authors": "Polevaya, Y., Ermolina, I., Schlesinger, M., Ginzburg, B. Z., & Feldman, Y.",
+    "year": 1999,
+    "title": "Time domain dielectric spectroscopy study of human cells. II. Normal and malignant white blood cells",
+    "journal": "Biochimica et Biophysica Acta",
+    "doi": "10.1016/S0005-2736(99)00072-3"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Viable yeast cell (Saccharomyces cerevisiae)",
+   "model": "three_shell",
+   "values": {
+    "radius": 2.758,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.012,
+    "d_mem": 5.0,
+    "eps_mem": 6.2,
+    "sigma_mem": 0.021,
+    "r_nuc": 2.508,
+    "d_env": 8.0,
+    "eps_env": 5.0,
+    "sigma_env": 1e-07,
+    "eps_np": 53.0,
+    "sigma_np": 1.0
+   },
+   "reference": {
+    "authors": "Franco, J. L. S., Otero, A. S., Madronero, J. R. & San Martin, S. M.",
+    "year": 2013,
+    "title": "Dielectric Characterization of the Yeast Cell Budding Cycle",
+    "journal": "Progress in Electromagnetics Research-Pier",
+    "doi": "10.2528/Pier12100406"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Chinese hamster ovary (CHO) cell",
+   "model": "three_shell",
+   "values": {
+    "radius": 6.0,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.42,
+    "d_mem": 5.0,
+    "eps_mem": 8.5,
+    "sigma_mem": 1e-06,
+    "r_nuc": 3.3,
+    "d_env": 40.0,
+    "eps_env": 23.2,
+    "sigma_env": 0.001,
+    "eps_np": 120.0,
+    "sigma_np": 1.5
+   },
+   "reference": {
+    "authors": "Salimi, E., Braasch, K., Butler, M., Thomson, D. J. & Bridges, G. E.",
+    "year": 2016,
+    "title": "Dielectric model for Chinese hamster ovary cells obtained by dielectrophoresis cytometry",
+    "journal": "Biomicrofluidics",
+    "doi": "10.1063/1.4940432"
+   },
+   "remark": "sigma_m=1E-2 et sigma_m=0.17",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Mouse Lymphocyte",
+   "model": "three_shell",
+   "values": {
+    "radius": 2.9,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.32,
+    "d_mem": 7.0,
+    "eps_mem": 6.8,
+    "sigma_mem": 1e-05,
+    "r_nuc": 2.5,
+    "d_env": 40.0,
+    "eps_env": 28.0,
+    "sigma_env": 0.006,
+    "eps_np": 52.0,
+    "sigma_np": 1.35
+   },
+   "reference": {
+    "authors": "Asami, K., Takahashi, Y. & Takashima, S.",
+    "year": 1989,
+    "title": "Dielectric properties of mouse lymphocytes and erythrocytes",
+    "journal": "Biochimica et Biophysica Acta",
+    "doi": "10.1016/0167-4889(89)90183-3"
+   },
+   "remark": "Values with r_n=2.5um",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Yeast cell (Saccharomyces cerevisiae) expressing Ste2p",
+   "model": "three_shell",
+   "values": {
+    "radius": 2.05,
+    "eps_cyto": 125.0,
+    "sigma_cyto": 0.275,
+    "d_mem": 2.4,
+    "eps_mem": 1.61,
+    "sigma_mem": 0.0,
+    "r_nuc": 1.16,
+    "d_env": 2.4,
+    "eps_env": 2.36,
+    "sigma_env": 0.0,
+    "eps_np": 60.0,
+    "sigma_np": 2.2
+   },
+   "reference": {
+    "authors": "Stoneman, M., Chaturvedi, A., Jansma, D. B., Kosempa, M., Zeng, C. & Raicu, V.",
+    "year": 2007,
+    "title": "Protein influence on the plasma membrane dielectric properties: In vivo study utilizing dielectric spectroscopy and fluorescence microscopy",
+    "journal": "Bioelectrochemistry",
+    "doi": "10.1016/j.bioelechem.2006.12.008"
+   },
+   "remark": "sigma_m=0.28 S/m, phi=0.15",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Chloroplast",
+   "model": "three_shell",
+   "values": {
+    "radius": 3.0,
+    "eps_cyto": 60.0,
+    "sigma_cyto": 0.02,
+    "d_mem": 8.0,
+    "eps_mem": 3.5,
+    "sigma_mem": 5e-05,
+    "r_nuc": 2.984,
+    "d_env": 8.0,
+    "eps_env": 7.0,
+    "sigma_env": 5e-07,
+    "eps_np": 50.0,
+    "sigma_np": 0.15
+   },
+   "reference": {
+    "authors": "Fuhr, G., Rosch, P., Muller, T., Dressler, V. & Goring, H.",
+    "year": 1990,
+    "title": "Dielectric-Spectroscopy of Chloroplasts Isolated from Higher-Plants - Characterization of the Double-Membrane System",
+    "journal": "Plant and Cell Physiology",
+    "doi": "10.1093/oxfordjournals.pcp.a078013"
+   },
+   "remark": "sigma_m=0.01 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Mouse Lymphomablast L5178Y",
+   "model": "three_shell",
+   "values": {
+    "radius": 6.5,
+    "eps_cyto": 77.0,
+    "sigma_cyto": 1.1,
+    "d_mem": 8.0,
+    "eps_mem": 8.8,
+    "sigma_mem": 8e-08,
+    "r_nuc": 4.665,
+    "d_env": 40.0,
+    "eps_env": 19.0,
+    "sigma_env": 0.0007,
+    "eps_np": 300.0,
+    "sigma_np": 0.8
+   },
+   "reference": {
+    "authors": "Irimajiri, A., Doida, Y., Hanai, T. & Inouye, A.",
+    "year": 1978,
+    "title": "Passive Electrical-Properties of Cultured Murine Lymphoblast (L5178y) with Reference to Its Cytoplasmic Membrane, Nuclear-Envelope, and Intracellular Phases`",
+    "journal": "Journal of Membrane Biology",
+    "doi": "10.1007/Bf01871923"
+   },
+   "remark": "",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Saccharomises cerevisae strain RXII (7E-5 S/m)",
+   "model": "four_shell",
+   "values": {
+    "radius": 3.1885,
+    "eps_cyto": 14.4,
+    "sigma_cyto": 0.0011,
+    "d_mem": 110.0,
+    "eps_mem": 60.0,
+    "sigma_mem": 0.00061,
+    "d_wall": 50.0,
+    "eps_wall": 5.9,
+    "sigma_wall": 0.01,
+    "r_nuc": 3.0035,
+    "d_env": 3.5,
+    "eps_env": 3.0,
+    "sigma_env": 5.8e-07,
+    "eps_np": 51.0,
+    "sigma_np": 0.94
+   },
+   "reference": {
+    "authors": "Hölzel, R.",
+    "year": 1997,
+    "title": "Electrorotation of single yeast cells at frequencies between 100 Hz and 1.6 GHz",
+    "journal": "Biophysical Journal",
+    "doi": "10.1016/s0006-3495(97)78142-6"
+   },
+   "remark": "sigma_m=7e-5 S/m",
+   "source": "MyDEP 1.0.1 database"
+  },
+  {
+   "name": "Saccharomises cerevisae strain RXII (5.5E-2 S/m)",
+   "model": "four_shell",
+   "values": {
+    "radius": 3.1885,
+    "eps_cyto": 14.4,
+    "sigma_cyto": 0.0041,
+    "d_mem": 110.0,
+    "eps_mem": 60.0,
+    "sigma_mem": 0.024,
+    "d_wall": 50.0,
+    "eps_wall": 5.9,
+    "sigma_wall": 0.02,
+    "r_nuc": 3.0035,
+    "d_env": 3.5,
+    "eps_env": 3.0,
+    "sigma_env": 3.7e-06,
+    "eps_np": 51.0,
+    "sigma_np": 1.2
+   },
+   "reference": {
+    "authors": "Hölzel, R.",
+    "year": 1997,
+    "title": "Electrorotation of single yeast cells at frequencies between 100 Hz and 1.6 GHz",
+    "journal": "Biophysical Journal",
+    "doi": "10.1016/s0006-3495(97)78142-6"
+   },
+   "remark": "sigma_m=5.5e-2 S/m",
+   "source": "MyDEP 1.0.1 database"
+  }
+ ],
+ "not_included": {
+  "reason": "ellipsoidal particles (not yet supported)",
+  "names": [
+   "Normal tonsillar B cell",
+   "Malignant (Farage) tonsillar B cell",
+   "Escherichia coli 5K",
+   "Escherichia coli 5K hha-3 hns",
+   "Escherichia coli 5K Hha-3",
+   "Escherichia coli 5K hns",
+   "E. Coli K38",
+   "E. Coli K38 (original)",
+   "Highly Toxigenic Clostridium Difficile (HTCD)",
+   "E. Coli: Double-shelled prolate"
+  ]
+ }
+}
