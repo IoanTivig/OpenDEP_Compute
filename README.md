@@ -51,6 +51,10 @@ If you use OpenDEP in your research, please cite:
 
 > Tivig I., et al. *OpenDEP: An Open-Source Platform for Dielectrophoresis Spectra Acquisition and Analysis.* ACS Omega 8 (2023) 38715–38722. [doi:10.1021/acsomega.3c06052](https://pubs.acs.org/doi/10.1021/acsomega.3c06052)
 
+For single-cell measurements (dielectrophoresis and optical tweezers on the same cell), please also cite:
+
+> Gherghinoiu F., Savopol T., Tivig I., Moisescu M.G. *All-in-One Method for Iterative Single-Cell Dielectrophoretic and Optical Characterization: Advancing the OpenDEP Platform.* ACS Omega 10 (2025) 44333–44343. [doi:10.1021/acsomega.5c06195](https://pubs.acs.org/doi/10.1021/acsomega.5c06195)
+
 Work using OpenDEP:
 
 - [Early differentiation of mesenchymal stem cells is reflected in their dielectrophoretic behavior](https://www.nature.com/articles/s41598-024-54350-z), *Scientific Reports* (2024)
