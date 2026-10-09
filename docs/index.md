@@ -9,8 +9,6 @@ It is part of the OpenDEP suite (Tivig et al., *ACS Omega* 8 (2023) 38715–3872
 | OpenDEP Control | runs the experiments (camera, generator, pump) and measures DEP spectra |
 | **OpenDEP Compute** | converts image sets, fits spectra, reports cell parameters |
 | OpenDEP View | compares spectra and model curves, synthetic data, figures |
-| OpenDEP Neuralnet | classifies DEP population images |
-
 ## Where to start
 
 - [Installation](installation.md)

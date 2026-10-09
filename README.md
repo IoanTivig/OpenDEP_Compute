@@ -9,8 +9,6 @@ It is part of the **OpenDEP** suite, free and open-source software for DEP resea
 | [OpenDEP Control](https://github.com/IoanTivig/OpenDEP_Control) | runs the experiments on a Raspberry Pi (camera, function generator, pump) and measures DEP spectra |
 | **OpenDEP Compute** | converts image sets into spectra, fits spectra, reports cell parameters |
 | [OpenDEP View](https://github.com/IoanTivig/OpenDEP_View) | compares spectra and model curves, averages replicates, simulates data, publication graphs |
-| [OpenDEP Neuralnet](https://github.com/IoanTivig/OpenDEP_Neuralnet) | classifies DEP population images |
-
 ## Features
 
 - **Import** spectra from OpenDEP Control, OpenDEP View, OpenDEP Compute 1.x (Excel) and 3DEP (`.csv`); disabled and outlier points are kept.

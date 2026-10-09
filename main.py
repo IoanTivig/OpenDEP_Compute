@@ -85,7 +85,7 @@ def _destroy(window: MainWindow) -> None:
 
     Left to the interpreter's exit, the window (kept alive by reference cycles of its signal connections) and the
     application were destroyed in random order, and the finished process sometimes crashed with an access
-    violation (about 1 run in 4; same fix as OpenDEP Neuralnet). No close() here: closeEvent already ran, or must
+    violation (about 1 run in 4). No close() here: closeEvent already ran, or must
     not run after the event loop ended.
     """
     import gc

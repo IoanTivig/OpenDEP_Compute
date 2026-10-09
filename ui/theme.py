@@ -1,5 +1,5 @@
 """
-OpenDEP visual style (shared with OpenDEP View and Neuralnet): slate palette, white cards, Segoe UI 14 px.
+OpenDEP visual style (shared with OpenDEP View): slate palette, white cards, Segoe UI 14 px.
 
 Resources are loaded by file path (PyQt6 has no pyrcc): `icons:<file>` and `logos:<file>`.
 Widgets choose a look with dynamic properties, e.g. button.setProperty('variant', 'primary').
