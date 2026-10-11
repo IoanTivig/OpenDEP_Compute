@@ -235,30 +235,46 @@ def save_report(report: dict, folder: str | Path = REPORTS_FOLDER, now: datetime
     return path
 
 
+def _value(text: str):
+    text = text.strip()
+    try:
+        return json.loads(text) if text.startswith('"') else text.strip("'")
+    except ValueError:
+        return text
+
+
+def parse_header(block: str) -> dict:
+    """Header values; one level of nesting (the context) becomes a dict. Also reads headers written by PyYAML."""
+    header: dict = {}
+    parent = None
+    for line in block.splitlines():
+        if line.startswith((' ', '\t')):
+            if parent is not None and ':' in line:
+                key, value = line.strip().split(':', 1)
+                header[parent][key.strip()] = _value(value)
+            continue
+        if ':' not in line:
+            continue
+        key, value = line.split(':', 1)
+        key, value = key.strip(), value.strip()
+        if value == '':                                 # a nested block follows
+            header[key], parent = {}, key
+        else:
+            header[key], parent = ({} if value == '{}' else _value(value)), None
+    return header
+
+
 def read_header(path: str | Path) -> dict:
-    """Top-level values of a report header ({} when missing); also reads headers written by PyYAML."""
+    """The values of a report header ({} when missing)."""
     try:
         match = FRONT_MATTER.match(Path(path).read_text(encoding='utf-8'))
     except OSError:
         return {}
-    if not match:
-        return {}
-    header = {}
-    for line in match.group(1).splitlines():
-        if line.startswith((' ', '\t')) or ':' not in line:
-            continue
-        key, value = line.split(':', 1)
-        value = value.strip()
-        try:
-            value = json.loads(value) if value.startswith('"') else value.strip("'")
-        except ValueError:
-            pass
-        header[key.strip()] = value
-    return header
+    return parse_header(match.group(1)) if match else {}
 
 
 def list_reports(folder: str | Path = REPORTS_FOLDER) -> list[dict]:
-    """All saved reports, newest first: [{path, id, title, status, date}]."""
+    """All saved reports, newest first: [{path, id, title, status, date, sent_as}] (sent_as: website number)."""
     folder = Path(folder)
     if not folder.is_dir():
         return []
@@ -268,5 +284,70 @@ def list_reports(folder: str | Path = REPORTS_FOLDER) -> list[dict]:
         if header:
             entries.append({'path': path, 'id': str(header.get('id', path.stem)),
                             'title': str(header.get('title', path.stem)),
-                            'status': str(header.get('status', 'open')), 'date': str(header.get('date', ''))})
+                            'status': str(header.get('status', 'open')), 'date': str(header.get('date', '')),
+                            'sent_as': str(header.get('sent_as', '') or '')})
     return sorted(entries, key=lambda e: e['id'], reverse=True)
+
+
+## Saved reports sent later ##
+
+SECTIONS = {'What I did': 'steps', 'What I expected': 'expected', 'What happened instead': 'actual', 'Error': 'error'}
+FENCED = re.compile(r'\A(`{3,})text\n(.*)\n\1\Z', re.DOTALL)
+SECTION_HEADING = re.compile(r'^## (What I did|What I expected|What happened instead|Error|Screenshot|'
+                             r'Console and log[^\n]*)[ \t]*$', re.MULTILINE)
+NOT_SYSTEM = {'id', 'status', 'title', 'program', 'commit', 'date', 'context', 'fixed_in', 'sent_as', 'version'}
+
+
+def load_report(path: str | Path) -> dict:
+    """
+    A saved report as the dict save_report took, to send it later; plus id, version, commit, system and sent_as
+    from its header.
+
+    Args:
+        path (str | Path): The report file (.md); the screenshot is the .png next to it.
+
+    Returns:
+        dict: title, steps, expected, actual, error, output, context, screenshot_png, id, version, commit, system,
+            sent_as.
+    """
+    path = Path(path)
+    text = path.read_text(encoding='utf-8')
+    match = FRONT_MATTER.match(text)
+    if not match:
+        raise ValueError(f'{path.name} is not a bug report')
+    header = parse_header(match.group(1))
+    context = header.get('context', {})
+    report = {'id': str(header.get('id', path.stem)), 'title': str(header.get('title', '')).strip(),
+              'steps': '', 'expected': '', 'actual': '', 'error': '', 'output': '', 'screenshot_png': None,
+              'context': context if isinstance(context, dict) else {},
+              'version': str(header.get('version', '')), 'commit': str(header.get('commit', '')),
+              'system': {k: str(v) for k, v in header.items() if k not in NOT_SYSTEM and not isinstance(v, dict)},
+              'sent_as': str(header.get('sent_as', '') or '')}
+    # The body: the known '## Heading' sections (a '## ' line inside the output is not one), code blocks unwrapped,
+    # '_(not given)_' read as empty
+    parts = SECTION_HEADING.split(text[match.end():])
+    for heading, content in zip(parts[1::2], parts[2::2]):
+        content = content.strip()
+        content = '' if content == '_(not given)_' else content
+        fenced = FENCED.match(content)
+        content = fenced.group(2) if fenced else content
+        heading = heading.strip()
+        if heading in SECTIONS:
+            report[SECTIONS[heading]] = content
+        elif heading.startswith('Console and log'):
+            report['output'] = content
+        elif heading == 'Screenshot' and path.with_suffix('.png').is_file():
+            report['screenshot_png'] = path.with_suffix('.png').read_bytes()
+    return report
+
+
+def mark_sent(path: str | Path, number: int) -> None:
+    """Write the report's number on the OpenDEP website into its header (sent_as), so it is not sent again."""
+    path = Path(path)
+    text = path.read_text(encoding='utf-8')
+    match = FRONT_MATTER.match(text)
+    if not match:
+        raise ValueError(f'{path.name} is not a bug report')
+    lines = [line for line in match.group(1).splitlines() if not line.startswith('sent_as:')]
+    lines.append(f'sent_as: {json.dumps(str(number))}')
+    path.write_text('---\n' + '\n'.join(lines) + '\n---\n' + text[match.end():], encoding='utf-8')

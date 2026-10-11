@@ -1,5 +1,9 @@
 # Changes
 
+## 2.1.0 (2026-10-12)
+
+- **Report bug → Send to OpenDEP**: reports go to the OpenDEP team through the OpenDEP website (opendep.org), from a tester account (sign in once; the program keeps a token, not the password). Saving the report as a file still works; saved reports are sent later from the Reports tab (**Send selected**, **Send all unsent**), and the website never stores the same report twice.
+
 ## 2.0.0 (2026-10-10)
 
 A rebuild of OpenDEP Compute from the ground up (PyQt6, Python 3.12).
