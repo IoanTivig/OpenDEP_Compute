@@ -1,6 +1,6 @@
 """
 Main window: header, welcome screen, the workspace pages (Data, Fit). Exports are made where their content is
-(spectra: Data page; fits and saved fits: Fit page), each to a folder or file the user chooses.
+(spectra: Data page; fits and memorized fits: Fit page), each to a folder or file the user chooses.
 """
 from pathlib import Path
 
@@ -208,7 +208,7 @@ class MainWindow(QMainWindow):
                 'spectra': len(project.spectra), 'saved_fits': len(project.fits),
                 'model': fit.model_combo.currentText(), 'ticked_spectra': len(fit.ticked_ids()),
                 'fit_on_screen': (f'{fit.result.model}, R² {fit.result.r_squared:.4f}'
-                                  + (f' (saved fit "{fit.saved_name}")' if fit.saved_name else ''))
+                                  + (f' (memorized fit "{fit.saved_name}")' if fit.saved_name else ''))
                                  if fit.result is not None else 'none'})
         return context
 

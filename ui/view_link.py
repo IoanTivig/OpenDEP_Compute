@@ -93,15 +93,16 @@ def send_to_view(ctx: AppContext, paths: list[Path], parent: QWidget | None = No
     # 1. View is not running: start it, from the saved place, the usual places, or one the user shows
     installation = find_view(ctx.settings.value(SETTING_KEY, '') or None, COMPUTE_FOLDER)
     if installation is None:
-        QMessageBox.information(parent, 'Send to View', 'OpenDEP View was not found next to OpenDEP Compute. '
-                                'Show its folder once (the folder with the program, or main.py and ui/); it is '
-                                'remembered.')
+        QMessageBox.information(parent, 'Send to View', 'OpenDEP View was not found. Show its folder once: where it '
+                                'is installed (the folder with "OpenDEP View.exe", e.g. C:\\Program Files\\OpenDEP '
+                                'View), or the folder of its source code (main.py). It is remembered.')
         folder = QFileDialog.getExistingDirectory(parent, 'OpenDEP View folder')
         installation = installation_at(folder) if folder else None
         if installation is None:
             if folder:
-                QMessageBox.warning(parent, 'Send to View', f'No OpenDEP View in {folder}: it needs the program '
-                                    '(or main.py with its venv) and the ui folder.')
+                QMessageBox.warning(parent, 'Send to View', f'No OpenDEP View in {folder}. Choose the folder that '
+                                    'holds "OpenDEP View.exe" (installed), or View\'s source folder with main.py and '
+                                    'its venv.')
             return ''
     ctx.settings.setValue(SETTING_KEY, str(installation.folder))
 

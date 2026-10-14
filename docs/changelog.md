@@ -1,5 +1,11 @@
 # Changes
 
+## 2.2.0 (2026-10-14)
+
+- **Sort** for the lists: the spectra by import order, name (A–Z, Z–A) or sample (the replicates of each sample together), the same order on the Data and Fit pages; the memorized fits by when they were memorized (oldest or newest first) or by name. Numbers in names are read as numbers (*Exp 2* before *Exp 10*); the choices are remembered.
+- Fixed: **Send to View** did not find the installed OpenDEP View (`C:\Program Files\OpenDEP View`), not even when its folder was chosen by hand (bug report #2). The installed View keeps its files in an `_internal` folder next to the program; Compute now recognises that layout.
+- **Saved fits** are now called **Memorized fits** (the button is **Memorize fit**): the fits kept in the project to open again and export together.
+
 ## 2.1.0 (2026-10-12)
 
 - **Report bug → Send to OpenDEP**: reports go to the OpenDEP team through the OpenDEP website (opendep.org), from a tester account (sign in once; the program keeps a token, not the password). Saving the report as a file still works; saved reports are sent later from the Reports tab (**Send selected**, **Send all unsent**), and the website never stores the same report twice.

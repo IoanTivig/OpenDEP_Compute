@@ -8,7 +8,7 @@ OpenDEP Compute opens the files of every OpenDEP program, and of the 3DEP instru
 |---|---|---|
 | `.odspec` OpenDEP Spectrum, version 1 | OpenDEP View | the spectrum (frequency, value, error) |
 | `.odspec` OpenDEP Spectrum, version 2 | OpenDEP Control, OpenDEP Compute | the spectrum, plus the measured quantity, raw values and normalisation factor, per-point data (phase, …), known parameters and where it came from |
-| `.odfit` OpenDEP Fit | OpenDEP Compute, OpenDEP View | the spectra (with their sample) and, when the file holds one, the fit: it becomes a saved fit of the imported spectra |
+| `.odfit` OpenDEP Fit | OpenDEP Compute, OpenDEP View | the spectra (with their sample) and, when the file holds one, the fit: it becomes a memorized fit of the imported spectra |
 | `.xlsx` scatter (3 columns) | OpenDEP View | the spectrum |
 | `.xlsx` data + fit | OpenDEP Compute 1.x | the spectrum with its point flags |
 | `.xlsx` image conversion ("Centralization.xlsx", B1 "Experimental grayness factor") | OpenDEP Compute 1.x | the grayness-factor spectrum (relative: fitted with a free scale factor) |
@@ -29,8 +29,8 @@ Model curve files (`.odcurve`, formerly `.odc`) belong to OpenDEP View and are n
 
 | File | Opens in |
 |---|---|
-| `.odcproject` OpenDEP Compute project | OpenDEP Compute: the whole project (spectra, curves, saved fits) in one file, made to be sent between users. A zip archive: any unzip tool shows the OpenDEP Spectrum files inside |
-| `.odfit` OpenDEP Fit | OpenDEP View (the spectra linked to the fitted curve, each divided by its scale factor) and Compute (the saved fit) |
+| `.odcproject` OpenDEP Compute project | OpenDEP Compute: the whole project (spectra, curves, memorized fits) in one file, made to be sent between users. A zip archive: any unzip tool shows the OpenDEP Spectrum files inside |
+| `.odfit` OpenDEP Fit | OpenDEP View (the spectra linked to the fitted curve, each divided by its scale factor) and Compute (the memorized fit) |
 | `.odspec` OpenDEP Spectrum, version 2 | OpenDEP View (and Compute: flags and per-point data are kept) |
 | `.odcurve` OpenDEP Curve | OpenDEP View 2, all five models (homogeneous, single-, two-, three- and four-shell); View 1.x shows homogeneous and single-shell curves only (rename the file to `.odc` to open it there) |
 | `.xlsx` View scatter | OpenDEP View, Excel (points in use only) |

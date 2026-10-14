@@ -28,7 +28,7 @@
 
 ## Reports and figures
 
-**"some of its spectra were removed"**: a saved fit's report needs its spectra in the project. Import them again and fit again.
+**"some of its spectra were removed"**: a memorized fit's report needs its spectra in the project. Import them again and fit again.
 
 **Fonts in SVG look different elsewhere**: SVG keeps the text as text in Arial; a computer without Arial substitutes a similar font. Use PDF to keep the exact look.
 

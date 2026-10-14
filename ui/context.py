@@ -8,6 +8,7 @@ from PyQt6.QtCore import QObject, QSettings, pyqtSignal
 from PyQt6.QtWidgets import QFileDialog, QWidget
 
 from src.project.project import Project
+from src.project.sorting import FIT_SORTS, SPECTRA_SORTS
 
 RECENT_MAX = 8
 POINT_STYLES = ('errorbars', 'area')           # as in OpenDEP View: points with error bars, or a band
@@ -23,6 +24,7 @@ class AppContext(QObject):
     fits_changed = pyqtSignal()
     message = pyqtSignal(str)                      # status-bar text
     point_style_changed = pyqtSignal()
+    sort_changed = pyqtSignal()                    # order of the spectra (Data and Fit) or of the memorized fits
 
     def __init__(self, parent: QObject | None = None, settings: QSettings | None = None) -> None:
         """
@@ -36,6 +38,11 @@ class AppContext(QObject):
         self.dirty = False
         style = self.settings.value('point_style', 'errorbars')
         self.point_style = style if style in POINT_STYLES else 'errorbars'
+        # Order of the lists (remembered): one for the spectra of the Data and Fit pages, one for the memorized fits
+        sort = self.settings.value('sort/spectra', 'added')
+        self.spectra_sort = sort if sort in SPECTRA_SORTS else 'added'
+        sort = self.settings.value('sort/fits', 'added')
+        self.fit_sort = sort if sort in FIT_SORTS else 'added'
 
     # -- project --
 
@@ -61,6 +68,20 @@ class AppContext(QObject):
             self.point_style = style
             self.settings.setValue('point_style', style)
             self.point_style_changed.emit()
+
+    def set_spectra_sort(self, sort: str) -> None:
+        """Order of the spectra, the same on the Data and Fit pages (a key of SPECTRA_SORTS; remembered)."""
+        if sort in SPECTRA_SORTS and sort != self.spectra_sort:
+            self.spectra_sort = sort
+            self.settings.setValue('sort/spectra', sort)
+            self.sort_changed.emit()
+
+    def set_fit_sort(self, sort: str) -> None:
+        """Order of the memorized fits (a key of FIT_SORTS; remembered)."""
+        if sort in FIT_SORTS and sort != self.fit_sort:
+            self.fit_sort = sort
+            self.settings.setValue('sort/fits', sort)
+            self.sort_changed.emit()
 
     # -- export folder --
     # Every export asks where to write (a folder, or a file for a single report / table). The dialogs start in the

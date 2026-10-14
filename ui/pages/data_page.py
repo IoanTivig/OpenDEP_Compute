@@ -12,11 +12,12 @@ from PyQt6.QtWidgets import (QAbstractItemView, QFileDialog, QHBoxLayout, QHeade
 from src.data.outliers import suggest_outliers
 from src.formats import OPEN_FILTER, read_file, write_view_scatter
 from src.formats.opendep_json import SPECTRUM_SUFFIX, write_scatter
+from src.project.sorting import SPECTRA_SORTS, spectra_order
 from src.report.fit_export import write_spectrum_csv
 from ui.context import AppContext
 from ui.plots import dep_labels, draw_spectrum, frequency_axis, point_style_bar
 from ui.view_link import send_to_view, view_folder
-from ui.widgets import PlotCanvas, button, card, label, read_only, safe_name
+from ui.widgets import PlotCanvas, button, card, label, read_only, safe_name, set_combo_key, sort_combo
 
 SPECTRUM_COLUMNS = ('Name', 'Sample', 'Quantity', 'Points used', 'Source')
 POINT_COLUMNS = ('Frequency (Hz)', 'Value', 'Error', 'Use', 'Outlier')
@@ -49,6 +50,7 @@ class DataPage(QWidget):
         ctx.project_changed.connect(self.refresh)
         ctx.spectra_changed.connect(self.refresh)
         ctx.point_style_changed.connect(self._on_selection)
+        ctx.sort_changed.connect(self._on_sort_changed)
 
     ## Layout ##
 
@@ -89,6 +91,14 @@ class DataPage(QWidget):
         self.banner = label('', 'banner', wrap=True)
         self.banner.hide()
         lay.addWidget(self.banner)
+        sort_row = QHBoxLayout()
+        sort_row.addStretch(1)
+        sort_row.addWidget(label('Sort', 'muted'))
+        self.sort_combo = sort_combo(SPECTRA_SORTS, self.ctx.spectra_sort, self.ctx.set_spectra_sort,
+                                     'Order of the spectra, here and on the Fit page. Sample: the replicates of each '
+                                     'sample together, names A–Z inside a sample')
+        sort_row.addWidget(self.sort_combo)
+        lay.addLayout(sort_row)
         self.table = QTableWidget(0, len(SPECTRUM_COLUMNS))
         self.table.setHorizontalHeaderLabels(SPECTRUM_COLUMNS)
         self.table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
@@ -132,13 +142,19 @@ class DataPage(QWidget):
         self._fill_spectra()
         self._on_selection()
 
+    def _on_sort_changed(self) -> None:
+        """The order changed here or on the Fit page: same list, same order (the selection is kept)."""
+        set_combo_key(self.sort_combo, self.ctx.spectra_sort)
+        self._fill_spectra()
+
     def _fill_spectra(self) -> None:
         project = self.ctx.project
         selected = set(self.selected_ids())
         self.table.setRowCount(0)
         if project is None:
             return
-        for sid, e in project.spectra.items():
+        for sid in spectra_order(project, self.ctx.spectra_sort):
+            e = project.spectra[sid]
             s = e.spectrum
             row = self.table.rowCount()
             self.table.insertRow(row)
@@ -236,7 +252,7 @@ class DataPage(QWidget):
         self.ctx.spectra_changed.emit()
         if n_fits:
             self.ctx.fits_changed.emit()
-        fits = f' and {n_fits} saved fit(s)' if n_fits else ''
+        fits = f' and {n_fits} memorized fit(s)' if n_fits else ''
         self.ctx.message.emit(f'🆕 Imported {n_spectra} spectra{fits}')
         return messages
 

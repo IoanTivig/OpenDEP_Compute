@@ -1,7 +1,7 @@
 """
 Fit page: choose spectra (replicates) and a model, set the parameters (grouped: Buffer, Cell, Membrane, ...),
 fit, and read the crossovers, R² and the fitted values. The fit on screen is saved as a file (.odfit), drawn as a
-figure, reported (PDF) or sent to OpenDEP View; "Add to Saved fits" keeps it in the project's list of saved fits, which exports
+figure, reported (PDF) or sent to OpenDEP View; "Memorize fit" keeps it in the project's list of memorized fits, which exports
 many fits at once (reports, .odfit files, one table) and opens a listed fit again.
 """
 from dataclasses import asdict
@@ -29,7 +29,9 @@ from ui.figure_dialog import FigureDialog
 from ui.plots import draw_fit, point_style_bar
 from ui.view_export_dialog import ViewExportDialog
 from ui.view_link import send_to_view, view_folder
-from ui.widgets import PlotCanvas, StatTile, button, card, label, read_only, safe_name
+from src.project.sorting import FIT_SORTS, SPECTRA_SORTS, fit_order, spectra_order
+from ui.widgets import (PlotCanvas, StatTile, button, card, label, read_only, safe_name, set_combo_key,
+                        sort_combo)
 
 # Fitted by default: what a DEP spectrum usually determines (docs/concepts/fitting.md)
 DEFAULT_FREE = {'homogeneous': ['eps_p', 'sigma_p'], 'single_shell': ['eps_mem', 'sigma_cyto'],
@@ -96,7 +98,7 @@ class ResultGroups(QWidget):
         self._grid.setContentsMargins(0, 0, 0, 0)
         self._grid.setSpacing(self.SPACING)
         self.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
-        self.empty = label('Fit, or open a saved fit, to see the values here.', 'muted')
+        self.empty = label('Fit, or open a memorized fit, to see the values here.', 'muted')
         self.cards: list[QFrame] = []
         self.columns = 0
         self._card_width = 0                            # every card's width (measured once per result)
@@ -232,6 +234,7 @@ class FitPage(QWidget):
         ctx.spectra_changed.connect(self._fill_spectra)
         ctx.fits_changed.connect(self._fill_saved)
         ctx.point_style_changed.connect(self._show_result)
+        ctx.sort_changed.connect(self._on_sort_changed)
         self._set_model(self.model_combo.currentData())
 
     ## Layout ##
@@ -243,7 +246,15 @@ class FitPage(QWidget):
 
         # 1. Spectra
         frame, lay = card(spacing=8)
-        lay.addWidget(label('Spectra', 'section'))
+        head = QHBoxLayout()
+        head.addWidget(label('Spectra', 'section'))
+        head.addStretch(1)
+        head.addWidget(label('Sort', 'muted'))
+        self.spectra_sort_combo = sort_combo(SPECTRA_SORTS, self.ctx.spectra_sort, self.ctx.set_spectra_sort,
+                                             'Order of the spectra, here and on the Data page. Sample: the replicates '
+                                             'of each sample together, names A–Z inside a sample')
+        head.addWidget(self.spectra_sort_combo)
+        lay.addLayout(head)
         lay.addWidget(label('Tick one spectrum, or several replicates of one sample: they share the model '
                             'parameters and each gets its own scale factor.', 'muted', wrap=True))
         self.spectra_list = QListWidget()
@@ -298,9 +309,16 @@ class FitPage(QWidget):
         lay.addWidget(self.fit_button)
         splitter.addWidget(frame)
 
-        # 3. Saved fits (kept in the project): open one again, export many at once
+        # 3. Memorized fits (kept in the project; "saved fits" in the code): open one again, export many at once
         frame, lay = card(spacing=8)
-        lay.addWidget(label('Saved fits', 'section'))
+        head = QHBoxLayout()
+        head.addWidget(label('Memorized fits', 'section'))
+        head.addStretch(1)
+        head.addWidget(label('Sort', 'muted'))
+        self.saved_sort_combo = sort_combo(FIT_SORTS, self.ctx.fit_sort, self.ctx.set_fit_sort,
+                                           'Order of the memorized fits: by when they were memorized, or by name')
+        head.addWidget(self.saved_sort_combo)
+        lay.addLayout(head)
         lay.addWidget(label('Export and Send to View use the selected fits, or all of them when none is '
                             'selected.', 'muted', wrap=True))
         self.saved_list = QListWidget()
@@ -314,7 +332,7 @@ class FitPage(QWidget):
         self.open_saved_button = button('Open', None, None, 'Show the selected fit again: spectra, model, settings '
                                         'and results (no refit)')
         self.open_saved_button.clicked.connect(lambda: self.open_saved())
-        self.select_all_button = button('Select all', None, None, 'Select every saved fit')
+        self.select_all_button = button('Select all', None, None, 'Select every memorized fit')
         self.select_all_button.clicked.connect(self.saved_list.selectAll)
         self.saved_export_button = button('Export', None, None, 'The selected fits (all when none is selected), to '
                                           'a folder you choose')
@@ -379,7 +397,7 @@ class FitPage(QWidget):
         self.result_groups = ResultGroups()
         lay.addWidget(self.result_groups)
         actions = QHBoxLayout()
-        self.save_button = button('Add to Saved fits…', None, 'add_icon', 'Add this fit to the Saved fits list '
+        self.save_button = button('Memorize fit', None, 'add_icon', 'Add this fit to the Memorized fits list '
                                   '(kept in the project: it can be opened again and exported with the others)')
         self.odc_button = button('Export fit…', None, None, 'Export this fit as a file (.odfit: the spectra, the '
                                  'fitted curve, the scale factors and the results; OpenDEP View and Compute open '
@@ -418,7 +436,8 @@ class FitPage(QWidget):
         self._filling = True
         self.spectra_list.clear()
         if project is not None:
-            for sid, e in project.spectra.items():
+            for sid in spectra_order(project, self.ctx.spectra_sort):
+                e = project.spectra[sid]
                 text = e.spectrum.name + (f'   [{e.sample}]' if e.sample else '')
                 item = QListWidgetItem(text)
                 item.setData(Qt.ItemDataRole.UserRole, sid)
@@ -428,8 +447,11 @@ class FitPage(QWidget):
         self._filling = False
 
     def ticked_ids(self) -> list[str]:
-        return [self.spectra_list.item(i).data(Qt.ItemDataRole.UserRole) for i in range(self.spectra_list.count())
-                if self.spectra_list.item(i).checkState() == Qt.CheckState.Checked]
+        """The ticked spectra in the project's (import) order, whatever the list's sort: a fit does not depend on it."""
+        ticked = {self.spectra_list.item(i).data(Qt.ItemDataRole.UserRole) for i in range(self.spectra_list.count())
+                  if self.spectra_list.item(i).checkState() == Qt.CheckState.Checked}
+        order = list(self.ctx.project.spectra) if self.ctx.project is not None else []
+        return [sid for sid in order if sid in ticked]
 
     def _on_spectra_ticked(self, *_) -> None:
         """Known parameters of the ticked spectra (e.g. a measured radius) are entered as values."""
@@ -646,7 +668,7 @@ class FitPage(QWidget):
         if self.result is None:
             return
         default = self._fit_name()
-        name, ok = QInputDialog.getText(self, 'Add to Saved fits', 'Name of the fit:', text=default)
+        name, ok = QInputDialog.getText(self, 'Memorize fit', 'Name of the fit:', text=default)
         if ok and name.strip():
             fid = self.ctx.project.add_fit(name.strip(), self.spectra_used, asdict(self.settings_used),
                                            fit_summary(self.result, *CROSSOVER_RANGE))
@@ -654,7 +676,7 @@ class FitPage(QWidget):
             self.ctx.mark_dirty()
             self.ctx.fits_changed.emit()
             self._select_saved([fid])
-            self.ctx.message.emit(f'🆕 Fit "{name.strip()}" added to the Saved fits')
+            self.ctx.message.emit(f'🆕 Fit "{name.strip()}" added to the Memorized fits')
 
     def fitted_curve(self) -> ModelCurve:
         names = ', '.join(self.ctx.project.spectra[i].spectrum.name for i in self.spectra_used[:2])
@@ -721,7 +743,14 @@ class FitPage(QWidget):
             return ''
         return send_to_view(self.ctx, [path], self)
 
-    ## Saved fits ##
+    ## Memorized fits ("saved fits" in the code) ##
+
+    def _on_sort_changed(self) -> None:
+        """An order changed (spectra here or on the Data page, or the memorized fits): ticks and selection kept."""
+        set_combo_key(self.spectra_sort_combo, self.ctx.spectra_sort)
+        set_combo_key(self.saved_sort_combo, self.ctx.fit_sort)
+        self._fill_spectra()
+        self._fill_saved()
 
     def _fill_saved(self) -> None:
         selected = set(self.selected_saved_ids())
@@ -729,7 +758,8 @@ class FitPage(QWidget):
         project = self.ctx.project
         if project is None:
             return
-        for fid, f in project.fits.items():
+        for fid in fit_order(project, self.ctx.fit_sort):
+            f = project.fits[fid]
             item = QListWidgetItem(f'{f.name}   (R² {f.result["statistics"]["r_squared"]:.3f})')
             item.setData(Qt.ItemDataRole.UserRole, fid)
             self.saved_list.addItem(item)
@@ -752,8 +782,8 @@ class FitPage(QWidget):
         if not fits and not one:
             fits = list(project.fits.values())
         if not fits or (one and len(fits) != 1):
-            QMessageBox.information(self, title, 'Select one saved fit.' if one else
-                                    'No saved fits yet: "Add to Saved fits…" below the results adds the fit on screen.')
+            QMessageBox.information(self, title, 'Select one memorized fit.' if one else
+                                    'No memorized fits yet: "Memorize fit" below the results adds the fit on screen.')
             return []
         return fits
 
@@ -808,7 +838,7 @@ class FitPage(QWidget):
         self.saved_name = record.name
         self._select_saved([fid])
         self._show_result()
-        self.ctx.message.emit(f'ℹ️ Saved fit "{record.name}" shown (saved {record.created.replace("T", " ")})')
+        self.ctx.message.emit(f'ℹ️ Memorized fit "{record.name}" shown (memorized {record.created.replace("T", " ")})')
         return True
 
     def export_saved_reports(self) -> list[Path]:
@@ -875,7 +905,7 @@ class FitPage(QWidget):
     def export_fit_table(self) -> Path | None:
         """Every saved fit in one table (a CSV file the user chooses)."""
         if not self.ctx.project.fits:
-            QMessageBox.information(self, 'Table of all fits', 'No saved fits yet: "Add to Saved fits…" below the '
+            QMessageBox.information(self, 'Table of all fits', 'No memorized fits yet: "Memorized fit" below the '
                                                                'results adds the fit on screen.')
             return None
         target = self.ctx.choose_export_file(self, 'Table of all fits', 'fits.csv', 'CSV (*.csv)')
@@ -905,7 +935,7 @@ class FitPage(QWidget):
 
     def remove_saved(self) -> None:
         ids = self.selected_saved_ids()
-        if not ids or QMessageBox.question(self, 'Remove', f'Remove {len(ids)} saved fit(s) from the project?') \
+        if not ids or QMessageBox.question(self, 'Remove', f'Remove {len(ids)} memorized fit(s) from the project?') \
                 != QMessageBox.StandardButton.Yes:
             return
         for fid in ids:

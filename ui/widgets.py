@@ -7,8 +7,8 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 from PyQt6.QtCore import QTimer, Qt, pyqtSignal, QSize
 from PyQt6.QtGui import QColor, QImage, QPixmap
-from PyQt6.QtWidgets import (QButtonGroup, QFrame, QHBoxLayout, QLabel, QPushButton, QSizePolicy, QVBoxLayout,
-                             QWidget, QTableWidgetItem)
+from PyQt6.QtWidgets import (QButtonGroup, QComboBox, QFrame, QHBoxLayout, QLabel, QPushButton, QSizePolicy,
+                             QVBoxLayout, QWidget, QTableWidgetItem)
 
 from ui import theme
 
@@ -82,6 +82,35 @@ def button(text: str = '', variant: str | None = None, icon_name: str | None = N
         widget.setToolTip(tooltip)
     widget.setCursor(Qt.CursorShape.PointingHandCursor)
     return widget
+
+
+def sort_combo(options: dict[str, str], current: str, on_change, tooltip: str = '') -> QComboBox:
+    """
+    Drop-down list of the orders of a list (Sort), its value the order's key.
+
+    Args:
+        options (dict[str, str]): Order key -> label (src.project.sorting).
+        current (str): Key shown first.
+        on_change (callable): Called with the chosen key.
+        tooltip (str): Tooltip.
+
+    Returns:
+        QComboBox: The list; set_combo_key() changes it without calling on_change.
+    """
+    widget = QComboBox()
+    for key, text in options.items():
+        widget.addItem(text, key)
+    set_combo_key(widget, current)
+    widget.setToolTip(tooltip)
+    widget.currentIndexChanged.connect(lambda: on_change(widget.currentData()))
+    return widget
+
+
+def set_combo_key(widget: QComboBox, key: str) -> None:
+    """Show the item whose value is key (signals blocked: no on_change)."""
+    widget.blockSignals(True)
+    widget.setCurrentIndex(max(widget.findData(key), 0))
+    widget.blockSignals(False)
 
 
 def hline() -> QFrame:

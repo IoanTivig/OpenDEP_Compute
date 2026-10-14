@@ -186,7 +186,7 @@ class Project:
             try:
                 project.fits[e['id']] = FitRecord(**part(e['file']))
             except Exception as err:
-                project.problems.append(f'Saved fit {e.get("file", "?")}: {_reason(err)}')
+                project.problems.append(f'Memorized fit {e.get("file", "?")}: {_reason(err)}')
         return project
 
     def save(self) -> None:

@@ -23,7 +23,9 @@ PROTOCOL_VERSION = 1
 CHANNEL_PREFIX = 'OpenDEP-View-'
 CHANNEL_VARIABLE = 'OPENDEP_VIEW_CHANNEL'        # replaces the channel name (tests)
 SETTING_KEY = 'view_location'                    # QSettings key: View's folder, chosen by the user
-VIEW_MARKER = Path('ui') / 'main.ui'             # a file every View folder has (source and release)
+# A file every View folder has: ui/main.ui in the source and in releases built with PyInstaller < 6; the installed
+# View (PyInstaller >= 6) keeps its data in _internal/ next to the program (bug report #2, 2026-10-12)
+VIEW_MARKERS = (Path('ui') / 'main.ui', Path('_internal') / 'ui' / 'main.ui')
 FROZEN_NAMES = ('OpenDEP View', 'main')          # View's program file in a release, without the extension
 
 
@@ -93,7 +95,8 @@ class ViewInstallation:
 
 def installation_at(path: Path | str | None) -> ViewInstallation | None:
     """
-    View at a folder (or at its program file): a release (OpenDEP View.exe / main.exe) or the source with its venv.
+    View at a folder (or at its program file): a release (OpenDEP View.exe / main.exe, its data in _internal/ when
+    installed) or the source with its venv.
 
     Args:
         path (Path | str | None): View's folder, its program or main.py.
@@ -105,7 +108,7 @@ def installation_at(path: Path | str | None) -> ViewInstallation | None:
         return None
     path = Path(path)
     folder = path if path.is_dir() else path.parent
-    if not (folder / VIEW_MARKER).is_file():
+    if not any((folder / marker).is_file() for marker in VIEW_MARKERS):
         return None
     # 1. Release: the frozen program
     suffix = '.exe' if sys.platform == 'win32' else ''
